@@ -1,7 +1,5 @@
 @extends('frontLayout')
 @section('frontEndContent')
-<<<<<<< HEAD
-=======
 <div class="breadcums row">
     <ul>
         <li>Home</li>
@@ -9,7 +7,6 @@
         <li>Giỏ hàng</li>
     </ul>
 </div>
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
 <div class="row cart">
     <div class="col-md-12">
         <div class="table_desc">
@@ -32,46 +29,6 @@
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
-                @foreach($content as $v_content)
-                <tr>
-                
-                    <td class="product_thumb"><img src="{{asset('public/backEnd/images/'.$v_content->options->image)}}" height="100" width="100"></td>
-                    <td class="product_name">{{$v_content->name}}</td>
-                    <td class="product-price">{{number_format($v_content->price). ' VNĐ'}}</td>
-                    
-                    <!-- <form action="{{URL::to('/update-cart-quantity')}}" method="POST">
-                    {{ csrf_field() }}
-                        <td class="product_quantity" >
-                           
-                            <input min="1"  value="{{$v_content->qty}}" type="number" name="qty_cart">                            
-                            <input class="product_quantity" type="hidden" value="{{$v_content->rowId}}" name="rowId_cart"> 
-                        </td>                    
-                        
-                    </form>  -->
-                    <td class="product_quantity" >   
-                        <a href="{{URL::to('/decrement-cart-quantity/'.$v_content->rowId)}}">
-                            <button>-</button>   
-                        </a> 
-                        <form action="{{URL::to('/update-cart-quantity')}}" method="POST">
-                            {{ csrf_field() }}
-                            <input class="product_quantity" type="hidden" value="{{$v_content->rowId}}" name="rowId_cart">
-                        
-                            <input min="1"  value="{{$v_content->qty}}" type="text" name="qty_cart"> 
-                        </form> 
-                         
-                        <a href="{{URL::to('/increment-cart-quantity/'.$v_content->rowId)}}">
-                            <button>+</button> 
-                        </a>
-                        
-                    </td> 
-                    <td class="product_total">
-                        <?php
-                         $subtotal = $v_content->price * $v_content->qty;
-                         echo number_format($subtotal).' VNĐ';
-                        ?>
-                    </td>
-=======
                 @foreach($content as $key => $v_content)
                 <tr>
                     <td class="product_thumb"><img src="{{asset('public/backEnd/images/'.$v_content->options->image)}}" height="100" width="100"></td>
@@ -92,7 +49,6 @@
                     </td> 
                     <td>
                         <label class="product-total">{{number_format($v_content->price * $v_content->qty)}}</label> VNĐ</td>
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
                     <td class="product_remove"><a href="{{URL::to('/delete-to-cart/'.$v_content->rowId)}}"><i class="fas fa-trash"></i></a></td>
                 </tr>
                 @endforeach   
@@ -100,26 +56,12 @@
         </table>   
             </div>  
                 <div class="cart_submit">
-<<<<<<< HEAD
-            </div>  
-            
-        </div>
-        
-=======
             </div>          
         </div>     
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
      </div>
     <div class="col-lg-6 col-md-6">
         <tfoot>
         <tr>
-<<<<<<< HEAD
-            <td colspan="5" class="text-right"><h3><strong>Tổng số lượng: {{Cart::count()}}</strong></h3></td>
-        </tr>
-        <tr>
-        
-            <td colspan="5" class="text-right"><h3><strong>Thành tiền: {{Cart::subtotal().' VNĐ'}} </strong></h3></td>
-=======
             <td>
                 <input type="text" id="discount-code" name="discount_id">
                 <button id="apply-discount">Áp dụng</button>
@@ -138,7 +80,6 @@
                 <strong id="cart-total">{{Cart::subtotal()}}</strong>
                 <strong> VNĐ </strong>
             </h3></td>
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
         </tr>
         <tr>
             <td colspan="5" class="text-right">
@@ -147,16 +88,10 @@
                    $account_id = Session::get('account_id');
                    if($account_id !=NULL){
                     ?>
-<<<<<<< HEAD
-                    <a href="{{URL::to('/checkout')}}">
-                            <button class="btn btn-success">Thanh toán</button>
-                        </a>
-=======
-                    <form action="{{URL::to('/checkout')}}">
+                    <form action="{{URL::to('/checkout/'.$account_id)}}">
                         <input type="hidden" id="discount-id" name="discount_code" value="">
                         <button class="btn btn-success">Thanh toán</button>
                    </form>
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
                     <?php
                    }else{
                        ?>
@@ -164,25 +99,12 @@
                             <button class="btn btn-success">Thanh toán</button>
                          </a>
                        <?php
-<<<<<<< HEAD
-                   }
-                   ?>
-                
-=======
                     }
                 ?>          
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
             </td>
         </tr>
         </tfoot>
         <div>
-<<<<<<< HEAD
-
-        </div>
-    </div>
-</div>
-
-=======
         </div>
     </div>
     
@@ -288,7 +210,6 @@
         }
     });
 </script>
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
 
 @endsection
 

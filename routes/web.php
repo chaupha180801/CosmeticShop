@@ -145,7 +145,7 @@ Route::post('/login-account',[CheckoutController::class,'loginAccount']);
 Route::post('/save-shipping/{id}',[CheckoutController::class,'saveShipping']);
 Route::get('/profile/{id}',[CheckoutController::class,'showProfile']);
 Route::post('/update_profile/{id}',[CheckoutController::class,'updateProfile']);
-Route::get('/checkout',[CheckoutController::class,'checkOut']);
+Route::get('/checkout/{id}',[CheckoutController::class,'checkOut']);
 Route::post('/save-checkout-customer',[CheckoutController::class,'saveCheckoutCustomer']);
 Route::post('/address',[CheckoutController::class,'selectAddress']);
 Route::post('/show-purchase-order-details',[CheckoutController::class,'showPurchaseOrderDetail']);
