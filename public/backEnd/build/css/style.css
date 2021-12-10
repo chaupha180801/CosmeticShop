@@ -47,6 +47,7 @@ display: flex;
 .table_product_admin tr td {
     line-height: 100px;
 }
+<<<<<<< HEAD
 
 
 .login_wrapper {
@@ -115,3 +116,5 @@ display: flex;
     font-size: 18px;
     color: rgb(0, 0, 61);
 }
+=======
+>>>>>>> 95283fddaa8803221d68e73df17d516c970e3b49

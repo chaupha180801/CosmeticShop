@@ -15,7 +15,6 @@
   
     <div class="x_content">
         <br />
-
         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{URL::to('/update-brand/'.$edit_brand->brand_id)}}" method ="POST">
         {{ csrf_field() }}
             <div class="item form-group">

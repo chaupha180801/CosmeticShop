@@ -72,20 +72,40 @@ class HomeController extends Controller
             $sort_order = 'DESC';        
         }elseif($sort_by=='kytu_az'){
             $sort_field = 'product_name';
-            $sort_order = 'ASC';                
+            $sort_order = 'ASC';                       
+        }elseif($sort_by == 'moi_nhat'){
+            $sort_field = 'product_id';
+            $sort_order = 'DESC';
         }else{
             $sort_field = 'product_id';
             $sort_order = 'ASC';
+        } 
+        if($sort_by == 'ban_chay'){
+            $search_product = DB::table('tbl_product')
+                ->join('tbl_order_detail','tbl_order_detail.product_id','=','tbl_product.product_id')            
+                ->selectRaw('sum(tbl_order_detail.order_product_quanity) as soluongban')
+                ->where('tbl_order_detail.product_name', 'like','%'.$timkiem.'%')
+                ->groupBy('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
+                'tbl_product.product_name','tbl_product.product_price',
+                'tbl_product.product_total_comment','tbl_product.product_total_rating')
+                ->orderByDesc('soluongban')
+                ->addSelect('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
+                'tbl_product.product_name','tbl_product.product_price',
+                'tbl_product.product_total_comment','tbl_product.product_total_rating')
+
+                ->paginate(4)->appends(request()->query());
         }
-        $search_product = DB::table('tbl_product')->where('product_name', 'like','%'.$timkiem.'%')
-        ->orderBy($sort_field, $sort_order)->paginate(4)->appends(request()->query()); 
-              
+        else{
+            $search_product = DB::table('tbl_product')->where('product_name', 'like','%'.$timkiem.'%')
+            ->orderBy($sort_field, $sort_order)->paginate(4)->appends(request()->query());
+        }
+            
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
         ->orderBy('supplier_id','DESC')->get();
         
         return view('pages.product.search')->with('category', $danhmuc)
         ->with('brand', $thuonghieu)->with('supplier', $nhacungcap)
-        ->with('search_product', $search_product)->with('search_keyword', $timkiem);
+        ->with('search_product', $search_product)->with('search_keyword', $timkiem); 
     }  
 
     public function AddProducSearchCart(Request $request){
@@ -102,8 +122,6 @@ class HomeController extends Controller
         $data['weight'] = 1;
         $data['options']['image'] = $product_imgage;
         Cart::add($data);
-       
-
         Session::put('message','Thêm sản phẩm thành công');
         return Redirect::to('/tim-kiem');
     }

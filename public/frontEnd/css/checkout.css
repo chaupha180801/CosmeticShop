@@ -187,12 +187,6 @@
 
 .input_checkout_infomation {
     width: 100%;
-    border: 1px solid rgb(204, 204, 204);
-    padding: 5px;
-    margin-bottom: 20px;
-}
-
-.order_table {
 	border: 1px solid rgb(214, 214, 214);
     border-radius: 5px;
 	padding: 20px;

@@ -39,7 +39,6 @@ class AdminController extends Controller
             Session::put('ErrorMessage', 'Tên đăng nhập hoặc mật khẩu chưa chính xác');
             return redirect('/admin');
         }
-
     }
 
     public function logout()

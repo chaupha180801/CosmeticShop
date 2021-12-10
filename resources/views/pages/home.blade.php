@@ -1,6 +1,11 @@
 
 @extends('frontLayout')
 @section('frontEndContent')
+<style>   
+    .rating .active{
+     color: #ff9705 !important;
+    }
+ </style>
 <div class="breadcums row">
     <ul>
         <li>Home</li>
@@ -8,6 +13,7 @@
         <li>Sản phẩm</li>
     </ul>
 </div>
+
   <!-- start slide and sub image -->
     <div class="row slide">
         <div class="col-sm-3 sub_image">
@@ -188,19 +194,23 @@
                         <div class="product_content">
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                             <h3 class="name">{{$sp->product_name}}</h3>
-                            </a>
-                            <p class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </p>
+                            <?php
+                                $ageDetail = 0;
+                                if($sp->product_total_comment){
+                                    $ageDetail = round($sp->product_total_rating / $sp->product_total_comment,2);
+                                }
+                            ?>
+                          <div class="rating">
+                            @for($i = 1; $i<=5;$i++)
+                                <a href="#"><i class="fa fa-star {{$i <= $ageDetail ? 'active' : '' }}" style="color: #999"></i></a>
+                            @endfor
+                          </div>
                             <p class="price">
-                              <span> {{number_format($sp->product_price)}}</span> 
-                                VNĐ
+                                {{number_format($sp->product_price).' VNĐ'}}
                             </p>
                             <div class="add_to">
+                                <!-- <input type="button" data-toggle="modal" data-target="#xemnhanh" value="Xem nhanh"
+                                class="btn btn-default xemnhanh" data-id_product="{{$sp->product_id}}" name="add-to-cart"> -->
                                 <button>Add to wishlist</button>
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                                 <button>View detail</button>
@@ -217,7 +227,7 @@
             <div class="row">
                 <div class="col l-12 m-12 c-12 pagination_wrap">
                 <div class="pagination">
-                    <li style="display:inline; {{ ($product->currentPage() == 1) ? 'none;' : '' }}">
+                    <li style="display:inline;{{ ($product->currentPage() == 1) ? 'none;' : '' }}">
                         <a href="{{ $product->url(1) }}">&laquo;</a>
                     </li>
                     @for ($i = 1; $i <= $product->lastPage(); $i++)

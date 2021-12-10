@@ -44,27 +44,25 @@
         </thead>
         <tbody>
           <?php $i =0 ; ?>
-        @foreach ($all_category as $keyCategory => $eachCategory)
-        <tr>
-          <th scope="row">{{++$i}}</th>
-          <td>{{$eachCategory->category_name}}</td>
-          <td>{{$eachCategory->category_desc}}</td>
-          <td align="center">
-          <?php
-          if ($eachCategory->category_status == 0){ ?>
-         <a href="{{URL::to('/display-category-product/'.$eachCategory->category_id)}}"><button class="btn btn-danger btn-sm">Ẩn</button></a>
-         <?php }else { ?>
-          <a href="{{URL::to('/undisplay-category-product/'.$eachCategory->category_id)}}"><button class="btn btn-success btn-sm">Hiện</button></a>
-           <?php  } ?>
-         </td>
-          <td>
-            <a href="{{URL::to('/edit-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-primary">Sửa</a>
-            <a href="{{URL::to('/delete-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa danh mục {{$eachCategory->category_name}} không?')">Xóa</a>
+          @foreach ($all_category as $keyCategory => $eachCategory)
+          <tr>
+            <th scope="row">{{++$i}}</th>
+            <td>{{$eachCategory->category_name}}</td>
+            <td>{{$eachCategory->category_desc}}</td>
+            <td align="center">
+            <?php
+            if ($eachCategory->category_status == 0){ ?>
+          <a href="{{URL::to('/display-category-product/'.$eachCategory->category_id)}}"><button class="btn btn-danger btn-sm">Ẩn</button></a>
+          <?php }else { ?>
+            <a href="{{URL::to('/undisplay-category-product/'.$eachCategory->category_id)}}"><button class="btn btn-success btn-sm">Hiện</button></a>
+            <?php  } ?>
           </td>
-        </tr>
-        @endforeach
-             
-         
+            <td>
+              <a href="{{URL::to('/edit-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-primary">Sửa</a>
+              <a href="{{URL::to('/delete-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa danh mục {{$eachCategory->category_name}} không?')">Xóa</a>
+            </td>
+          </tr>
+          @endforeach 
         </tbody>
       </table>
       <a href="{{URL::to('/add-category')}}" class="btn btn-primary">Thêm danh mục mới</a>
