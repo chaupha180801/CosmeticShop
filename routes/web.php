@@ -9,6 +9,8 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\DiscountController;
@@ -94,6 +96,29 @@ Route::get('/unstate-product/{id}',[ProductController::class,'unStateProduct']);
 Route::get('/state-product/{id}',[ProductController::class,'stateProduct']);
 Route::get('/chi-tiet-san-pham/{id}',[ProductController::class,'detailProduct']);
 Route::post('/add-relative-to-cart',[ProductController::class,'AddRelativeProductCart']);
+
+
+//customer-admin
+Route::get('/show-customer-admin',[CustomerController::class,'showCustomer']);
+Route::get('/add-customer',[CustomerController::class,'addCustomer']);
+Route::post('/save-customer',[CustomerController::class,'saveCustomer']);
+Route::get('/edit-customer/{id}',[CustomerController::class,'editCustomer']);
+Route::get('/delete-customer/{id}',[CustomerController::class,'deleteCustomer']);
+Route::post('/update-customer/{id}',[CustomerController::class,'updateCustomer']);
+Route::get('/search-customer',[CustomerController::class,'searchCustomerAdmin']);
+
+
+//order-orderdetail
+Route::get('/show-order-admin',[OrderController::class,'showOrder']);
+// Route::get('/add-customer',[CustomerController::class,'addCustomer']);
+// Route::post('/save-order',[OrderController::class,'saveOrder']);
+Route::get('/detail-order/{id}',[OrderController::class,'detailOrder']);
+Route::get('/delete-order/{id}',[OrderController::class,'deleteOrder']);
+Route::get('/unstatus-order/{id}',[OrderController::class,'unStatusOrder']);
+Route::get('/status-order/{id}',[OrderController::class,'statusOrder']);
+// Route::post('/update-order/{id}',[OrderController::class,'updateOrder']);
+// Route::get('/search-customer',[CustomerController::class,'searchCustomerAdmin']);
+
 Route::post('/update-product/{id}',[ProductController::class,'updateProduct']);
 
 //cart

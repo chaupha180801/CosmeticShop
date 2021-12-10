@@ -25,7 +25,11 @@
         Session::put('message','');
       }
     ?>
+<<<<<<< HEAD
+      <div class="search_box">
+=======
       <div class="search_box search_box_product_admin">
+>>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
           <form action="{{URL::to('/search-category-admin')}}">
             {{ csrf_field() }}
             <input type="text" placeholder="Tìm kiếm..." name="tukhoacategory">
@@ -44,6 +48,29 @@
         </thead>
         <tbody>
           <?php $i =0 ; ?>
+<<<<<<< HEAD
+        @foreach ($all_category as $keyCategory => $eachCategory)
+        <tr>
+          <th scope="row">{{++$i}}</th>
+          <td>{{$eachCategory->category_name}}</td>
+          <td>{{$eachCategory->category_desc}}</td>
+          <td align="center">
+          <?php
+          if ($eachCategory->category_status == 0){ ?>
+         <a href="{{URL::to('/display-category-product/'.$eachCategory->category_id)}}"><button class="btn btn-danger btn-sm">Ẩn</button></a>
+         <?php }else { ?>
+          <a href="{{URL::to('/undisplay-category-product/'.$eachCategory->category_id)}}"><button class="btn btn-success btn-sm">Hiện</button></a>
+           <?php  } ?>
+         </td>
+          <td>
+            <a href="{{URL::to('/edit-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-primary">Sửa</a>
+            <a href="{{URL::to('/delete-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa danh mục {{$eachCategory->category_name}} không?')">Xóa</a>
+          </td>
+        </tr>
+        @endforeach
+             
+         
+=======
           @foreach ($all_category as $keyCategory => $eachCategory)
           <tr>
             <th scope="row">{{++$i}}</th>
@@ -63,6 +90,7 @@
             </td>
           </tr>
           @endforeach 
+>>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
         </tbody>
       </table>
       <a href="{{URL::to('/add-category')}}" class="btn btn-primary">Thêm danh mục mới</a>
