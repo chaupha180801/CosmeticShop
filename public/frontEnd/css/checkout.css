@@ -1,0 +1,214 @@
+.user-actions h3 {
+	font-size: 13px;
+	font-weight: 400;
+	color: #666666;
+	background-color: #f7f6f7;
+	padding: 15px 10px;
+	border-top: 3px solid #00bba6;
+	margin-bottom: 0;
+}
+.user-actions h3 a{
+    color: #e84c3d;
+}
+.checkout_info {
+	border: 1px solid #ddd;
+	margin-top: 25px;
+	padding: 20px 30px;
+}
+.form_group label {
+	color: #666666;
+	font-size: 14px;
+	display: block;
+}
+.form_group input {
+	border: 1px solid #ddd;
+	background: none;
+	height: 45px;
+	width: 350px;
+}
+.form_group input[type="submit"] {
+	display: inline-block;
+	width: 80px;
+	background: #00bba6;
+	border: 0;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 13px;
+	-webkit-transition: .3s;
+	transition: .3s;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.form_group input[type="submit"]:hover{
+    background: #e84c3d;
+}
+.form_group input[type="checkbox"] {
+	width: 15px;
+	height: 15px;
+	margin-right: 10px;
+	position: relative;
+	top: 3px;
+}
+.form_group.group_3 {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.form_group.group_3 label {
+	margin-bottom: 0;
+	line-height: 34px;
+    cursor: pointer;
+}
+.form_group.group_3 label:hover{
+    color: #e84c3d;
+}
+.checkout_info a {
+	color: #e84c3d;
+	margin-top: 15px;
+	display: block;
+}
+#checkout_coupon input {
+	background: none;
+	border: 1px solid #ddd;
+	width: 200px;
+	height: 45px;
+	font-size: 12px;
+}
+#checkout_coupon input[type="submit"] {
+	width: 130px;
+	margin-left: 12px;
+	background: #00bba6;
+	color: #fff;
+	font-weight: 700;
+	text-transform: uppercase;
+	font-size: 13px;
+	cursor: pointer;
+	-webkit-transition: .3s;
+	transition: .3s;
+}
+#checkout_coupon input[type="submit"]:hover{
+    background: #e84c3d;
+}
+.checkout_form h3 {
+	font-size: 16px;
+	line-height: 30px;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	color: #fff;
+	background: #333;
+	font-weight: 700;
+}
+.checkout_form input {
+	border: 1px solid #ddd;
+	background: none;
+	height: 40px;
+}
+.checkout_form .nice-select {
+	width: 100%;
+	height: 40px;
+}
+.checkout_form .nice-select.open .list {   
+	width: 100%;
+}
+
+.checkout_form .nice-select::after {
+	top: 56%;
+}
+.checkout_form label span {
+	color: #e84c3d;
+}
+.checkout_form input[type="checkbox"] {
+	width: 15px;
+	height: 15px;
+	position: relative;
+	top: 2px;
+	margin-right: 10px;
+}
+.checkout_form label.righ_0,.order_button button {
+	cursor: pointer;
+	font-size: 16px;
+	line-height: 30px;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	color: #fff;
+	background: #00bba6;
+	font-weight: 700;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+.checkout_form label.righ_0:hover,.order_button button:hover{
+    background: #e84c3d;
+}
+.order-notes textarea {
+	border: 1px solid #e5e5e5;
+	border-radius: 0;
+	height: 45px;
+	max-width: 100%;
+	padding: 0 0 0 10px;
+	background: none;
+	font-size: 13px;
+	resize: none;
+	line-height: 45px;
+}
+.Checkout_section {
+	padding: 35px 20px;
+}
+.order_table table thead tr th,.order_table table tbody tr td,.order_table table tfoot tr th,.order_table table tfoot tr td {
+	min-width: 50%;
+	text-align: center;
+	padding: 15px 0;
+	/* border-bottom: 1px solid #ddd; */
+}
+.order_table table{
+    width: 100%;
+}
+.panel-default input[type="radio"] {
+	width: 15px;
+	height: 15px;
+	position: relative;
+	top: 2px;
+	margin-right: 10px;
+}
+.panel-default img {
+	width: 160px;
+}
+.order_button button {
+	border: 0;
+}
+
+.checkout {
+    margin-top: 30px;
+    padding-bottom: 30px;
+}
+
+.input_checkout_infomation {
+    width: 80%;
+    border: 1px solid rgb(204, 204, 204);
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.order_table {
+    box-shadow: 0px 0px 5px gray;
+    border-radius: 5px;
+}
+.payment_method {
+    margin-top: 20px;
+}
+
+.checkout_heading {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(61, 61, 61);
+}
+
+.checkout label {
+    margin-bottom: 5px;
+}
