@@ -1,6 +1,29 @@
 
 @extends('frontLayout')
 @section('frontEndContent')
+<style>
+     .rating .active{
+    color: #ff9705 !important;
+    .search_price_container{
+        padding: 1.25rem 0;
+        border-bottom: 1px solid rgba(0,0,0,.09);
+    }
+    .search_group_header{
+        text-transform: capitalize;
+        margin-bottom: 0.625rem;
+        font-weight: 500;
+    }
+    .search_group_body{
+        display:block;
+    }
+    .search_group_body_input{
+        margin: 1.25rem 0 0.625rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+   }
+</style>
   <!-- start slide and sub image -->
     <div class="row slide">
         <div class="col-sm-3 sub_image">
@@ -138,32 +161,50 @@
 
 <div class="col-sm-9 main_product">
         <div class="container">
-        
+            @php
+                $count = count($search_product);
+            @endphp
             <div class="row heading">
                 <p>Kết quả tìm kiếm<p>
                 <h6>Bạn tìm kiếm với từ khóa là: {{$search_keyword}}</h6>
             </div>
-            @php
-                $count = count($search_product);
-            @endphp
+            
             @if($count == 0)
                 <div>
                     Không tìm thấy sản phẩm phù hợp
                 </div>
             @else
             <div class="row">
+                <h6>{{$count}} sản phẩm được tìm thấy theo "{{$search_keyword}}"</h6>
+            </div>
+            
+            <div class="row">
                 <label for="amount"> Sắp xếp theo</label>
                 <form id="form-sort" method="GET">
                     {{ csrf_field() }}
                     <input type="hidden" name="tukhoa" value="{{$search_keyword}}">
                     <select name="sort_by" id="sort" class="form-control" form="form-sort">
-                        <option value="none">--Lọc--</option>
-                        <option value="tang_dan">--Giá tăng dần--</option>
-                        <option value="giam_dan">--Giá giảm dần--</option>
+                        <option value="none">Liên quan</option>
+                        <option value="moi_nhat">Mới nhất</option>
+                        <option value="ban_chay">Bán chạy</option>
+                        <option value="tang_dan">Giá tăng dần</option>
+                        <option value="giam_dan">Giá giảm dần</option>
                         <option value="kytu_az">Lọc theo tên A đến Z</option>
                         <option value="kytu_za">Lọc theo tên Z đến A</option>
                     </select>
                 </form>
+                   <!--  <div class="search_price_container">
+                    <div class="search_group_header">Khoảng giá</div>
+                    <div class="search_group_body">
+                        <div class="search_group_body_input">
+                            <input type="text" maxlength="13" placeholder="đ Từ" name="begin_price" class="begin-price">
+                            <div>-</div>
+                            <input type="text" maxlength="13" placeholder="đ Đến" name="end_price" class="end-price">
+                        </div>
+                    </div>
+                    <div style="margin: 1.25rem 0 0;"><button class="search-price">Áp dụng</button></div>    -->     
+            </div>
+                   
             </div>
             <div class ="row">
             @foreach($search_product as $key => $sp)
@@ -193,25 +234,34 @@
                                 <input type="hidden" name="product_cart_price" value="{{$sp->product_price}}" />
                                 <input type="hidden" name="product_cart_image" value="{{$sp->product_img}}" />
                                 <input type="hidden" name="qty_cart" value="1" min="1"> 
-                                <button type="submit" class="add_cart" ><i class="fas fa-cart-plus"></i>Add to cart</button> 
+                                @if($sp->product_quanity > 0)
+                                    <button class="add-product-to-cart" type="submit"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                                @endif  
+                                
                             </form> 
                             <!-- <div class="add_cart"><i class="fas fa-cart-plus"></i>Add to cart</div> -->
                         </div>
 
                         <div class="product_content">
                             <h3 class="name">{{$sp->product_name}}</h3>
-                            <p class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </p>
+                            <?php
+                                $ageDetail = 0;
+                                if($sp->product_total_comment){
+                                    $ageDetail = round($sp->product_total_rating / $sp->product_total_comment,2);
+                                }
+                            ?>
+                          <div class="rating">
+                            @for($i = 1; $i<=5;$i++)
+                                <a href="#"><i class="fa fa-star {{$i <= $ageDetail ? 'active' : '' }}" style="color: #999"></i></a>
+                            @endfor
+                          </div>
                             <p class="price">
                                 {{number_format($sp->product_price).' VNĐ'}}
                             </p>
                             <div class="add_to">
+                                
                                 <button>Add to wishlist</button>
+                                <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                                 <button>View detail</button>
                             </div>
                         </div>

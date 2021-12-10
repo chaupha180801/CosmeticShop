@@ -1,5 +1,11 @@
 @extends('frontLayout')
 @section('frontEndContent')
+<style>
+    .errMessage
+    {
+        color: red;
+    }
+</style>
 <div class="row login">
  <div class="col-lg-6 col-md-6">
        <div class="account_form register">
@@ -22,11 +28,21 @@
                    <label>Mật khẩu  <span>*</span></label> <br>
                    <input type="password" name="customer_password">
                 </p>
+                <?php
+                $message = Session::get('ErrorMessage');
+                if ($message)
+                {
+                    ?>
+                        <p class="errMessage">Mật khẩu không khớp, kiểm tra lại</p>
+                    <?php
+                    Session::put('ErrorMessage','');
+                }
+               ?>
                 <p>   
                    <label>Nhập lại mật khẩu <span>*</span></label> <br>
-                   <input type="password" name="customer_password">
+                   <input type="password" name="customer_re_password">
                 </p>
-              
+                
                <div class="login_submit">
                    <button type="submit">Đăng kí</button>
                </div>

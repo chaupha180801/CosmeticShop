@@ -16,6 +16,7 @@
 	font-size: 15px;
 	font-weight: 400;
 	color: #555;
+	margin-bottom: 10px;
 }
 .account_form label {
 	font-size: 15px;
@@ -26,7 +27,7 @@
 .account_form input {
 	border: 1px solid #e5e5e5;
 	height: 32px;
-	width: 80%;
+	width: 100%;
 	padding: 0 0 0 10px;
 	background: none;
 }
@@ -110,4 +111,10 @@
 
 .login {
     margin-top: 30px;
+}
+
+.login_header {
+ text-align: center;
+ font-weight: bold;
+ 
 }

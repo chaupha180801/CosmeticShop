@@ -1,0 +1,57 @@
+.search_filter_product_admin {
+    background-color: #405467;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.nav-md .container.body .col-md-3.left_col {
+   position: fixed;
+}
+
+.filter_product_admin label {
+   color: white;
+   margin: 0;
+   margin-right: 20px;
+}
+
+.search_box_product_admin button {
+   
+    background-color: #26B99A;
+   
+   
+    color: white;
+    
+}
+.pagination {
+    margin: 20px auto;
+    margin-left: 500px;
+}
+
+.pagination li a{
+    padding: 10px 15px;
+    display: block;
+    border: 1px solid #2A3F54;
+   
+}
+
+.pagination li.active a {
+    background-color: #2A3F54;
+    color: white;
+}
+
+.add_new_product_admin {
+    display: block;
+    height: 65px;
+    display: block;
+    height: 65px;
+    margin-top: 20px;
+    line-height: 53px;
+
+}
+
+table.jambo_table tr:nth-child(even) {
+    background-color: white;
+    
+}

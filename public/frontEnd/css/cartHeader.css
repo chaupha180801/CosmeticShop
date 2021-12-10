@@ -1,16 +1,16 @@
-
+:root {
+    --primary-color: rgb(78 46 104);
+}
 
 .header_search .header_cart {
    position: relative;
-   height: 0;
 }
+   
 
 .header_search .header_cart a{
     text-decoration: none;
     color: black;
     position: relative;
-    left: 1200px;
-    top: -65px;
 }
 
 .header_search .header_cart a p {
@@ -27,18 +27,15 @@
 .header_search .header_cart a i {
     
    font-size: 30px;
-   color: teal;
+   color: var(--primary-color);
 }
 
 .header_search .search_box i {
-   
     right: -12px;
-    background-color: teal;
   
 }
 
-.header_search .search_box  {
-    margin-right: 150px;
-}
+
+
 
 

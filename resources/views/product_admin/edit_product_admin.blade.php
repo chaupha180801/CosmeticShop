@@ -2,7 +2,7 @@
 @section('admin_content')
 <div class="x_panel">
     <div class="x_title">
-        <h2>Cập nhật sản phẩm </h2>
+        <h2  class="admin_part_heading">Cập nhật sản phẩm </h2>
         <ul class="nav navbar-right panel_toolbox" style="margin-left:100px">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
@@ -14,18 +14,18 @@
     <div class="x_content">
         <br />
         <?php
-      $message = Session::get('message');
-      if ($message)
-      {
-        ?>
-            <div class="alert alert-success" role="alert">
-             <?php echo $message; ?>
-             <i class="fa fa-times"></i>
-            </div>
-        <?php
-        Session::put('message','');
-      }
-    ?>
+            $message = Session::get('message');
+            if ($message)
+            {
+                ?>
+                    <div class="alert alert-success" role="alert">
+                    <?php echo $message; ?>
+                    <i class="fa fa-times"></i>
+                    </div>
+                <?php
+                Session::put('message','');
+            }
+         ?>
         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{URL::to('/update-product/'.$edit_product->product_id)}}" method="POST" enctype="multipart/form-data">
         
         {{ csrf_field() }}
@@ -93,8 +93,6 @@
                     </select>
                 </div>
             </div>
-            
-            
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày hết hạn <span class="required">*</span>
                 </label>
@@ -112,6 +110,7 @@
                 </div>
             </div>
             <div class="ln_solid"></div>
+            
             <div class="item form-group">
                 <div class="col-md-6 col-sm-6 offset-md-3">
                     <button class="btn btn-primary" type="submit">Cập nhật</button>

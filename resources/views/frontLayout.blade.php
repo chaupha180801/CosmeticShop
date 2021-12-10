@@ -8,18 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/style.css?version=1')}}">
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/cartHeader.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('public/frontEnd/css/style.css?version=1')}}"> --}}
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/style.css?v=').time()}}">
+
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/cartHeader.css?v=').time()}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/cart.css')}}">
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/product_detail.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/product_detail.css?v=').time()}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/ightslider.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/lightgallery.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/prettify.css')}}">
     <!-- <link rel="stylesheet" href="{{asset('public/frontEnd/css/cart_ajax.css')}}"> -->
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/login.css')}}">
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/checkout.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/login.css?v=').time()}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/checkout.css?v=').time()}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/comment.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('./public/frontEnd/css/extra.css?v=').time()}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/extra2.css?v=').time()}}">
+
+
+
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -30,44 +37,120 @@
         });
 
     </script>
+    <style>
+       
+    </style>
 </head>
 
 <body>
-    <div class="container wrap">
+    <div class="container-fluid wrap">
         <!-- ========================================================================start header =================================================
         header include: logo and searchbox , navigaton, breadcums -->
         <!-- logo and search box -->
-        
-        <div class="row header_search">
-            <div class="image">
-                <img src="{{asset('public/frontEnd/images/logo.png')}}" alt="">
-            </div>
-            
-            <div class="search_box">
+        <div class="row profile_home">
+            <?php
+            $account_id = Session::get('account_id');
+            $account_name = Session::get('account_name');
+            $account_img = Session::get('account_img');
 
-                <form action="{{URL::to('/tim-kiem')}}" autocomplete="off" method ="GET">
-                    {{ csrf_field() }}
-                <input type="text" id="keywords" placeholder="Tìm kiếm..." name="tukhoa">
-                <div id="search-ajax"></div>
-                <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
+            if($account_id !=NULL){
+             ?>
+              <div class="profile">
+                <div class="profile__info" >
+                   <img src="{{asset('public/frontEnd/images/'.$account_img)}}" alt="">
+                   <p>{{$account_name}} <i class="fas fa-caret-down"></i></p>
+                   <div class="profile__sub">
+                    <ul>
+                        <li>
+                            <a href="{{URL::to('/profile/'.$account_id)}}"><i class="fas fa-info-circle"></i>Thông tin cá nhân</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to('/history-order')}}"><i class="far fa-list-alt"></i>Đơn hàng đã mua</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to('/logout-checkout')}}"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
+                        </li>
+                    </ul>
+                 </div>
+                </div>
+               
+            </div>
+          
+             <?php
+            }else{
+                ?>
+                 
+                 <div class="login_logout">
+                    <a href="{{URL::to('/login-checkout')}}">Đăng nhập</a>
+                    <a href="{{URL::to('/register-form')}}">Đăng kí</a>
+                </div>
                 
-                </form>
+                  
                 <?php
-                   $account_id = Session::get('account_id');
-                   if($account_id !=NULL){
-                    ?>
-                    <a href="{{URL::to('/logout-checkout')}}">Đăng xuất</a>
-                    <?php
-                   }else{
-                       ?>
-                        <a href="{{URL::to('/login-checkout')}}">Đăng nhập/</a>
-                        <a href="{{URL::to('/register-form')}}">Đăng kí</a>
-                       <?php
-                   }
-                   ?>
+            }
+            ?>
+        </div>
+        <div class="row header_search">
+            <a href="{{URL::to('/')}}" class="image col-sm-1">
+                <img src="{{asset('public/frontEnd/images/logo.png')}}" alt="">
+            </a>
+            <div class="navigation col-sm-6">
+                <ul class="list">
+                    <li class="item active">
+                        <a href="{{URL::to('/')}}" class="item_link">
+                            Home
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="" class="item_link">
+                            Brand <i class="fas fa-angle-down"></i>
+                        </a>
+                        <div class="sub_list">
+                            <ul>
+                                @foreach($brand as $key => $thieu)
+                                    <li><a href="">{{$thieu->brand_name}}</a> </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <a href="" class="item_link">
+                            Supplier <i class="fas fa-angle-down"></i>
+                        </a>
+                        <div class="sub_list">
+                            <ul>
+                            @foreach($supplier as $key => $ncc)
+                                <li><a href="">{{$ncc->supplier_name}}</a> </li>
+                            @endforeach
+                            </ul>
+                    </li>
+                    <li class="item">
+                        <a href="" class="item_link">
+                            New product
+                        </a>
+                    </li>
+                </ul>
+             
 
             </div>
-            <div class="header_cart">
+            <div class="search_box col-sm-3">
+
+                <form action="{{URL::to('/tim-kiem')}}" autocomplete="off" method ="GET" id="search_product">
+                    {{ csrf_field() }}
+                    <div class="search_box_wrap">
+                        <input type="text" id="keywords" placeholder="Tìm kiếm..." name="tukhoa">
+                      
+                        <button name="search-items" value="Tìm kiếm" onclick="showSearchbox(event)"><i class="fa fa-search"></i></button>
+                        
+                    </div>
+                    <div id="search-ajax">
+        
+                    </div>
+                    <input type="submit" value="search">
+                </form>
+            
+            </div>
+            <div class="header_cart col-sm-1">
                 <a href="{{URL::to('/cart')}}" class="">
                     <i class="fas fa-shopping-cart"></i>
                     <p class="cart_quanity_header">{{Cart::content()->count()}}</p>
@@ -76,80 +159,25 @@
         </div>
         <!-- end logo and search box -->
 
-        <!-- start navigation -->
-        <div class="row navigation">
-            <div class="logo_phone">
-                <img src="{{asset('public/frontEnd/images/logo_notext1.png')}}" alt="">
-            </div>
-            <i class="fas fa-bars menu_icon"></i>
-            <h3 class="menu_text">MENU</h3>
-            <div class="search-box-phone" id="serch_phone">
-                <input type="text" placeholder="Search..." class="search-txt-phone" id="input_phone">
-                <button class="btn" id="search_icon_phone">
-                    <i class="fas fa-search"></i>
-                </button>
-
-            </div>
-            <ul class="list">
-                <li class="item active">
-                    <a href="" class="item_link">
-                        Sản phẩm
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="" class="item_link">
-                        Thương hiệu <i class="fas fa-angle-down"></i>
-                    </a>
-                    <div class="sub_list">
-                        <ul>
-                            @foreach($brand as $key => $thieu)
-                                <li><a href="">{{$thieu->brand_name}}</a> </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </li>
-                <li class="item">
-                    <a href="" class="item_link">
-                        Nhà cung cấp <i class="fas fa-angle-down"></i>
-                    </a>
-                    <div class="sub_list">
-                        <ul>
-                        @foreach($supplier as $key => $ncc)
-                            <li><a href="">{{$ncc->supplier_name}}</a> </li>
-                        @endforeach
-                        </ul>
-                </li>
-                <li class="item">
-                    <a href="" class="item_link">
-                        Dịch vụ
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="" class="item_link">
-                        Hàng mới về
-                    </a>
-                </li>
-            </ul>
-         
-        </div>
-        <!-- end navigation -->
-
         <!-- start breadcums -->
-        <div class="breadcums row">
+        {{-- <div class="breadcums row">
             <ul>
                 <li>Home</li>
                 <li><i class="fa fa-angle-right"></i></li>
                 <li>Sản phẩm</li>
             </ul>
-        </div>
+        </div> --}}
         <!-- end breadcums -->
         <!-- =====================================================================end header===================================================================== -->
         <!-- =====================================================================start content =================================================================-->
-        
-
-        @yield('frontEndContent')
-   
     </div>
+    <div class="container">
+        @yield('frontEndContent')
+    </div>
+
+    
+   
+    
 
     <!--=========================================================================================== end content======================================================== -->
     <!--=========================================================================================== start footer======================================================== -->
@@ -273,6 +301,13 @@
             $('#keywords').val($(this).text());
             $('#search-ajax').fadeOut();
         }); 
+
+        function showSearchbox(event){
+            event.preventDefault();
+           
+                keywords.classList.toggle("show");
+         
+        }
     </script>
 
 @yield('script')  

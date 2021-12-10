@@ -49,8 +49,6 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-
- 
     public function addProduct()
     {
         $cate_product = DB::table('tbl_category_product')->orderBy('category_id','DESC')->get();
@@ -137,7 +135,6 @@ class ProductController extends Controller
         return redirect('/show-product-admin');
     }
 
-
     public function editProduct($id)
     {
         $cate_product = DB::table('tbl_category_product')->orderby('category_id','desc')->get();
@@ -145,8 +142,7 @@ class ProductController extends Controller
         $supplier_product = DB::table('tbl_supplier')->orderby('supplier_id','desc')->get();
         $edit_product = DB::table('tbl_product')->where('product_id', $id)->first();
         $manage_product = view('product_admin.edit_product_admin')->with(compact('edit_product','cate_product','brand_product','supplier_product'));
-        return view('admin_layout')->with('product_admin.edit_product_admin', $manage_product);
-        
+        return view('admin_layout')->with('product_admin.edit_product_admin', $manage_product);   
     }
 
     public function deleteProduct($id)
@@ -161,9 +157,7 @@ class ProductController extends Controller
        return redirect('/show-product-admin');
     }
 
-
-    public function searchProduct(Request $request) {
-        
+    public function searchProduct(Request $request) {        
         $search = $request->tukhoa;       
         $all_product = DB::table('tbl_product')
        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
@@ -219,7 +213,6 @@ class ProductController extends Controller
             $new_image_name = $this->saveImage($image);
             $product['product_img'] = $new_image_name;   
         }
-
         $product['product_name'] = $request->product_name;
         $product['product_price'] = $request->product_price;
         $product['product_desc'] = $request->product_desc;
@@ -228,19 +221,30 @@ class ProductController extends Controller
         $product['category_id'] = $request->category_id;
         $product['brand_id'] = $request->brand_id;
         $product['supplier_id'] = $request->supplier_id;
-
         DB::table('tbl_product')->where('product_id', $id)->update($product);
         Session::put('message','Cập nhập sản phẩm thành công');
         return redirect('/show-product-admin');   
     }
-
+    
+    public function mapRatingDefault(){
+        $ratingDefault = [];
+        for($i=1;$i<=5;$i++){
+            $ratingDefault[$i] = array(
+                "count_number"=> 0,
+                "total" => 0,
+                "rating_number" => 0
+            );
+        }
+        return $ratingDefault;
+    }
 
     // end pages admin
     public function detailProduct($id){
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')->orderBy('supplier_id','DESC')->get();
         
-        $detail_product = DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        $detail_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_supplier','tbl_supplier.supplier_id', '=', 'tbl_product.supplier_id')
         ->where('tbl_product.product_id', $id)->get();
@@ -251,13 +255,31 @@ class ProductController extends Controller
         }
         //gallery
         $gallery = DB::table('tbl_gallery')->where('product_id', $product_id)->get();
-        $relative_product = DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        //rating
+        $rating = DB::table('tbl_rating')->join('tbl_account','tbl_account.account_id','=','tbl_rating.rating_user_id')
+        ->where('product_id',$product_id)->orderBy('rating_id', 'DESC')->paginate(10);
+        $reply = DB::table('tbl_rating')->where('product_id',$product_id)->orderBy('rating_id', 'DESC')->paginate(10);
+        $ratingDashBoard = DB::table('tbl_rating')->groupBy('rating_number')
+        ->where('product_id', $product_id)
+        ->select(DB::raw('count(rating_number) as count_number'), DB::raw('sum(rating_number) as total'))
+        ->addSelect('rating_number')
+        ->get()->toArray();
+
+        $ratingDefault = $this->mapRatingDefault();
+        foreach($ratingDashBoard as $item){
+           $ratingDefault[$item->rating_number]['count_number'] = $item->count_number;   
+           $ratingDefault[$item->rating_number]['total'] = (int)$item->total;  
+           $ratingDefault[$item->rating_number]['rating_number'] = $item->rating_number;     
+        }
+        $relative_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_supplier','tbl_supplier.supplier_id', '=', 'tbl_product.supplier_id')
         ->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$id])->paginate(4);
-        
+       
         return view('pages.product_detail.show_product_detail')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)
-        ->with('product_details', $detail_product)->with('product_relative', $relative_product)->with('gallery', $gallery);
+        ->with('product_details', $detail_product)->with('product_relative', $relative_product)->with('gallery', $gallery)
+        ->with('rating', $rating)->with('ratingDefault', $ratingDefault)->with('reply', $reply);
     }  
 
     public function AddRelativeProductCart(Request $request){
@@ -277,7 +299,8 @@ class ProductController extends Controller
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')->orderBy('supplier_id','DESC')->get();
         
-        $detail_product = DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        $detail_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_supplier','tbl_supplier.supplier_id', '=', 'tbl_product.supplier_id')
         ->where('tbl_product.product_id',  $productId)->get();
@@ -285,19 +308,37 @@ class ProductController extends Controller
             $category_id = $result->category_id;
             $product_id = $result->product_id;
         }
-
         //gallery
         $gallery = DB::table('tbl_gallery')->where('product_id', $product_id)->get();
-        $relative_product = DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        //đáng giá
+        $ratingDashBoard = DB::table('tbl_rating')->groupBy('rating_number')
+        ->where('product_id', $product_id)
+        ->select(DB::raw('count(rating_number) as count_number'), DB::raw('sum(rating_number) as total'))
+        ->addSelect('rating_number')
+        ->get()->toArray();
+
+        $ratingDefault = $this->mapRatingDefault();
+        foreach($ratingDashBoard as $item){
+           $ratingDefault[$item->rating_number]['count_number'] = $item->count_number;   
+           $ratingDefault[$item->rating_number]['total'] = (int)$item->total;  
+           $ratingDefault[$item->rating_number]['rating_number'] = $item->rating_number;     
+        }
+        $rating = DB::table('tbl_rating')
+        ->join('tbl_account','tbl_account.account_id','=','tbl_rating.rating_user_id')
+        ->where('product_id',$product_id)->orderBy('rating_id', 'DESC')->paginate(10);
+        $reply = DB::table('tbl_rating')->where('product_id',$product_id)->orderBy('rating_id', 'DESC')->paginate(10);
+        //relative
+        $relative_product = DB::table('tbl_product')
+        ->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_supplier','tbl_supplier.supplier_id', '=', 'tbl_product.supplier_id')
         ->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$productId])->paginate(4);
+        
         Session::put('message','Thêm sản phẩm thành công');
         return view('pages.product_detail.show_product_detail')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)
-        ->with('product_details', $detail_product)->with('product_relative', $relative_product)->with('gallery', $gallery);
+        ->with('product_details', $detail_product)->with('product_relative', $relative_product)->with('gallery', $gallery)
+        ->with('ratingDefault', $ratingDefault) ->with('rating', $rating)->with('reply', $reply);
     }
-
-  
 
 }
     
