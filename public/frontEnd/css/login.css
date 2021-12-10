@@ -1,0 +1,120 @@
+/* 8. login page css here */
+.account_form h2 {
+	font-size: 30px;
+	text-transform: capitalize;
+	color: #333;
+	font-weight: 700;
+	line-height: 22px;
+	margin-bottom: 38px;
+}
+.account_form form {
+	border: 1px solid #d3ced2;
+	padding: 20px;
+	border-radius: 5px;
+}
+.account_form label {
+	font-size: 15px;
+	font-weight: 400;
+	color: #555;
+	margin-bottom: 10px;
+}
+.account_form label {
+	font-size: 15px;
+	font-weight: 400;
+	color: #555;
+	cursor: pointer;
+}
+.account_form input {
+	border: 1px solid #e5e5e5;
+	height: 32px;
+	width: 100%;
+	padding: 0 0 0 10px;
+	background: none;
+}
+.login_submit button {
+	background: #00BBA6;
+	border: 0;
+	color: #fff;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 700;
+	height: 38px;
+	line-height: 18px;
+	padding: 10px 15px;
+	text-transform: uppercase;
+	cursor: pointer;
+	-webkit-transition: .3s;
+	transition: .3s;
+    margin-right: 20px;
+}
+.login_submit button:hover{
+    background:  #e84c3d;
+}
+.login_submit label input[type="checkbox"] {
+	width: 15px;
+	height: 13px;
+	margin-right: 3px;
+}
+.login_submit a {
+	text-align: right;
+	font-size: 13px;
+	color: #00bba6;
+	float: right;
+	line-height: 39px;
+}
+.login_submit a:hover,.account_form label:hover{
+    color: #e84c3d;
+}
+.customer_login {
+	padding: 69px 20px 35px;
+}
+.account_form {
+	margin-bottom: 35px;
+}
+.table_desc.wishlist table tbody tr td.product_total a {
+	background: #00bba6;
+	font-size: 12px;
+	font-weight: 700;
+	height: 38px;
+	line-height: 18px;
+	padding: 10px 20px;
+	color: #fff;
+	text-transform: uppercase;
+}
+.table_desc.wishlist table tbody tr td.product_total a:hover{
+    background: #e84c3d;
+}
+.table_desc.wishlist table tbody tr:last-child td {
+	border-bottom: 0;
+}
+.wishlist-share {
+	text-align: center;
+	padding: 20px 0;
+	border: 1px solid #ddd;
+	margin-bottom: 35px;
+}
+.wishlist-share ul li {
+  display: inline-block;
+}
+.wishlist-share ul li a {
+  padding: 0 10px;
+  color: #333;
+  display: block;
+}
+.wishlist-share h4 {
+  font-size: 18px;
+  color: #333;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+/*login page css end*/
+
+.login {
+    margin-top: 30px;
+}
+
+.login_header {
+ text-align: center;
+ font-weight: bold;
+ 
+}

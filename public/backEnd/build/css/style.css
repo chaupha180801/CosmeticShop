@@ -1,0 +1,117 @@
+.logo_admin {
+    width: 26px;
+    height: 32px;
+    margin-left: 15px;
+    position: relative;
+    top: -2px;
+    margin-right: 5px;
+}
+.errMessage {
+    color: red;
+}
+
+.successMessage {
+    color: green;
+    background-color: rgb(114, 196, 114);
+}
+
+.x_title {
+display: flex;
+}
+
+.admin_part_heading {
+    display: block;
+    color: #2A3F54;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    float: none;
+}
+
+
+#img_product_admin {
+    width: 100px;
+    height: 100px;
+}
+
+#img_product_admin img{
+    width: 100%;
+    height: 100%;
+}
+
+.table_product_admin tr:nth-child(even)
+{
+    background-color: rgba(0,0,0,.05);
+}
+
+.table_product_admin tr td {
+    line-height: 100px;
+}
+
+
+.login_wrapper {
+    margin-top: 0;
+}
+
+
+.login_content {
+    background-color: white;
+    padding:20px;
+    border-radius: 10px;
+}
+
+.login_content h1 {
+    color: black;
+
+}
+
+
+.login_content h1::after {
+    background: linear-gradient(to right, #fffefe 0%, rgb(15, 15, 15) 100%);
+}
+
+.login_content h1::before {
+    background: linear-gradient(to right, rgb(15, 15, 15) 0%, #fffefe  100%);
+
+}
+
+.top_product_image {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.top_product_image img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.media  {
+    align-items: center;
+}
+
+.tile_stats_count {
+    text-align: center;
+}
+
+.tile_count .tile_stats_count .count {
+    font-size: 27px;
+}
+
+.stt {
+    margin-right: 20px;
+}
+
+.stt i {
+    color: rgb(230, 96, 7);
+    font-size: 18px;
+    
+}
+
+.stt span {
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 18px;
+    color: rgb(0, 0, 61);
+}

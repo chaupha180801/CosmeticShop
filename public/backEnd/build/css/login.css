@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #particles-js
+  {
+    background: url(../../images/bg_ad_lg.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 102vh;
+  }
+
+
+
+  .login_form {
+    display: flex;
+    width: 600px;
+    background: white;
+    margin-top: 160px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-left: -120px;
+    
+
+  }
+
+  .login_content {
+      width: 60%;
+  }
+
+ .login_form .login_image {
+      width: 40%;
+      background: url(../../images/login_sub.jpg);
+      background-size: cover;
+  }
+
+  .registration_form {
+      background: white;
+      overflow: hidden;
+      border-radius: 20px;
+      margin-left: -120px;
+  }
+
+  .registration_form .login_image {
+    width: 40%;
+    background: url(../../images/login_sub2.jpg);
+    background-size: cover;
+  }
+
+  .registration_form {
+    margin-top: 130px;
+    width: 600px;
+    display: flex;
+  }
+
+  .login_wrapper a{
+    color: rgb(0, 0, 79);
+    font-weight: bold;
+  }
+
+  .login_wrapper a:hover {
+      text-decoration: none;
+    color: rgb(1, 1, 191);
+
+  }
+
+  .login_wrapper input {
+      font-size: 13px;
+  }
+
