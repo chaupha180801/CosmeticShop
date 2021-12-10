@@ -59,11 +59,9 @@ class SupplierController extends Controller
     public function updateSupplier(Request $request, $id)
     {
         $supplier = array();
-        //$brand['brand_id'] = $id;
         $supplier['supplier_name'] = $request->supplier_name;
         $supplier['supplier_desc'] = $request->supplier_desc;
         $supplier['supplier_country'] = $request->supplier_country;
-        //$brand->save();
         DB::table('tbl_supplier')->where('supplier_id', $id)->update($supplier);
         Session::put('message','Cập nhật nhà cung cấp thành công');
         return redirect('/show-supplier');

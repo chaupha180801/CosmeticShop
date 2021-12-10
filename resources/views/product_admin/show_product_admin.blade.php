@@ -1,5 +1,10 @@
 @extends('admin_layout')
 @section('admin_content')
+<style>
+  .rating .active{
+    color: #ff9705 !important;
+  }
+</style>
 <div class="x_panel">
     <div class="x_title">
       <h2  class="admin_part_heading">Danh sách sản phẩm</h2>
@@ -11,7 +16,6 @@
         </li>
       </ul>
       <div class="clearfix"></div>
-
     </div>
   
 
@@ -29,13 +33,15 @@
         Session::put('message','');
       }
     ?>
-    
-    <div class="row ">
-      <div class="col-sm-2">
-        <a href="{{URL::to('/add-product-admin')}}" class="btn btn-success add_new_product_admin">Thêm sản phẩm mới</a>
-      </div>
-      <div class="col-sm-10 search_filter_product_admin search_filter_product_admin2">
-        <div class="filter_product_admin">
+      <div class="search_box">
+                  <form action="{{URL::to('/search-product')}}"  method="GET">
+                      {{csrf_field()}}
+                  <input type="text" id="keywords" placeholder="Tìm kiếm ..." name="tukhoa">
+                  <!-- <div id="search-ajax"></div> -->
+                  <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
+                  </form>
+    </div> 
+    <div class="row">      
           <label for="amount">Sắp xếp theo</label>
           <form id="form-sort">
               {{ csrf_field() }}
@@ -47,21 +53,6 @@
               <option value="kytu_za">--Lọc theo tên Z đến A--</option>
           </select>
           </form>  
-        </div>
-        <div class="search_box search_box_product_admin">
-          <form action="{{URL::to('/search-product')}}"  method="GET">
-              {{csrf_field()}}
-          <input type="text" id="keywords" placeholder="Tìm kiếm ..." name="tukhoa">
-          <!-- <div id="search-ajax"></div> -->
-          <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
-          </form>
-    </div> 
-      </div>
-       
-    </div>
-     
-    <div class="row">      
-         
       <div class="table-responsive">
         <table class="table table-striped jambo_table bulk_action table_product_admin">
           <thead>
@@ -70,34 +61,52 @@
 
               <th class="column-title">Tên sản phẩm</th>
               <th class="column-title">Thư viện hình ảnh</th>
-              <th class="column-title">Ảnh</th>
+<!--               <th class="column-title">Ảnh</th> -->
               <th class="column-title">Danh mục</th>
               <th class="column-title">Nhãn hiệu</th>
               <th class="column-title">Nhà cung cấp</th>
               <th class="column-title">Giá bán</th>
               <th class="column-title">Số lượng</th>
-              <th class="column-title">Trạng thái sản phẩm</th>
               <th class="column-title">Trạng thái</th>
+              <th class="column-title">Tình trạng</th>
 
               <th class="column-title">Hành động </th>
             </tr>
           </thead>
           <tbody>
-          <?php $i =0 ; ?>
+          
 
           
-      </div>
-       
+        </div>
+        <?php $i =0 ; ?>
           @foreach ($all_product as $keyProduct => $eachProduct)
+          <?php
+            $age = 0;
+            if($eachProduct->product_total_comment){
+              $age = round($eachProduct->product_total_rating / $eachProduct->product_total_comment,2);
+            }
+          ?>
+         
           <tr>
             <th scope="row">{{++$i}}</th>
-            <td>{{$eachProduct->product_name}}</td>
+            <td>
+              {{$eachProduct->product_name}}
+              <div>
+                <span>Đánh giá: </span>
+                <span class="rating">
+                  @for($j=1;$j<=5;$j++)
+                     <i class="fa fa-star {{$j <= $age ? 'active' : '' }}"  style="color: #999"></i>
+                  @endfor
+                </span>
+                <span>{{$age}}</span>
+                </div>
+            </td>
             <td><a href="{{URL::to('add-gallery/'.$eachProduct->product_id)}}">Thư viện ảnh</a></td> 
-            <td><img src="{{asset('public/backEnd/images/'.$eachProduct->product_img)}}" height="100" width="100"></td>            
+<!--             <td><img src="{{asset('public/backEnd/images/'.$eachProduct->product_img)}}" height="100" width="100"</td>  -->           
             <td>{{$eachProduct->category_name}}</td>
             <td>{{$eachProduct->brand_name}}</td>
             <td>{{$eachProduct->supplier_name}}</td>
-            <td>{{$eachProduct->product_price}}</td>
+            <td>{{number_format($eachProduct->product_price). '(đ)'}}</td>
             <td>{{$eachProduct->product_quanity}}</td>
             <td align="center">
             <?php
@@ -132,7 +141,7 @@
         <div class="row">
             <div class="col l-12 m-12 c-12 pagination_wrap">
                 <div class="pagination">
-                    <li  style="display:inline;{{ ($all_product->currentPage() == 1) ? 'none;' : '' }}">
+                    <li style="display:inline;{{ ($all_product->currentPage() == 1) ? 'none;' : '' }}">
                         <a href="{{ $all_product->url(1) }}">&laquo;</a>
                     </li>
                     @for ($i = 1; $i <= $all_product->lastPage(); $i++)

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Pagination\Paginator;
 use Storage;
 use Gloudemans\Shoppingcart\Facades\Cart;
-
+use Carbon\Carbon;
 use Session;
 session_start();
 
@@ -31,7 +31,6 @@ class CheckoutController extends Controller
         return view('login.show_register')->with('brand', $thuonghieu)->with('supplier', $nhacungcap);
     }
 
-
     public function addCustomerAccount(Request $request){
         $data = array();
         $data['account_name'] = $request->customer_name;
@@ -47,10 +46,14 @@ class CheckoutController extends Controller
         return Redirect('/checkout');
     }
 
-    public function checkOut($id){
+    public function checkOut(Request $request,$id){
       
         $shipping_list = DB::table('tbl_shipping')->where('account_id', $id)->orderBy('shipping_id','DESC')->get();
        
+    
+    //     $discount_code = $request->discount_code;
+    //     $discount = DB::table('tbl_discount')->where('discount_code', $discount_code)->first();
+    //     $city = DB::table('tbl_tinhthanhpho')->orderBy('matp','ASC')->get();
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
@@ -71,39 +74,47 @@ class CheckoutController extends Controller
         $orderData = array();
         $orderData['account_id'] = Session::get('account_id');
         $orderData['shipping_id'] = Session::get('shipping_id');
+        $orderData['shipping_id'] = Session::get('shipping_id');
+        $orderData['order_date'] = Carbon::now('Asia/Ho_Chi_Minh');
+        $orderData['discount_id'] = $request->discount;            
         $orderData['payment_id'] = $payment_id;
-        $orderData['order_total'] = Cart::subtotal();
+        $orderData['order_total'] = $request->cart_total;
         $orderData['order_status'] = 'Đang chờ xử lí';
         $order_id = DB::table('tbl_order')->insertGetId($orderData);
         // insert order detail
         $content = Cart::content();
         foreach($content as $v_content){
-            $odData = array();
-            $odData['order_id'] = $order_id;
-            $odData['product_id'] = $v_content->id;
-            $odData['product_name'] = $v_content->name;
-            $odData['product_price'] = $v_content->price;
-            $odData['order_product_quanity'] = $v_content->qty;
-            $result = DB::table('tbl_order_detail')->insert($odData);
+            $orderDetaildData = array();
+            $orderDetaildData['order_id'] = $order_id;
+            $orderDetaildData['product_id'] = $v_content->id;
+            $orderDetaildData['product_name'] = $v_content->name;
+            $orderDetaildData['product_price'] = $v_content->price;
+            $orderDetaildData['order_product_quanity'] = $v_content->qty;
+            DB::table('tbl_order_detail')->insert($orderDetaildData);  
             
+            $product = DB::table('tbl_product')->where('product_id', $v_content->id)->first();
+            $productData = array();
+            $productData['product_quanity'] = $product->product_quanity - $v_content->qty;
+            DB::table('tbl_product')->where('product_id', $v_content->id)->update($productData);
         }
-        Cart::destroy();
+        if($request->discount != NULL){
+            $discountData = array();
+            $discountData['discount_quantity'] = $request->discount_quantity - 1;
+            DB::table('tbl_discount')->where('discount_id', $request->discount)->update($discountData);
+        }
 
+        Cart::destroy();
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
-        ->orderBy('supplier_id','DESC')->get();
-        
+        ->orderBy('supplier_id','DESC')->get();       
         return view('cart.finsh_order')->with('brand', $thuonghieu)->with('supplier', $nhacungcap);
     }
 
+   
     public function logoutCheckout(){
         Session::flush();
-        $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
-        ->orderBy('brand_id','DESC')->get();
-        $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
-        ->orderBy('supplier_id','DESC')->get();
-        return view('login.show_login')->with('brand', $thuonghieu)->with('supplier', $nhacungcap);
+        return Redirect::to('/');
     }
 
     public function loginAccount(Request $request){
@@ -162,6 +173,7 @@ class CheckoutController extends Controller
         return $new_image_name;
     }
 
+    
     public function updateProfile(Request $request,$id)
     {
         $image = $request->file('avartar');
@@ -175,5 +187,7 @@ class CheckoutController extends Controller
             return redirect('/profile/'.$id);
         }
     }
-  
+
+
 }
+

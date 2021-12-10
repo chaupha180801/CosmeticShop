@@ -307,10 +307,7 @@
            
                 keywords.classList.toggle("show");
          
-           
         }
-
-
     </script>
 
 @yield('script')  

@@ -96,6 +96,11 @@
                       <li><a href="{{URL::to('/add-product-admin')}}">Thêm sản phẩm</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-star"></i></i>Đánh giá<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{URL::to('/show-rating')}}">Danh sách đánh giá</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-edit"></i> Danh mục <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('/show-category')}}">Danh sách danh mục</a></li>
@@ -112,6 +117,12 @@
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('/show-supplier')}}">Danh sách nhà cung cấp</a></li>
                       <li><a href="{{URL::to('/add-supplier')}}">Thêm nhà cung cấp</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-percent"></i>Khuyến mãi <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{URL::to('/show-discount')}}">Danh sách khuyến mãi</a></li>
+                      <li><a href="{{URL::to('/add-discount')}}">Thêm khuyến mãi</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-list-alt"></i> Đơn hàng <span class="fa fa-chevron-down"></span></a>
@@ -313,7 +324,30 @@
     <!-- Custom Theme Scripts -->
     <script src="{{asset('public/backEnd/build/js/custom.min.js')}}"></script>
 
-	
+
+    <script type="text/javascript">
+      $('.btn_reply_comment').click(function () {
+        var rating_id = $(this).data('rating_id');
+        var comment = $('#reply_comment_'+rating_id).val();        
+        var rating_product_id = $(this).data('product_id');
+        var rating_status = $(this).data('rating_status');
+       
+        $.ajax({
+          url:"{{url('/reply-comment')}}",
+          method:"POST",
+          headers:{
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          data:{comment:comment,rating_id:rating_id,rating_product_id:rating_product_id},
+          success:function(data) {
+            $('#reply_comment_'+rating_id).val('');
+            location.reload();
+            return false;
+          }
+        })
+      });
+    </script>
+    
     <!-- Lọc sản phẩm -->
     <script type="text/javascript">
         $(document).ready(function(){

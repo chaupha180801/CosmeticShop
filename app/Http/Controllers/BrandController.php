@@ -55,7 +55,6 @@ class BrandController extends Controller
         $edit_brand = DB::table('tbl_brand')->where('brand_id', $id)->first();
         $magage_brand = view('brand.edit_brand')->with('edit_brand', $edit_brand);
         return view('admin_layout')->with('brand.edit_brand', $magage_brand);
-
     }
     
     public function updateBrand(Request $request, $id)
@@ -70,7 +69,6 @@ class BrandController extends Controller
         return redirect('/show-brand');
     }
 
-
     public function deleteBrand($id)
     {
         $delete_brand = DB::table('tbl_brand')->where('brand_id', $id)->delete();
@@ -84,5 +82,4 @@ class BrandController extends Controller
         ->orderBy('brand_id', 'ASC')->get();       
         return view('brand.search_brand')->with('brand', $thuonghieu);
     }
-
 }
