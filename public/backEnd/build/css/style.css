@@ -1,0 +1,49 @@
+.logo_admin {
+    width: 26px;
+    height: 32px;
+    margin-left: 15px;
+    position: relative;
+    top: -2px;
+    margin-right: 5px;
+}
+.errMessage {
+    color: red;
+}
+
+.successMessage {
+    color: green;
+    background-color: rgb(114, 196, 114);
+}
+
+.x_title {
+display: flex;
+}
+
+.admin_part_heading {
+    display: block;
+    color: #2A3F54;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    float: none;
+}
+
+
+#img_product_admin {
+    width: 100px;
+    height: 100px;
+}
+
+#img_product_admin img{
+    width: 100%;
+    height: 100%;
+}
+
+.table_product_admin tr:nth-child(even)
+{
+    background-color: rgba(0,0,0,.05);
+}
+
+.table_product_admin tr td {
+    line-height: 100px;
+}
