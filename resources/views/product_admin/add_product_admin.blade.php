@@ -136,7 +136,7 @@
                 <div class="col-md-6 col-sm-6 offset-md-3">
                     <button class="btn btn-primary" type="submit">Thêm</button>
                     <button class="btn btn-primary" type="reset">Reset</button>
-                   <a href="{{URL::to('/show-product-admin')}}" class="btn btn-success">Danh sách sản phẩm</a>
+                    <a href="{{URL::to('/show-product-admin')}}" class="btn btn-success">Danh sách sản phẩm</a>
                 </div>
             </div>
 

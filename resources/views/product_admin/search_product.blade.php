@@ -2,7 +2,7 @@
 @section('admin_content')
 <div class="x_panel">
     <div class="x_title">
-      <h2>Tìm kiếm sản phẩm</h2>
+      <h2  class="admin_part_heading">Tìm kiếm sản phẩm</h2>
       <ul class="nav navbar-right panel_toolbox">
         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
         </li>

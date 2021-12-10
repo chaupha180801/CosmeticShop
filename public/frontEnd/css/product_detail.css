@@ -1,3 +1,8 @@
+:root {
+    --primary-color: rgb(78 46 104);
+    --secondary-color: rgba(205, 177, 229, 0.3);
+}
+
 a {
     text-decoration: none;
 }
@@ -105,7 +110,7 @@ a {
 
 .content_price span {
     font-weight: bold;
-    color: #009483;
+    color: var(--primary-color);
     font-size: 30px;
 }
 
@@ -285,10 +290,10 @@ a {
     transition: .3s;
 }
 .product_info_button ul li a.active::before,.product_info_button ul li a:hover::before{
-    border-left: 20px solid #009483;
+    border-left: 20px solid var(--primary-color);
 }
 .product_info_button ul li a.active,.product_info_button ul li a:hover {
-	background: #009483;
+	background:var(--primary-color);
 	color: #fff;
 }
 .product_info_button {
@@ -478,4 +483,11 @@ a {
     font-weight: 700;
     color: #333;
     margin-left: 20px;
+}
+
+.reviews_content {
+	border: 1px solid #f0dede;
+	padding: 5px;
+	outline: none;
+	
 }

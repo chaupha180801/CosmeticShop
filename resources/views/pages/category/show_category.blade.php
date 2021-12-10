@@ -1,5 +1,10 @@
 @extends('frontLayout')
 @section('frontEndContent')
+<style>
+     .rating .active{
+    color: #ff9705 !important;
+   }
+</style>
   <!-- start slide and sub image -->
     <div class="row slide">
         <div class="col-sm-3 sub_image">
@@ -145,11 +150,13 @@
             <form id="form-sort">
             {{ csrf_field() }}
                 <select name="sort_by" id="sort" class="form-control" form="form-sort">
-                    <option value="none">--Lọc--</option>
-                    <option value="tang_dan">--Giá tăng dần--</option>
-                    <option value="giam_dan">--Giá giảm dần--</option>
-                    <option value="kytu_az">Lọc theo tên A đến Z</option>
-                    <option value="kytu_za">Lọc theo tên Z đến A</option>
+                        <option value="none">Liên quan</option>
+                        <option value="moi_nhat">Mới nhất</option>
+                        <option value="ban_chay">Bán chạy</option>
+                        <option value="tang_dan">Giá tăng dần</option>
+                        <option value="giam_dan">Giá giảm dần</option>
+                        <option value="kytu_az">Lọc theo tên A đến Z</option>
+                        <option value="kytu_za">Lọc theo tên Z đến A</option>
                 </select>
             </form>
         </div>
@@ -161,23 +168,38 @@
                         <div class="product_image">
                             <img src="{{URL::to('public/backEnd/images/'.$sp->product_img)}}"  alt="">
                             <div class="overlay"></div>
-                            <div class="add_cart"><i class="fas fa-cart-plus"></i>Add to cart</div>
+                            <form action="{{URL::to('/add-product-search-to-cart')}}" method="POST">
+                            {{ csrf_field() }}
+                                <input type="hidden" name="productid_hidden" value="{{$sp->product_id}}" />
+                                <input type="hidden" name="product_cart_name" value="{{$sp->product_name}}" />
+                                <input type="hidden" name="product_cart_price" value="{{$sp->product_price}}" />
+                                <input type="hidden" name="product_cart_image" value="{{$sp->product_img}}" />
+                                <input type="hidden" name="qty_cart" value="1" min="1"> 
+                                @if($sp->product_quanity != 0)
+                                    <button type="submit" class="add_cart" ><i class="fas fa-cart-plus"></i>Add to cart</button> 
+                                @endif 
+                            </form> 
                         </div>
 
                         <div class="product_content">
                             <h3 class="name">{{$sp->product_name}}</h3>
-                            <p class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </p>
+                            <?php
+                                $ageDetail = 0;
+                                if($sp->product_total_comment){
+                                    $ageDetail = round($sp->product_total_rating / $sp->product_total_comment,2);
+                                }
+                            ?>
+                          <div class="rating">
+                            @for($i = 1; $i<=5;$i++)
+                                <a href="#"><i class="fa fa-star {{$i <= $ageDetail ? 'active' : '' }}" style="color: #999"></i></a>
+                            @endfor
+                          </div>
                             <p class="price">
                                 {{number_format($sp->product_price).' VNĐ'}}
                             </p>
                             <div class="add_to">
                                 <button>Add to wishlist</button>
+                                <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                                 <button>View detail</button>
                             </div>
                         </div>
@@ -261,8 +283,6 @@
                 </ul>
             </div>
         </div>
-    </div>
-    
+    </div>  
 </div>
-
 @endsection

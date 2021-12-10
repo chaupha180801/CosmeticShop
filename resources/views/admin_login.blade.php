@@ -20,92 +20,105 @@
     <link href="{{asset('public/backEnd/vendors/animate.css/animate.min.css')}}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="{{asset('public/backEnd/build/css/custom.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/backEnd/build/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('public/backEnd/build/css/custom.min.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('public/backEnd/build/css/style.css?v=').time()}}" rel="stylesheet">
+    <link href="{{asset('public/backEnd/build/css/login.css?v=').time()}}" rel="stylesheet">
 
-
-
+    <style>
+    
+ 
+    </style>
+   
   </head>
 
-  <body class="login">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
-
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form method="POST" action="{{URL::to('/admin-dashboard')}}">
-           {{ csrf_field() }}
-              <h1>Login Form</h1>
-
-              <?php
-                $message = Session::get('ErrorMessage');
-                if ($message)
-                {
-                  ?>
-                      <p class="errMessage">Tên đăng nhập hoặc mật khẩu không đúng, kiểm tra lại</p>
-                  <?php
-                  Session::put('ErrorMessage','');
-                }
-              ?>
-             
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" name="txtUserName"/>
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" name="txtPass"/>
-              </div>
-              <div>
-                <a class="reset_pass" href="#">Lost your password?</a>
-              </div>
-              <input type="submit" value="Đăng nhập" name="login" class="btn-primary">
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
-                </p>
-
+  <body class="login" style="overflow: hidden">
+    <div id="particles-js">
+      <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+  
+        <div class="login_wrapper">
+          <div class="animate form login_form">
+            <section class="login_content">
+              <form method="POST" action="{{URL::to('/admin-dashboard')}}">
+             {{ csrf_field() }}
+                <h1>Đăng nhập</h1>
+  
+                <?php
+                  $message = Session::get('ErrorMessage');
+                  if ($message)
+                  {
+                    ?>
+                        <p class="errMessage">Tên đăng nhập hoặc mật khẩu không đúng, kiểm tra lại</p>
+                    <?php
+                    Session::put('ErrorMessage','');
+                  }
+                ?>
+               
+                <div>
+                  <input type="text" class="form-control" placeholder="Username" required="" name="txtUserName"/>
+                </div>
+                <div>
+                  <input type="password" class="form-control" placeholder="Password" required="" name="txtPass"/>
+                </div>
+                <div>
+                  <a class="reset_pass" href="#">Quên mật khẩu</a>
+                </div>
+                <input type="submit" value="Đăng nhập" name="login" class="btn btn-primary">
                 <div class="clearfix"></div>
-                <br />
-
-              </div>
-            </form>
-          </section>
-        </div>
-
-        <div id="register" class="animate form registration_form">
-          <section class="login_content">
-            <form>
-              <h1>Create Account</h1>
-              <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
-              </div>
-
-              <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
-                </p>
-
+  
+                <div class="separator">
+                  <p class="change_link">Bạn chưa có tài khoản?
+                    <a href="#signup" class="to_register"> Đăng kí </a>
+                  </p>
+  
+                  <div class="clearfix"></div>
+                  <br />
+  
+                </div>
+              </form>
+            </section>
+            <section class="login_image"></section>
+          </div>
+  
+          <div id="register" class="animate form registration_form">
+            <section class="login_content">
+              <form>
+                <h1>Đăng kí tài khoản</h1>
+                <div>
+                  <input type="text" class="form-control" placeholder="Username" required="" />
+                </div>
+                <div>
+                  <input type="email" class="form-control" placeholder="Email" required="" />
+                </div>
+                <div>
+                  <input type="password" class="form-control" placeholder="Password" required="" />
+                </div>
+                <div>
+                  <a class="btn btn-primary submit" href="index.html">Đăng kí</a>
+                </div>
+  
                 <div class="clearfix"></div>
-                <br />
-              </div>
-            </form>
-          </section>
+  
+                <div class="separator">
+                  <p class="change_link">Bạn đã có tài khoản ?
+                    <a href="#signin" class="to_register"> Đăng nhập </a>
+                  </p>
+  
+                  <div class="clearfix"></div>
+                  <br />
+                </div>
+              </form>
+            </section>
+            <section class="login_image"></section>
+          </div>
         </div>
       </div>
     </div>
+  
+    <script src="{{asset('public/backEnd/build/js/particleJS/particles.js')}}"></script>
+
+    <script src="{{asset('public/backEnd/build/js/particleJS/app.js')}}"></script>
+
   </body>
 </html>

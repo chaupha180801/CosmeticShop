@@ -1,6 +1,19 @@
 
 @extends('frontLayout')
 @section('frontEndContent')
+<style>   
+    .rating .active{
+     color: #ff9705 !important;
+    }
+ </style>
+<div class="breadcums row">
+    <ul>
+        <li>Home</li>
+        <li><i class="fa fa-angle-right"></i></li>
+        <li>Sản phẩm</li>
+    </ul>
+</div>
+
   <!-- start slide and sub image -->
     <div class="row slide">
         <div class="col-sm-3 sub_image">
@@ -28,22 +41,22 @@
                     <div class="carousel-item active">
                         <img src="{{asset('public/frontEnd/images/slide_1.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                            <h5 class="slide_header">Big Christmas Sale</h5>
+                            <p class="slide_desc">Some representative placeholder content for the first slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{asset('public/frontEnd/images/slider_2.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                            <h5 class="slide_header">Black Friday Sale up 70%</h5>
+                            <p class="slide_desc">Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{asset('public/frontEnd/images/slider_3.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                            <h5 class="slide_header">Super Sale Black Friday</h5>
+                            <p class="slide_desc">Some representative placeholder content for the third slide.</p>
                         </div>
                     </div>
                 </div>
@@ -181,18 +194,23 @@
                         <div class="product_content">
                             <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                             <h3 class="name">{{$sp->product_name}}</h3>
-                            </a>
-                            <p class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </p>
+                            <?php
+                                $ageDetail = 0;
+                                if($sp->product_total_comment){
+                                    $ageDetail = round($sp->product_total_rating / $sp->product_total_comment,2);
+                                }
+                            ?>
+                          <div class="rating">
+                            @for($i = 1; $i<=5;$i++)
+                                <a href="#"><i class="fa fa-star {{$i <= $ageDetail ? 'active' : '' }}" style="color: #999"></i></a>
+                            @endfor
+                          </div>
                             <p class="price">
                                 {{number_format($sp->product_price).' VNĐ'}}
                             </p>
                             <div class="add_to">
+                                <!-- <input type="button" data-toggle="modal" data-target="#xemnhanh" value="Xem nhanh"
+                                class="btn btn-default xemnhanh" data-id_product="{{$sp->product_id}}" name="add-to-cart"> -->
                                 <button>Add to wishlist</button>
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                                 <button>View detail</button>

@@ -136,8 +136,8 @@
 }
 .lSSlideOuter .lSPager.lSGallery img {
     display: block;
-    height: auto;
     max-width: 100%;
+    height: 100px;
 }
 .lSSlideOuter .lSPager.lSGallery:before, .lSSlideOuter .lSPager.lSGallery:after {
     content: " ";
