@@ -60,8 +60,7 @@ class CartController extends Controller
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
         ->orderBy('supplier_id','DESC')->get();
-        return view('cart.show_cart')->with('brand', $thuonghieu)
-        ->with('supplier', $nhacungcap);
+        return view('cart.show_cart')->with('brand', $thuonghieu)->with('supplier', $nhacungcap);
     }
 
     public function UpdateQuantityCart(Request $request){

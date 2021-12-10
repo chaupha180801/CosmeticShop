@@ -16,6 +16,8 @@ class CheckoutController extends Controller
 {
     public function loginCheckout()
     {
+        Redirect:: setIntendedUrl(url()->previous());
+
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
@@ -23,7 +25,10 @@ class CheckoutController extends Controller
         return view('login.show_login')->with('brand', $thuonghieu)->with('supplier', $nhacungcap);
     }
 
-    public function registerCheckout(){
+    public function registerCheckout()
+    {
+        Redirect:: setIntendedUrl(url()->previous());
+
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
@@ -31,29 +36,28 @@ class CheckoutController extends Controller
         return view('login.show_register')->with('brand', $thuonghieu)->with('supplier', $nhacungcap);
     }
 
-    public function addCustomerAccount(Request $request){
+    public function addCustomerAccount(Request $request)
+    {
+        
         $data = array();
         $data['account_name'] = $request->customer_name;
         $data['account_email'] = $request->customer_email;
         $data['account_password'] = md5($request->customer_password);
         $data['account_phone'] = $request->customer_phone;
-        $data['account_avatar'] = "default_avatar.png";
 
-
+        if(($request->customer_password)!=($request->customer_re_password))
+        {
+            Session::put('ErrorMessage', 'Mật khẩu không khớp');
+            return redirect()->back();
+        }else{
         $account_id = DB::table('tbl_account')->insertGetId($data);
         Session::put('account_id', $account_id);
         Session::put('account_name', $request->customer_name);
-        return Redirect('/checkout');
+        return redirect()->intended();
+        }   
     }
 
-    public function checkOut(Request $request,$id){
-      
-        $shipping_list = DB::table('tbl_shipping')->where('account_id', $id)->orderBy('shipping_id','DESC')->get();
-       
-    
-    //     $discount_code = $request->discount_code;
-    //     $discount = DB::table('tbl_discount')->where('discount_code', $discount_code)->first();
-    //     $city = DB::table('tbl_tinhthanhpho')->orderBy('matp','ASC')->get();
+    public function checkOut(){
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
@@ -117,21 +121,26 @@ class CheckoutController extends Controller
         return Redirect::to('/');
     }
 
-    public function loginAccount(Request $request){
+    public function loginAccount(Request $request)
+    {
         $email = $request->account_email;
         $password = md5($request->account_password);
+        $remember = $request->remember;
+
+        if($remember == 1)
+        {
+            $request->session()->keep(['account_email', 'account_password']);
+        }
+
         $result = DB::table('tbl_account')->where('account_email', $email)
         ->where('account_password', $password)->first();
-        if($result){
+
+        if($result)
+        {
             Session::put('account_id', $result->account_id);
-            Session::put('account_name', $result->account_name);
-            Session::put('account_img', $result->account_avatar);
-
-
-            // return Redirect::to('/');
-            return redirect('/');
+            return redirect()->intended('/');
         }else{
-            // return Redirect::to('login-checkout');
+            Session::put('ErrorMessage', 'Tên đăng nhập hoặc mật khẩu chưa chính xác');
             return redirect('/login-checkout');
         }       
     }  

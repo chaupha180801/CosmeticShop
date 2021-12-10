@@ -123,8 +123,9 @@ Route::post('/update_profile/{id}',[CheckoutController::class,'updateProfile']);
 Route::get('/checkout',[CheckoutController::class,'checkOut']);
 Route::post('/save-checkout-customer',[CheckoutController::class,'saveCheckoutCustomer']);
 Route::post('/address',[CheckoutController::class,'selectAddress']);
-Route::get('/purchase-history',[CheckoutController::class,'purchaseHistory']);
 Route::post('/show-purchase-order-details',[CheckoutController::class,'showPurchaseOrderDetail']);
+//order
+Route::get('/history-order',[OrderController::class,'historyOrder']);
 //discount
 Route::get('/show-discount',[DiscountController::class,'showDiscount']);
 Route::get('/add-discount',[DiscountController::class,'create']);

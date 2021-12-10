@@ -7,6 +7,22 @@
         <li>Thanh toán</li>
     </ul>
 </div>
+<?php    
+    $account_id = Session::get('account_id');
+    if($account_id ==NULL){
+?>
+<h3>Vui lòng đăng nhập/đăng ký trước khi thanh toán</h3>
+<a href="{{URL::to('/login-checkout')}}">
+    <button class="btn btn-success">Đăng nhập</button>
+</a>
+            
+<a href="{{URL::to('/register-form')}}">
+    <button class="btn btn-success">Đăng ký</button>
+</a>
+<?php
+    }else{
+?>
+
 <div class="row" id="new_shipping">
     <div class="overlay_shipping" onclick="overlay_click()">
 
@@ -167,7 +183,6 @@
                 </div>     	    	    	    	    	    	    
                 
             </div>
-
     </div>
     <div class="col-lg-6 col-md-6">
             <h3 class="checkout_heading">Chi tiết đơn hàng</h3> 
@@ -282,6 +297,10 @@
     <a href="{{URL::to('/cart')}}">
         <button class="btn btn-success">Quay lại giỏ hàng</button>
     </a>
+
+    <?php
+                   }
+                   ?>
     <script>
         $(document).ready(function(){ 
         $('.choose').on('change',function(){

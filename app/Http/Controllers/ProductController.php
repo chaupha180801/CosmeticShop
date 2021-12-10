@@ -40,6 +40,7 @@ class ProductController extends Controller
        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
        ->join('tbl_supplier','tbl_supplier.supplier_id','=','tbl_product.supplier_id')
        ->orderby($sort_field, $sort_order)->paginate(5)->appends(request()->query());
+    //    $manage_product = view('product_admin.all_product')->with('all_product',$all_product);
         return view('product_admin.show_product_admin')->with(compact('all_product', $all_product));
     }
     /**

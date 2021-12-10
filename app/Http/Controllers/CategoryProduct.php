@@ -62,8 +62,10 @@ class CategoryProduct extends Controller
     public function updateCategory(Request $request, $id)
     {
         $category = array();
+        //$brand['brand_id'] = $id;
         $category['category_name'] = $request->category_product_name;
         $category['category_desc'] = $request->category_product_desc;
+        //$brand->save();
         DB::table('tbl_category_product')->where('category_id', $id)->update($category);
         Session::put('message','Cập danh mục sản phẩm thành công');
         return redirect('/show-category');

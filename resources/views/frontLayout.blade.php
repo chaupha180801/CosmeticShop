@@ -65,7 +65,7 @@
                             <a href="{{URL::to('/profile/'.$account_id)}}"><i class="fas fa-info-circle"></i>Thông tin cá nhân</a>
                         </li>
                         <li>
-                            <a href=""><i class="far fa-list-alt"></i>Đơn hàng đã mua</a>
+                            <a href="{{URL::to('/history-order')}}"><i class="far fa-list-alt"></i>Đơn hàng đã mua</a>
                         </li>
                         <li>
                             <a href="{{URL::to('/logout-checkout')}}"><i class="fas fa-sign-out-alt"></i>Đăng xuất</a>
