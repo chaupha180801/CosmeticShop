@@ -299,8 +299,8 @@
     </a>
 
     <?php
-                   }
-                   ?>
+       }
+    ?>
     <script>
         $(document).ready(function(){ 
         $('.choose').on('change',function(){

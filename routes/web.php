@@ -148,7 +148,7 @@ Route::post('/update_profile/{id}',[CheckoutController::class,'updateProfile']);
 Route::get('/checkout/{id}',[CheckoutController::class,'checkOut']);
 Route::post('/save-checkout-customer',[CheckoutController::class,'saveCheckoutCustomer']);
 Route::post('/address',[CheckoutController::class,'selectAddress']);
-Route::post('/show-purchase-order-details',[CheckoutController::class,'showPurchaseOrderDetail']);
+Route::post('/show-purchase-order-details',[OrderController::class,'showPurchaseOrderDetail']);
 //order
 Route::get('/history-order',[OrderController::class,'historyOrder']);
 //discount
