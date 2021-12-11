@@ -56,11 +56,13 @@ class CartController extends Controller
 
     public function DeleteProductCart($id){
         Cart::update($id, 0);
+        $sanpham = DB::table('tbl_product')->where('product_state', '1')->get();
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
         ->orderBy('supplier_id','DESC')->get();
-        return view('cart.show_cart')->with('brand', $thuonghieu)->with('supplier', $nhacungcap);
+        return view('cart.show_cart')->with('brand', $thuonghieu)
+        ->with('supplier', $nhacungcap)->with('sanpham', $sanpham);
     }
 
     public function UpdateQuantityCart(Request $request){

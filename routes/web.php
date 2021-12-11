@@ -49,7 +49,7 @@ Route::get('/edit-category-product/{id}',[CategoryProduct::class,'editCategory']
 Route::get('/delete-category-product/{id}',[CategoryProduct::class,'deleteCategory']);
 Route::post('/update-category/{id}',[CategoryProduct::class,'updateCategory']);
 Route::get('/search-category-admin',[CategoryProduct::class,'searchCategoryAdmin']);
-
+Route::post('/loc-san-pham',[CategoryProduct::class,'locSanPham']);
 
 //brand
 Route::get('/show-brand',[BrandController::class,'showBrand']);

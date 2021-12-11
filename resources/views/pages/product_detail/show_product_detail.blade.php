@@ -449,7 +449,7 @@
             $(".js_rating_action").click(function(event){
                 event.preventDefault();              
                 if($(".form_rating").hasClass('hide')){
-                    $("#rating_btn_text").text('Đóng lại');
+                    $("#rating_btn_text").text('Ẩn');
                     $(".form_rating").addClass('active').removeClass('hide');
                 }else{
                     $("#rating_btn_text").text('Gửi đánh giá của bạn');

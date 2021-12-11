@@ -57,13 +57,17 @@ class CheckoutController extends Controller
         }   
     }
 
-    public function checkOut($id){
+    public function checkOut(Request $request,$id){
+        $discount_code = $request->discount_code;
+        $discount = DB::table('tbl_discount')->where('discount_code', $discount_code)->first();
+        $city = DB::table('tbl_tinhthanhpho')->orderBy('matp','ASC')->get();
         $shipping_list = DB::table('tbl_shipping')->where('account_id', $id)->orderby('shipping_id', 'DESC')->get();
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
         ->orderBy('supplier_id','DESC')->get();
-        return view('login.checkout')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)->with('shipping_list', $shipping_list);
+        return view('login.checkout')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)
+        ->with('shipping_list', $shipping_list)->with('discount', $discount)->with('city',$city);
     }
 
     public function saveCheckoutCustomer(Request $request){
@@ -72,7 +76,7 @@ class CheckoutController extends Controller
         Session::put('shipping_id', $shipping_id);
 
         $datapayment = array();
-        $datapayment['payment_name'] = $request->check_method;
+        $datapayment['payment_name'] = 'Thanh toán khi nhận hàng';
         $datapayment['payment_status'] = 'Đang chờ xử lí';
         $payment_id = DB::table('tbl_payment')->insertGetId($datapayment);
         //insert order
@@ -148,6 +152,7 @@ class CheckoutController extends Controller
 
     public function saveShipping(Request $request, $id){
         $data = array();
+        $data = array();
         $data['shipping_name'] = $request->shipping_name;
         $data['shipping_phone'] = $request->shipping_phone;
         $data['shipping_email'] = $request->shipping_email;
@@ -155,7 +160,7 @@ class CheckoutController extends Controller
         $data['shipping_province'] = $request->shipping_province;
         $data['shipping_commune'] = $request->shipping_commune;
         $data['shipping_address'] = $request->shipping_address;
-        $data['shipping_note'] = $request->shipping_note;
+        $data['shipping_note'] = $request->shipping_note; 
         $data['account_id'] = $id;
 
         $shipping_id = DB::table('tbl_shipping')->insertGetId($data);
@@ -198,6 +203,29 @@ class CheckoutController extends Controller
         }
     }
 
+    public function selectAddress(Request $request){
+        $data = $request->all();
+        if($data['action']){
+            if($data['action'] == "city"){
+                $output='';
+                $select_province = DB::table('tbl_quanhuyen')->where('matp', $data['maid'])
+                ->orderBy('maqh','ASC')->get();
+                $output.='<option>---Chọn huyện/thành phố---</option>';
+                foreach($select_province as $key =>$province){
+                    $output.='<option value="'.$province->maqh.'">'.$province->name_province.'</option>';
+                }              
+            }else{
+                $output='';
+                $select_wards = DB::table('tbl_xaphuongthitran')->where('maqh', $data['maid'])
+                ->orderBy('xaid','ASC')->get();              
+                $output.='<option>---Chọn xã/phường---</option>';
+                foreach($select_wards as $key =>$ward){
+                    $output.='<option value="'.$ward->xaid.'">'.$ward->name_commue.'</option>';
+                }
+            }
+        }
+        return response($output); 
+    } 
 
 }
 

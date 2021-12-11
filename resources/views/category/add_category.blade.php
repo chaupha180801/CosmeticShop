@@ -2,11 +2,7 @@
 @section('admin_content')
 <div class="x_panel">
     <div class="x_title">
-<<<<<<< HEAD
-        <h2 class="admin_part_heading abc">Thêm danh mục sản phẩm mới </h2>
-=======
         <h2 class="admin_part_heading">Thêm danh mục sản phẩm mới </h2>
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
         <ul class="nav navbar-right panel_toolbox">
             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>

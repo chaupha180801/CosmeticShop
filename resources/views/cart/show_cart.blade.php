@@ -148,36 +148,39 @@
         });
     });
 
+
     $('.minus').click(function(){
         var row = $(this).parent().parent();
+        if(parseInt(row.find('.product-quantity').val()) != 1){
         var product_quantity = parseInt(row.find('.product-quantity').val()) - 1;
         row.find('.product-quantity').val(product_quantity);
         var quanity = parseInt($('.product-id-quantity').val());
-        if(product_quantity > quanity){
-            alert("Số lượng sản phẩm chỉ còn" + quanity);
-        }else{
-            var product_price = parseInt(row.find(".product-price-value").val());
+        
+        
+        var product_price = parseInt(row.find(".product-price-value").val());
             if (product_price == '') {
                 product_price = 0;
             }
-            var product_total = product_price * product_quantity;
-            var old_product_total = parseInt(row.find(".product-total").text().replaceAll(',', ''));
-            var total = calc_cart_total() - old_product_total + product_total;
-            
-            row.find(".product-total").text(product_total.toLocaleString());
-            $('#cart-total').text(total.toLocaleString());
+        
+        var product_total = product_price * product_quantity;
+        var old_product_total = parseInt(row.find(".product-total").text().replaceAll(',', ''));
+        var total = calc_cart_total() - old_product_total + product_total;
+                
+        row.find(".product-total").text(product_total.toLocaleString());
+        $('#cart-total').text(total.toLocaleString());
 
-            $.ajax({
-                url: "{{url('/update-cart-quantity')}}",
-                method: "POST",
-                data: {
+        $.ajax({
+            url: "{{url('/update-cart-quantity')}}",
+            method: "POST",
+            data: {
                     rowId_cart: row.find(".product-row-id").val(),
                     qty_cart: product_quantity,
                     _token: "{{ csrf_token() }}"
                 }
-            });
+            }); 
         }
     });
+
 
     $('.plus').click(function(){
         var row = $(this).parent().parent();
@@ -185,6 +188,7 @@
         row.find('.product-quantity').val(product_quantity);
         var quanity = parseInt(row.find('.product-id-quantity').val());
         if(product_quantity > quanity){
+            row.find('.product-quantity').val(product_quantity -1);
             alert("Số lượng sản phẩm chỉ còn " + quanity + " sản phẩm. Vui lòng giảm số lượng mua");
         }else{
             var product_price = parseInt(row.find(".product-price-value").val());

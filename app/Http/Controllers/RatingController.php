@@ -50,7 +50,7 @@ class RatingController extends Controller
         $all_rating = DB::table('tbl_rating')
         ->join('tbl_product','tbl_product.product_id','=','tbl_rating.product_id')
         ->join('tbl_account','tbl_account.account_id','=','tbl_rating.rating_user_id')
-        ->paginate(5);
+        ->orderBy('rating_id','DESC')->paginate(5);
         $all_reply = DB::table('tbl_rating')->get();
         return view('rating.show_rating')->with('all_rating',$all_rating)->with('all_reply',$all_reply);
     }

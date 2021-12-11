@@ -1,4 +1,5 @@
 
+
 @extends('frontLayout')
 @section('frontEndContent')
 <style>
@@ -193,16 +194,6 @@
                         <option value="kytu_za">Lọc theo tên Z đến A</option>
                     </select>
                 </form>
-                   <!--  <div class="search_price_container">
-                    <div class="search_group_header">Khoảng giá</div>
-                    <div class="search_group_body">
-                        <div class="search_group_body_input">
-                            <input type="text" maxlength="13" placeholder="đ Từ" name="begin_price" class="begin-price">
-                            <div>-</div>
-                            <input type="text" maxlength="13" placeholder="đ Đến" name="end_price" class="end-price">
-                        </div>
-                    </div>
-                    <div style="margin: 1.25rem 0 0;"><button class="search-price">Áp dụng</button></div>    -->     
             </div>
                    
             </div>
@@ -234,12 +225,11 @@
                                 <input type="hidden" name="product_cart_price" value="{{$sp->product_price}}" />
                                 <input type="hidden" name="product_cart_image" value="{{$sp->product_img}}" />
                                 <input type="hidden" name="qty_cart" value="1" min="1"> 
-                                @if($sp->product_quanity > 0)
+                               @if($sp->product_quanity > 0)
                                     <button class="add-product-to-cart" type="submit"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
-                                @endif  
-                                
-                            </form> 
-                            <!-- <div class="add_cart"><i class="fas fa-cart-plus"></i>Add to cart</div> -->
+                                @endif
+                               
+                            </form>
                         </div>
 
                         <div class="product_content">
@@ -259,7 +249,6 @@
                                 {{number_format($sp->product_price).' VNĐ'}}
                             </p>
                             <div class="add_to">
-                                
                                 <button>Add to wishlist</button>
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                                 <button>View detail</button>

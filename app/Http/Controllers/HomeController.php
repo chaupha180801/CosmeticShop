@@ -92,7 +92,6 @@ class HomeController extends Controller
                 ->addSelect('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
                 'tbl_product.product_name','tbl_product.product_price',
                 'tbl_product.product_total_comment','tbl_product.product_total_rating')
-
                 ->paginate(4)->appends(request()->query());
         }
         else{

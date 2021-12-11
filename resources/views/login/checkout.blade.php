@@ -35,38 +35,38 @@
         <h3>Thêm địa chỉ mới</h3>
             <div class="col-md-7 mb-30">
                 <label>Tên người nhận</label>  <span>*</span></label> <br>
-                <input class="input_checkout_infomation" type="text" name="shipping_name"> 
+                <input class="input_checkout_infomation" type="text" name="shipping_name">  
             </div>
             <div class="col-lg-5 mb-30">
                 <label>Điện thoại<span>*</span></label> <br>
-                <input class="input_checkout_infomation" type="text" name="shipping_phone"> 
-
+                <input class="input_checkout_infomation" type="text" name="shipping_phone">  
             </div> 
              <div class="col-lg-12 mb-30">
                 <label> Địa chỉ email   <span>*</span></label> <br>
-                  <input class="input_checkout_infomation" type="text" name="shipping_email"> 
-
+                 <input class="input_checkout_infomation" type="text" name="shipping_email">  
             </div> 
          
             <div class="col-4 mb-30">
-                <label for="country">Chọn tỉnh thành <span>*</span></label> <br>
-                <select name="shipping_district"  class="input_checkout_infomation"> 
-                    <option value="Thành phố Hồ Chí Minh">Thành phố Hồ Chí Minh</option>      
-                    <option value="Hà Nội">Hà Nội</option> 
-                    <option value="Đà Nẵng">Đà Nẵng</option>    
-                    <option value="Bìn Định">Bìn Định</option>    
-                    <option value="Quãng Ngãi">Quãng Ngãi</option>  
-
+                <label for="country">Tỉnh/thành phố <span>*</span></label> <br>
+                <select name="shipping_district"  class="input_checkout_infomation choose city" id="city"> 
+                    <option value="">---Chọn thành tỉnh/thành phố---</option> 
+                    @foreach($city as $key => $item)
+                        <option value="{{$item->matp}}">{{$item->name_city}}</option>
+                     @endforeach     
                 </select>
             </div>
 
             <div class="col-4 mb-30">
-                <label>Huyện/Thành phố  <span>*</span></label> <br>
-                <input class="input_checkout_infomation" type="text" name="shipping_province">     
+                <label for="country">Huyện/thành phố<span>*</span></label> <br>
+                <select name="shipping_province"  class="input_checkout_infomation province choose" id="province"> 
+                    <option value="">---Chọn huyện/thành phố---</option> 
+                </select>     
             </div>
             <div class="col-4 mb-30">
-                <label>Xã/ phường <span>*</span></label> <br>
-                <input class="input_checkout_infomation" type="text" name="shipping_commune">    
+                <label for="country">Xã/phường<span>*</span></label> <br>
+                <select name="shipping_commune"  class="input_checkout_infomation wards" id="wards"> 
+                    <option value="">---Chọn xã/phường---</option> 
+                </select>    
             </div> 
              <div class="col-12">
                 <label>Địa chỉ nhà <span>*</span></label> <br>
@@ -79,13 +79,10 @@
                     <textarea id="order_note" placeholder="Ghi chú về giao hàng" class="input_checkout_infomation" rows="5" name="shipping_note"></textarea>
                 </div>    
             </div>     	
-            <button type="submit">Lưu</button>    	    	    	    	    	    
-      
-        
+            <button type="submit">Lưu</button>    	    	    	    	    	         
         </form>
-  
 </div>
-
+<div>
 <form action="{{URL::to('/save-checkout-customer')}}" method="POST" class="row checkout">
             {{ csrf_field() }}
     <div class="col-lg-6 col-md-6">
@@ -121,70 +118,7 @@
               </div>
           </div>
       
-
-
-
-<!-- {{-- <form action="{{URL::to('/save-checkout-customer')}}" method="POST" class="row checkout">
-     {{ csrf_field() }}
-    <div class="col-lg-6 col-md-6">
-       
-            <h3 class="checkout_heading">Thông tin nhận hàng</h3>
-            <div class="row">
-            
-                <div class="col-lg-12 mb-30">
-                    <label>Tên người nhận</label>  <span>*</span></label> <br>
-                    <input class="input_checkout_infomation" type="text" name="shipping_name"> 
-                </div>
-                <div class="col-lg-12 mb-30">
-                    <label>Điện thoại<span>*</span></label> <br>
-                    <input class="input_checkout_infomation" type="text" name="shipping_phone"> 
-
-                </div> 
-                 <div class="col-lg-12 mb-30">
-                    <label> Địa chỉ email   <span>*</span></label> <br>
-                      <input class="input_checkout_infomation" type="text" name="shipping_email"> 
-
-                </div> 
-             
-                <div class="col-12 mb-30">
-                    <label for="country">Tỉnh/thành phố <span>*</span></label> <br>
-                    <select name="shipping_district"  class="input_checkout_infomation choose city" id="city"> 
-                        <option value="">---Chọn thành tỉnh/thành phố---</option> 
-                        @foreach($city as $key => $item)
-                            <option value="{{$item->matp}}">{{$item->name_city}}</option>
-                        @endforeach     
-
-                    </select>
-                </div>
-
-                <div class="col-12 mb-30">
-                    <label for="country">Huyện/thành phố<span>*</span></label> <br>
-                    <select name="shipping_province"  class="input_checkout_infomation province choose" id="province"> 
-                        <option value="">---Chọn huyện/thành phố---</option> 
-                    </select>
-    
-                </div>
-                <div class="col-12 mb-30">
-                    <label for="country">Xã/phường<span>*</span></label> <br>
-                        <select name="shipping_commune"  class="input_checkout_infomation wards" id="wards"> 
-                            <option value="">---Chọn xã/phường---</option> 
-                        </select>   
-                </div> 
-                 <div class="col-12 mb-30">
-                    <label>Địa chỉ nhà <span>*</span></label> <br>
-                    <input class="input_checkout_infomation" type="text" name="shipping_address" >    
-                </div> 
-              
-                <div class="col-12">
-                    <div class="order-notes">
-                         <label for="order_note">Order Notes</label> <br>
-                        <textarea id="order_note" placeholder="Ghi chú về giao hàng" class="input_checkout_infomation" rows="5" name="shipping_note"></textarea>
-                    </div>    
-                </div>     	    	    	    	    	    	    
-                
-            </div>
-    </div> -->
-    <div class="col-lg-6 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <h3 class="checkout_heading">Chi tiết đơn hàng</h3> 
             <div class="order_table table-responsive mb-30">
             <?php
@@ -278,21 +212,14 @@
                 </table>
                 @endif
             </div>
-            <div class="payment_method">
-                    <!-- <p>Chọn hình thức thanh toán</p>
-                    <input id="payment" name="check_method" type="radio" data-target="createp_account" value="1">
-                    <label for="payment" data-toggle="collapse" data-target="#method" aria-controls="method">Thanh toán khi nhận hàng</label>
-                     <br>
-                    <input id="payment_defult" name="check_method" type="radio" data-target="createp_account" value="2">
-                    <label for="payment_defult" data-toggle="collapse" data-target="#collapsedefult" aria-controls="collapsedefult">Thanh toán bằng thẻ <img src="assets\img\visha\papyel.png" alt=""></label> -->
-                    <div class="col-md-12">                    
+            <div class="payment_method"> 
                     <button class="btn btn-primary">Đặt hàng</button>
                     </div>                 
-            </div> 
-                  
+            </div>                
     </div>
-<!-- </form> --}} -->
 
+</form> 
+</div>
     
     <a href="{{URL::to('/cart')}}">
         <button class="btn btn-success">Quay lại giỏ hàng</button>

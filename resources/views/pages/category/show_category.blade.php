@@ -74,6 +74,7 @@
             <ul class="category_list">
                 @foreach($category as $key => $muc)
                 <li><a href="{{URL::to('/chi-tiet-danh-muc/'.$muc->category_id)}}"><i class="fas fa-angle-right"></i>{{$muc->category_name}} <span>+</span></a></li>
+                <input type="hidden" class="danh-muc-san-pham-id" value="{{$muc->category_id}}">
                 @endforeach
             </ul>
         </div>
@@ -145,7 +146,7 @@
                 Sản phẩm {{$muc_ten->category_name}}
             </div>
          @endforeach
-        <div class="row">
+        <div class="row-loc">
             <label for="amount"> Sắp xếp theo</label>
             <form id="form-sort">
             {{ csrf_field() }}
@@ -160,9 +161,10 @@
                 </select>
             </form>
         </div>
-            <div class ="row">
+        <div class ="row">
+        
             @foreach($category_by_id as $key => $sp)
-                <div class="col-sm-4 product_wrap">
+            <div class="col-sm-4 product_wrap">
                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                     <div class="home-product-item">
                         <div class="product_image">
@@ -209,10 +211,9 @@
                 </div>
                 
                 @endforeach
-                
-            </div>
             
-            <div class="row">
+         </div>
+            <div class="row-paginate">
             <div class="col l-12 m-12 c-12 pagination_wrap">
                 <div class="pagination">
                     <li style="display:inline;{{ ($category_by_id->currentPage() == 1) ? 'none;' : '' }}">
@@ -283,6 +284,6 @@
                 </ul>
             </div>
         </div>
-    </div>  
+    </div> 
 </div>
 @endsection
