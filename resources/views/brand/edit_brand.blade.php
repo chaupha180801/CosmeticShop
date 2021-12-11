@@ -15,10 +15,6 @@
   
     <div class="x_content">
         <br />
-<<<<<<< HEAD
-
-=======
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
         <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{URL::to('/update-brand/'.$edit_brand->brand_id)}}" method ="POST">
         {{ csrf_field() }}
             <div class="item form-group">
