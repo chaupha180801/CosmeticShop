@@ -9,6 +9,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\DiscountController;

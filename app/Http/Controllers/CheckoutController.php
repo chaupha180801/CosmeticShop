@@ -58,6 +58,7 @@ class CheckoutController extends Controller
     }
 
     public function checkOut(){
+        
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
