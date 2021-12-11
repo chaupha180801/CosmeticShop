@@ -139,6 +139,8 @@ class CheckoutController extends Controller
         if($result)
         {
             Session::put('account_id', $result->account_id);
+            Session::put('account_name', $result->account_name);
+            Session::put('account_img', $result->account_avatar);
             return redirect()->intended('/');
         }else{
             Session::put('ErrorMessage', 'Tên đăng nhập hoặc mật khẩu chưa chính xác');
