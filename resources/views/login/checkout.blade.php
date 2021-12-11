@@ -123,8 +123,8 @@
       
 
 
-//cần comment
-{{-- <form action="{{URL::to('/save-checkout-customer')}}" method="POST" class="row checkout">
+
+<!-- {{-- <form action="{{URL::to('/save-checkout-customer')}}" method="POST" class="row checkout">
      {{ csrf_field() }}
     <div class="col-lg-6 col-md-6">
        
@@ -183,7 +183,7 @@
                 </div>     	    	    	    	    	    	    
                 
             </div>
-    </div>
+    </div> -->
     <div class="col-lg-6 col-md-6">
             <h3 class="checkout_heading">Chi tiết đơn hàng</h3> 
             <div class="order_table table-responsive mb-30">
@@ -291,16 +291,16 @@
             </div> 
                   
     </div>
-</form> --}}
-//cmt
+<!-- </form> --}} -->
+
     
     <a href="{{URL::to('/cart')}}">
         <button class="btn btn-success">Quay lại giỏ hàng</button>
     </a>
 
     <?php
-                   }
-                   ?>
+       }
+    ?>
     <script>
         $(document).ready(function(){ 
         $('.choose').on('change',function(){
@@ -323,7 +323,12 @@
             });
         });
     });
-        
+    function addShipping(){
+        new_shipping.style.display = "block";
+    }
+    function overlay_click(){
+        new_shipping.style.display = "none";
+    }
     </script>
 
  @endsection

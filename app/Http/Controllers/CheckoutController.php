@@ -57,8 +57,8 @@ class CheckoutController extends Controller
         }   
     }
 
-    public function checkOut(){
-        
+    public function checkOut($id){
+        $shipping_list = DB::table('tbl_shipping')->where('account_id', $id)->orderby('shipping_id', 'DESC')->get();
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
         ->orderBy('brand_id','DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')

@@ -164,10 +164,40 @@ class ProductController extends Controller
        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
        ->join('tbl_supplier','tbl_supplier.supplier_id','=','tbl_product.supplier_id')->where('product_name', 'like', '%'.$search.'%')
        ->paginate(4)->appends(request()->query());
-       return view('product_admin.show_product_admin')->with('all_product', $all_product);       
+
+       return view('product_admin.show_product_admin')->with('all_product', $all_product);  
+        
     }
 
+    public function index(Request $request)
+    {
+        $sort_by = $request->sort_by;
+        
+        if($sort_by == 'giam_dan'){
+            $sort_field = 'product_price';
+            $sort_order = 'DESC';
+        }elseif($sort_by=='tang_dan'){
+            $sort_field = 'product_price';
+            $sort_order = 'ASC';               
+        }elseif($sort_by=='kytu_za'){
+            $sort_field = 'product_name';
+            $sort_order = 'DESC';        
+        }elseif($sort_by=='kytu_az'){
+            $sort_field = 'product_name';
+            $sort_order = 'ASC';                
+        }else{
+            $sort_field = 'product_id';
+            $sort_order = 'ASC';
+        }
 
+        
+        $all_product = DB::table('tbl_product')->join('tbl_category_product','tbl_category_product.category_id', '=', 'tbl_product.category_id')
+        ->join('tbl_brand','tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+        ->join('tbl_supplier','tbl_supplier.supplier_id', '=', 'tbl_product.supplier_id')
+        ->orderBy($sort_field, $sort_order)->get();
+        return view('product_admin.show_product_admin') ->with(compact('all_product', $all_product));
+    }
+    
     /**
      * Show the form for editing the specified resource.
      *

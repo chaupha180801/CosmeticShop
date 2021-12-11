@@ -88,7 +88,7 @@
                    $account_id = Session::get('account_id');
                    if($account_id !=NULL){
                     ?>
-                    <form action="{{URL::to('/checkout')}}">
+                    <form action="{{URL::to('/checkout/'.$account_id)}}">
                         <input type="hidden" id="discount-id" name="discount_code" value="">
                         <button class="btn btn-success">Thanh toán</button>
                    </form>
