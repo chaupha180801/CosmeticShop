@@ -13,6 +13,7 @@
            <h4>Đăng kí</h4>
            <form action="{{URL::to('/add-customer-account')}}" method="POST">
            {{ csrf_field() }}
+                
                <p>   
                    <label>Họ và tên  <span>*</span></label> <br>
                    <input type="text" name="customer_name">

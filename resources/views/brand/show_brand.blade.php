@@ -59,7 +59,7 @@
          </td>
           <td>
             <a href="{{URL::to('/edit-brand/'.$eachBrand->brand_id)}}" class="btn btn-sm btn-primary">Sửa</a>
-            <a href="{{URL::to('/delete-brand/'.$eachBrand->brand_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa nhãn hiệu {{$eachBrand->brand_name}} không?')">Xóa</a>
+            <a href="{{URL::to('/delete-brand/'.$eachBrand->brand_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Nhãn hiệu {{$eachBrand->brand_name}} vẫn còn tồn tại sản phẩm, ban có muốn xóa toàn bộ sản phẩm thuộc nhãn hiệu {{$eachBrand->brand_name}} hay không?')">Xóa</a>
           </td>
         </tr>
         @endforeach

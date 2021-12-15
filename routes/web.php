@@ -50,6 +50,7 @@ Route::get('/gioi-thieu',[HomeController::class,'aboutUs']);
 Route::post('/timkiem-ajax',[HomeController::class,'autocomplete_ajax']);
 
 Route::post('/admin-dashboard',[AdminController::class,'check_login']);
+Route::post('/save-admin',[AdminController::class,'saveAdmin']);
 
 //category
 Route::get('/show-category',[CategoryProduct::class,'showCategory']);

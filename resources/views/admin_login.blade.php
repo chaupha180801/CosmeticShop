@@ -83,19 +83,20 @@
   
           <div id="register" class="animate form registration_form">
             <section class="login_content">
-              <form method="POST" action="{{URL::to('/register-admin')}}">
+              <form method="POST" action="{{URL::to('/save-admin')}}">
+             {{ csrf_field() }}
                 <h1>Đăng kí tài khoản</h1>
                 <div>
-                  <input type="text" class="form-control" placeholder="Username" required name="usernamAD_register"/>
+                  <input type="text" class="form-control" placeholder="Username" required="" name = "adminName" />
                 </div>
                 <div>
-                  <input type="email" class="form-control" placeholder="Email" required name="emailAD_register"/>
+                  <input type="email" class="form-control" placeholder="Email" required="" name = "adminEmail"/>
                 </div>
                 <div>
-                  <input type="password" class="form-control" placeholder="Password" required name="passAD_register"/>
+                  <input type="password" class="form-control" placeholder="Password" required="" name = "adminPass"/>
                 </div>
                 <div>
-                 <input type="submit" value="Đăng kí" class="btn btn-primary">
+                <input type="submit" value="Đăng ký" name="register" class="btn btn-primary">
                 </div>
   
                 <div class="clearfix"></div>
@@ -104,6 +105,7 @@
                   <p class="change_link">Bạn đã có tài khoản ?
                     <a href="#signin" class="to_register"> Đăng nhập </a>
                   </p>
+                </form>
   
                   <div class="clearfix"></div>
                   <br />
