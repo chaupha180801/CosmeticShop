@@ -52,22 +52,10 @@
             <div class="item form-group">
                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Số  lượng </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input id="middle-name" class="form-control" type="text" name="discount_quantity">
+                    <input id="middle-name" class="form-control" type="text" name="discount_quantity"
+                    pattern="[0-9]+" title="Số lượng không hợp lệ">
                 </div>
             </div>
-            {{-- <div class="item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align">Tình trạng</label>
-                <div class="col-md-6 col-sm-6 ">
-                    <div id="gender" class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                            <input type="radio" name="category_product_status" value="0" class="join-btn" checked >  &nbsp; Ẩn &nbsp;
-                        </label>
-                        <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                            <input type="radio" name="category_product_status" value="1" class="join-btn" > Hiện
-                        </label>
-                    </div>
-                </div>
-            </div> --}}
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align">Ngày bắt đầu <span class="required">*</span>
                 </label>

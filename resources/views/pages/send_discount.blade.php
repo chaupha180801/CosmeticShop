@@ -4,107 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <style>
-        /* body{
-            font-family: Arial;
-        }
-        .coupon{
-            border : 5px dotted #bbb;
-            width: 80%;
-            border-radius: 15px;
-            margin : 0 auto;
-            max-width: 600px;
-        }
-        .container{
-            padding: 2px 16px;
-            background-color: #f1f1f1;
-        }
-        .promo{
-            background: #ccc;
-            padding: 3px;
-        }
-        .expire{
-            color:red;
-        }
-
-        p.code{
-            text-align: center;
-            font-size: 20px;
-        }
-        p.expire{
-            text-align: center;
-        }
-        h2.note{
-            text-align: center;
-            font-size: larger;
-            text-decoration: underline;
-        } */
-
-        .coupon {
-            border: 5px dotted #bbb; /* Dotted border */
-            width: 80%;
-            border-radius: 15px; /* Rounded border */
-            margin: 0 auto; /* Center the coupon */
-            max-width: 600px;
-        }
-
-        .container {
-            padding: 2px 16px;
-            background-color: #f1f1f1;
-        }
-
-        .promo {
-            background: #ccc;
-            padding: 3px;
-        }
-
-        .expire {
-            color: red;
-        }
+    .labels{padding:5% 0}
+    .alizarin{background:#e74c3c}
+    .amethyst{background:#9b59b6}
+    .emerald{background:#2ecc71}
+    .midnight-blue{background:#2c3e50}
+    .peter-river{background:#3498db}
+    .dl{background:#f0f0f0;padding:30px 0;border-radius:20px;position:relative}
+    .dl:before{content:" ";height:20px;width:20px;background:#ddd;border-radius:20px;position:absolute;left:50%;top:20px;margin-left:-10px}
+    .dl .brand{text-transform:uppercase;letter-spacing:3px;padding:10px 15px;margin-top:10px;text-align:center;min-height:100px}
+    .dl .discount{min-height:50px;position:relative;font-size:80px;line-height:80px;text-align:center;font-weight:700;padding:20px 15px 0;color:#f1c40f}
+    .dl .discount:after{content:" ";border-right:20px solid transparent;border-left:20px solid transparent;position:absolute;bottom:-20px;left:20%}
+    .dl .discount.alizarin:after{border-top:20px solid #e74c3c}
+    .dl .discount.peter-river:after{border-top:20px solid #3498db}
+    .dl .discount.emerald:after{border-top:20px solid #2ecc71}
+    .dl .discount.amethyst:after{border-top:20px solid #9b59b6}
+    .dl .discount .type{font-size:20px;letter-spacing:1px;text-transform:uppercase;margin-top:-30px}
+    .dl .descr{color:#999;margin-top:10px;padding:20px 15px}
+    .dl .ends{padding:0 15px;color:#f1c40f;margin-bottom:10px}
+    .dl .coupon{min-height:50px;text-align:center;text-transform:uppercase;font-weight:700;font-size:18px;padding:20px 15px}
+    .dl .coupon a.open-code{color:#16a085}
+    .dl .coupon .code{letter-spacing:1px;border-radius:4px;margin-top:10px;padding:10px 15px;color:#f1c40f;background:#f0f0f0}`
     </style>
 </head>
 <body>
- <!--   <div class="coupon">
-       <div class="container">
-           <h3>Mã khuyến mãi từ shop <a  target="_blank" href="http://localhost:8080/CosmeticShop/">http://localhost:8080/CosmeticShop</a></h3>
-       </div>
-       <div class="container" style="blackground-color:white">
-            <h2 class="note">
-                <b>
-                    {{$discount['desc']}}.
-                    Giảm {{$discount['percent']}}% cho tổng đơn hàng.
-                 </b>
-            </h2>
-            <p>Quý khách đã mua hàng tại shop CosmeticShop. Nếu đã có tài khoản vui lòng đăng nhập để mua hàng và nhập mã code phía dưới để 
-                được giảm giá, xin cảm ơn quý khách. Chúc quý khách có trải nghiệm mua hàng vui vẻ.
-            </p>
-       </div>
-       <div class="container">
-           <p class="code">Sử dụng code sau: <span class="promo">{{$discount['code']}}</span>chỉ còn {{$discount['quantity']}} mã giảm giá.</p>
-           <p class="expire">Ngày bắt đầu: {{$discount['start_discount']}}/ Ngày hết hạn: {{$discount['end_discount']}}</p>
-       </div>
-   </div> -->
-        <div class="coupon">
+    <div class="labels">
         <div class="container">
-            <h3>CosmeticShop</h3>
+            <div class="row">
+                <div class="">
+                  <div  class="dl">
+                    <div class="brand">
+                        <h2>CosmeticShop</h2>
+                    </div>
+                    <div class="discount emerald">
+                        {{$discount['percent']}}%
+                        <div class="type">
+                            Onl
+                        </div>
+                    </div>
+                    <div class="descr">
+                        <strong>
+                            {{$discount['desc']}} 
+                        </strong> 
+                        
+                    <div class="ends">
+                        <small>
+                           Thời gian kết thúc: {{$discount['end_discount']}}
+                        </small>
+                    </div>
+                    <div class="coupon midnight-blue">
+                        <a data-toggle="collapse" href="#code-2" class="open-code">Get a code</a>
+                        <div id="code-2" class="collapse in code">
+                           {{$discount['code']}}
+                        </div>
+                    </div>
+                  </div>
+            </div>
         </div>
-        <img src="{{'public/backEnd/images/my-pham-3.png'}}" alt="Avatar" style="width:100%;">
-        <div class="container" style="background-color:white">
-            <h2> 
-                <b>
-                    {{$discount['desc']}}.
-                    Giảm {{$discount['percent']}}% cho tổng đơn hàng.
-                 </b>
-            </h2>
-            <p>
-                Quý khách đã mua hàng tại shop CosmeticShop. Nếu đã có tài khoản vui lòng đăng nhập để mua hàng và nhập mã code phía dưới để 
-                được giảm giá, xin cảm ơn quý khách. Chúc quý khách có trải nghiệm mua hàng vui vẻ.
-            </p>
-        </div>
-        <div class="container">
-            <p>Use Promo Code: <span class="promo">{{$discount['code']}}</span>chỉ còn {{$discount['quantity']}} mã giảm giá.</p>
-            <p class="expire">Ngày bắt đầu: {{$discount['start_discount']}}/ Ngày hết hạn: {{$discount['end_discount']}}</p>
-        </div>
-        </div>
+    </div>
 </body>
+
+
 </html>
+
+

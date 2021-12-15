@@ -26,20 +26,9 @@
    }
 </style>
   <!-- start slide and sub image -->
+  <div class="container-fluid">
     <div class="row slide">
-        <div class="col-sm-3 sub_image">
-            <div class="sub_image1">
-                <img src="{{('public/frontEnd/images/subimage1.jpg')}}" alt="">
-                <h4>New products</h4>
-            </div>
-
-            <div class="sub_image2">
-                <img src="{{('public/frontEnd/images/subimage2.jpg')}}" alt="">
-                <h4>Black Fridays</h4>
-            </div>
-
-        </div>
-        <div class="col-sm-9 main_slide">
+        <div class="col-sm-12 main_slide">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -81,6 +70,9 @@
         </div>
     </div>
     <!-- end slide and sub image -->
+  </div>
+  <div class="container">
+  
     <!-- start main product -->
 
 <div class="row product">
@@ -148,9 +140,6 @@
                 <input type="text" placeholder="Your email here">
                 <button>Subcribe</button>
             </div>
-            <div class="image">
-                <img src="{{('public/frontEnd/images/newletter.jpg')}}" alt="">
-            </div>
         </div>
     </div>
     <!-- end newsletter -->
@@ -167,19 +156,19 @@
             @endphp
             <div class="row heading">
                 <p>Kết quả tìm kiếm<p>
-                <h6>Bạn tìm kiếm với từ khóa là: {{$search_keyword}}</h6>
-            </div>
-            
-            @if($count == 0)
-                <div>
-                    Không tìm thấy sản phẩm phù hợp
+                    @if($count == 0)
+                    <div>
+                        Không tìm thấy sản phẩm phù hợp
+                    </div>
+                @else
+                <div class="row">
+                    <h6>{{$count}} sản phẩm được tìm thấy theo "{{$search_keyword}}"</h6>
                 </div>
-            @else
-            <div class="row">
-                <h6>{{$count}} sản phẩm được tìm thấy theo "{{$search_keyword}}"</h6>
+                
             </div>
             
-            <div class="row">
+          
+            <div class="row-loc loc_search">
                 <label for="amount"> Sắp xếp theo</label>
                 <form id="form-sort" method="GET">
                     {{ csrf_field() }}
@@ -226,7 +215,7 @@
                                 <input type="hidden" name="product_cart_image" value="{{$sp->product_img}}" />
                                 <input type="hidden" name="qty_cart" value="1" min="1"> 
                                @if($sp->product_quanity > 0)
-                                    <button class="add-product-to-cart" type="submit"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                                    <button class="add-product-to-cart add_cart" type="submit"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
                                 @endif
                                
                             </form>
@@ -246,10 +235,9 @@
                             @endfor
                           </div>
                             <p class="price">
-                                {{number_format($sp->product_price).' VNĐ'}}
+                             <span> {{number_format($sp->product_price)}}</span> vnđ
                             </p>
                             <div class="add_to">
-                                <button>Add to wishlist</button>
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
                                 <button>View detail</button>
                             </div>
@@ -338,5 +326,7 @@
             
     <!-- end list product -->
 </div>
+  </div>
+    
 
 @endsection

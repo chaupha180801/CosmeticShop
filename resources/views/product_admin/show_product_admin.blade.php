@@ -33,6 +33,7 @@
         Session::put('message','');
       }
     ?>
+<<<<<<< HEAD
 
    
       <div class="search_box">
@@ -55,6 +56,39 @@
               <option value="kytu_za">--Lọc theo tên Z đến A--</option>
           </select>
           </form>  
+=======
+    <div class="row" style="justify-content: flex-end; margin: 10px 0;">
+      <a href="{{URL::to('/show-product-admin')}}" class="btn btn-primary">Xem tất cả sản phẩm</a>
+      <a href="{{URL::to('/add-product-admin')}}" class="btn btn-primary">Thêm sản phẩm mới</a>
+
+    </div>
+    <div class="row search_filer_product_admin">    
+      <div class="col-md-8 filer_col">
+        <label for="amount">Sắp xếp theo</label>
+        <form id="form-sort">
+            {{ csrf_field() }}
+        <select name="sort_by" id="sort" form="form-sort" class="form-control">
+            <option value="none">Lọc</option>
+            <option value="tang_dan">Giá tăng dần</option>
+            <option value="giam_dan">Giá giảm dần</option>
+            <option value="kytu_az">Lọc theo tên A đến Z</option>
+            <option value="kytu_za">Lọc theo tên Z đến A</option>
+        </select>
+        </form>  
+      </div>  
+      <div class="col-md-4 search_col">
+        <div class="search_box">
+          <form action="{{URL::to('/search-product')}}"  method="GET">
+              {{csrf_field()}}
+          <input type="text" id="keywords" placeholder="Tìm kiếm ..." name="tukhoa">
+          <!-- <div id="search-ajax"></div> -->
+          <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
+          </form>
+        </div> 
+      </div>
+    </div>     
+    <div class="row">
+>>>>>>> 327ae1a858dae78013fcc5fe70dc294398f860c6
       <div class="table-responsive">
         <table class="table table-striped jambo_table bulk_action table_product_admin">
           <thead>
@@ -80,7 +114,7 @@
 
           
         </div>
-        <?php $i =0 ; ?>
+        <?php $i = ($all_product->currentPage()-1)*5 + 1 ; ?>
           @foreach ($all_product as $keyProduct => $eachProduct)
           <?php
             $age = 0;
@@ -90,10 +124,10 @@
           ?>
          
           <tr>
-            <th scope="row">{{++$i}}</th>
+            <th scope="row">{{$i++}}</th>
             <td>
               {{$eachProduct->product_name}}
-              <div>
+              <div class="rating_product_admin">
                 <span>Đánh giá: </span>
                 <span class="rating">
                   @for($j=1;$j<=5;$j++)
@@ -151,7 +185,9 @@
                         $link_limit = 7;
                         $half_total_links = floor($link_limit / 2);
                         $from = $all_product->currentPage() - $half_total_links;
+                      
                         $to = $all_product->currentPage() + $half_total_links;
+                      
                         if ($all_product->currentPage() < $half_total_links) {
                             $to += $half_total_links - $all_product->currentPage();
                         }

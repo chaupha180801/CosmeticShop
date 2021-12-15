@@ -17,6 +17,7 @@
 
 .x_title {
 display: flex;
+justify-content: center;
 }
 
 .admin_part_heading {
@@ -47,11 +48,6 @@ display: flex;
 .table_product_admin tr td {
     line-height: 100px;
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
 
 .login_wrapper {
@@ -120,7 +116,191 @@ display: flex;
     font-size: 18px;
     color: rgb(0, 0, 61);
 }
-=======
->>>>>>> 95283fddaa8803221d68e73df17d516c970e3b49
->>>>>>> 6e816448ce0e0bc3003b516019f1074dea52d39c
->>>>>>> fb00510a736ddceaa1289319119dc898ce9b1db1
+.col-md-8.filer_col {
+    display: flex;
+    align-items: center;
+}
+
+.col-md-8.filer_col label {
+    color: white;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.col-md-8.filer_col select {
+    width: 300px;
+}
+
+.search_filer_product_admin {
+    background-color: #2A3F54;
+    padding: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.col-md-8.search_col input {
+    border: none;
+    padding: 5px;
+    width: 300px;
+}
+
+input#keywords {
+    padding: 5px;
+    width: 300px;
+}
+
+.search_col button {
+    padding: 5px;
+    width: 40px;
+}
+
+.rating_product_admin {
+    display: flex;
+    align-items: center;
+}
+
+.rating_product_admin .rating {
+    display: flex;
+    position: relative;
+    top: -1px;
+}
+
+textarea.note_addProductAdmin {
+    width: 66%;
+    border-color: #dad8d8;
+}
+
+input#file {
+    display: none;
+}
+
+.profile_image {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+   }
+   
+   .profile_image img {
+       width: 100%;
+       height: 100%;
+       border-radius: 50%; 
+   }
+   
+   .pf form {
+       text-align: center;
+       position: relative;
+   }
+   
+   .pf form input[type=file] {
+       display: none;
+   }
+   
+   .pf form label {
+       background: #2A3F54;
+       color: white;
+       padding: 10px;
+       width: 44px;
+       border-radius: 50%;
+       margin-bottom: 10px;
+       cursor: pointer;
+       position: absolute;
+       top: -30px;
+       right: 150px;
+   
+   }
+   
+   .name_profile {
+       text-align: center;
+       font-weight: bold;
+       font-family: monospace;
+       font-size: 24px;
+   }
+
+   .row.profile_row {
+    margin-top: 100px;
+}
+
+#new_shipping {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right:0;
+    z-index: 10000;
+    display: none;
+}
+
+#new_shipping .overlay_shipping {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5)
+}
+
+#new_shipping .shipping_content {
+    background-color: white;
+    z-index: 10;
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+#new_shipping .shipping_content input {
+    width: 80%;
+    border: 1px solid #e0c3c3;
+    padding: 5px;
+}
+
+#new_shipping .shipping_content input.address {
+    width: 90.5%;
+}
+
+
+.edit_profile_heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+
+.input_item {
+    margin-bottom: 10px;
+
+}
+
+#new_shipping .shipping_content button {
+    display: initial;
+    text-align: center;
+    margin: 20px auto;
+    margin-left: 305px;
+}
+
+#new_shipping .shipping_content > i {
+    position: absolute;
+    top: 24px;
+    right: 36px;
+    font-size: 20px;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.profile_content p {
+    margin: 30px 0;
+    font-size: 16px;
+}
+
+
+.profile_content p i {
+    font-size: 20px;
+    margin-right: 20px;
+  
+}
+

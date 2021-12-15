@@ -37,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i =0 ; ?>
+          <?php $i = ($all_supplier->currentPage()-1)*5 ; ?>
         @foreach ($all_supplier as $keysupplier => $eachsupplier)
         <tr>
           <th scope="row">{{++$i}}</th>
@@ -54,7 +54,7 @@
          </td>
           <td>
             <a href="{{URL::to('/edit-supplier/'.$eachsupplier->supplier_id)}}" class="btn btn-sm btn-primary">Sửa</a>
-            <a href="{{URL::to('/delete-supplier/'.$eachsupplier->supplier_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa nhà cung cấp {{$eachsupplier->supplier_name}} không?')">Xóa</a>
+            <a href="{{URL::to('/delete-supplier/'.$eachsupplier->supplier_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Nhà cung cấp {{$eachsupplier->supplier_name}} vẫn còn tồn tại sản phẩm, ban có muốn xóa toàn bộ sản phẩm thuộc nhà cung cấp {{$eachsupplier->supplier_name}} hay không?')">Xóa</a>
           </td>
         </tr>
         @endforeach

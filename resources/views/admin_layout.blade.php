@@ -27,6 +27,8 @@
     <!-- bootstrap-daterangepicker -->
     <link href="{{asset('public/backEnd/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js" integrity="sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
    
     <!-- Custom Theme Style -->
     
@@ -39,7 +41,12 @@
     <link href="{{('public/backEnd/build/css/extra2.css?v=').time()}}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="https://code.highcharts.com/css/highcharts.css" rel="stylesheet">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -63,22 +70,22 @@
             </div>
 
             <div class="clearfix"></div>
+            <?php
+            $name = Session::get('adminUserName');
+            $admin_id = Session::get('adminId');
+            $admin_img = Session::get('adminImg');
 
+          ?>
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{asset('public/backEnd/images/profile.png')}}" alt="..." class="img-circle profile_img">
+                <img src="{{asset('public/backEnd/images/'.$admin_img)}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
                 <h2>
-                   <?php
-                  $name = Session::get('adminUserName');
-                  if ($name)
-                  {
-                   echo $name;
-                  }
-                ?></h2>
+                <?php echo $name ?>
+                </h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -179,7 +186,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{asset('public/backEnd/images/profile.png')}}" alt="">
+                    <img src="{{asset('public/backEnd/images/'.$admin_img)}}" alt="">
                     <?php
                     $name = Session::get('adminUserName');
                     if ($name)
@@ -189,7 +196,7 @@
                   ?>
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
+                    <a class="dropdown-item"  href="{{URL::to('/profile-admin/'.$admin_id)}};" > Profile</a>
                       <a class="dropdown-item"  href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
@@ -335,8 +342,8 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{asset('public/backEnd/build/js/custom.min.js')}}"></script>
-
-
+    <!-- Chart-->
+    @yield('script')
     <script type="text/javascript">
       $('.btn_reply_comment').click(function () {
         var rating_id = $(this).data('rating_id');
