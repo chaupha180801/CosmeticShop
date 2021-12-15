@@ -19,7 +19,7 @@
         if ($message)
         {
           ?>
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-success" onclick="hidemessage()" role="alert">
              <?php echo $message; ?>
               </div>
           <?php

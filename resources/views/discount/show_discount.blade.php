@@ -17,9 +17,9 @@
         if ($message)
         {
           ?>
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-success" id="divmessage" role="alert">
               <?php echo $message; ?>
-              <i class="fa fa-times"></i>
+              <i class="fa fa-times" onclick="hidemessage()"></i>
               </div>
           <?php
           Session::put('message','');
