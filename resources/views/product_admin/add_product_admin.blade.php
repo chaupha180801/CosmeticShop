@@ -18,7 +18,7 @@
         if ($message)
         {
           ?>
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-success" id="divmessage" role="alert">
                 Thêm danh mục sản phẩm thành công
               </div>
           <?php
@@ -91,7 +91,7 @@
                     </select>
                 </div>
             </div>
-            <div class="item form-group">
+            <!-- <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align">Tình trạng sản phẩm</label>
                 <div class="col-md-6 col-sm-6 ">
                     <div id="gender" class="btn-group" data-toggle="buttons">
@@ -103,7 +103,7 @@
                         </label>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align">Tình trạng</label>
                 <div class="col-md-6 col-sm-6 ">

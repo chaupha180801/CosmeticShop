@@ -79,12 +79,14 @@ class ProductController extends Controller
         $data['product_price'] = $request->product_price;
         $data['product_desc'] = $request->product_desc;
         $data['product_quanity'] = $request->product_quanity;
-        $data['product_status'] = $request->product_status;
+        $data['product_status'] = 1;
         $data['product_state'] = $request->product_state;
         $data['product_expire'] = $request->product_expire;
         $data['category_id'] = $request->category_id;
         $data['brand_id'] = $request->brand_id;
         $data['supplier_id'] = $request->supplier_id;
+        $data['product_total_rating'] = 0;
+        $data['product_total_comment'] = 0;
         //Thêm ảnh
         $path_gallery = 'public/backEnd/images/gallery/';
         $path = 'public/backEnd/images/';

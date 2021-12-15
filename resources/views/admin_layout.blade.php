@@ -465,6 +465,13 @@
         });
 
       });
+
+      function hidemessage() {
+        divmessage.style.display="none"
+      }
+      setTimeout(() => {
+        divmessage.style.display="none"
+    }, 3000);
     </script>
     
 

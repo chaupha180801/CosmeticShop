@@ -4,22 +4,22 @@
     <div class=" row tile_count">
       <div class="col-md-3  tile_stats_count" >
         <span class="count_top"><i class="fa fa-chart-bar"></i> Doanh thu tháng</span>
-        <div class="count">25.000.000 vnd</div>
+        <div class="count">{{number_format($dtt,0,',','.')}} vnd</div>
         <span class="count_bottom">Tăng<i class="green"><i class="fa fa-sort-asc"></i>4% </i> so với tháng trước </span>
       </div>
       <div class="col-md-3  tile_stats_count">
         <span class="count_top"><i class="fa fa-clock-o"></i> Doanh thu năm</span>
-        <div class="count">200.000.000 vnd</div>
+        <div class="count">{{number_format($dtn,0,',','.')}} vnd</div>
         <span class="count_bottom">Tăng <i class="green"><i class="fa fa-sort-asc"></i>3% </i>so với năm trước</span>
       </div>
       <div class="col-md-3 tile_stats_count">
         <span class="count_top"><i class="fa fa-list-alt"></i> Số đơn hàng chờ xác nhận</span>
-        <div class="count green">30</div>
+        <div class="count green">{{$dhxn}}</div>
        
       </div>
       <div class="col-md-3  tile_stats_count">
         <span class="count_top"><i class="fa fa-truck"></i> Số đơn hàng đang giao</span>
-        <div class="count">129</div>
+        <div class="count">{{$dhdg}}</div>
       </div>
     
     </div>
@@ -42,71 +42,24 @@
             <h2>Sản phẩm bán chạy</h2>
           </div>
           <ul class="list-unstyled top_profiles scroll-view">
+            <?php
+              $i = 1;
+            ?>
+            @foreach($search_product as $Key => $value)
             <li class="media event">
               <a class="pull-left border-aero profile_thumb top_product_image">
-               <img src="{{URL::to('public/backEnd/images/21.jpg')}}" alt="">
+               <img src="{{URL::to('public/backEnd/images/'.$value->product_img)}}" alt="">
               </a>
               <div class="media-body">
-                <a class="title" href="#">Kem dưỡng da</a>
-                <p><strong>30.000 vnd </strong></p>
+                <a class="title" href="#">{{$value->product_name}}</a>
+                <p><strong>{{number_format($value->product_price,0,',','.')}} vnd </strong></p>
               </div>
               <div class="stt">
                 <i class="fas fa-award"></i>
-                <span>1</span>
+                <span><?php echo $i++ ?></span>
             </div>
             </li>
-            <li class="media event">
-                <a class="pull-left border-aero profile_thumb top_product_image">
-                 <img src="{{URL::to('public/backEnd/images/21.jpg')}}" alt="">
-                </a>
-                <div class="media-body">
-                  <a class="title" href="#">Kem dưỡng da</a>
-                  <p><strong>30.000 vnd </strong></p>
-                </div>
-                <div class="stt">
-                    <i class="fas fa-award"></i>
-                    <span>3</span>
-                </div>
-              </li>
-              <li class="media event">
-                <a class="pull-left border-aero profile_thumb top_product_image">
-                 <img src="{{URL::to('public/backEnd/images/21.jpg')}}" alt="">
-                </a>
-                <div class="media-body">
-                  <a class="title" href="#">Kem dưỡng da</a>
-                  <p><strong>30.000 vnd </strong></p>
-                </div>
-                <div class="stt">
-                    <i class="fas fa-award"></i>
-                    <span>3</span>
-                </div>
-              </li>
-              <li class="media event">
-                <a class="pull-left border-aero profile_thumb top_product_image">
-                 <img src="{{URL::to('public/backEnd/images/21.jpg')}}" alt="">
-                </a>
-                <div class="media-body">
-                  <a class="title" href="#">Kem dưỡng da</a>
-                  <p><strong>30.000 vnd </strong></p>
-                </div>
-                <div class="stt">
-                    <i class="fas fa-award"></i>
-                    <span>4</span>
-                </div>
-              </li>
-              <li class="media event">
-                <a class="pull-left border-aero profile_thumb top_product_image">
-                 <img src="{{URL::to('public/backEnd/images/21.jpg')}}" alt="">
-                </a>
-                <div class="media-body">
-                  <a class="title" href="#">Kem dưỡng da</a>
-                  <p><strong>30.000 vnd </strong></p>
-                </div>
-                <div class="stt">
-                    <i class="fas fa-award"></i>
-                    <span>5</span>
-                </div>
-              </li>
+            @endforeach
           
           </ul>
         </div>

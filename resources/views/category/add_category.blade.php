@@ -19,7 +19,7 @@
         if ($message)
         {
           ?>
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-success" id="divmessage" role="alert">
                 Thêm danh mục sản phẩm thành công
               </div>
           <?php
