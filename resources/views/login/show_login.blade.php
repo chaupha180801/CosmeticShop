@@ -10,10 +10,10 @@
     <!--login area start-->
     <!--login area start-->
 
-
+    <div class="col-md-3"></div>
     <div class="col-lg-6 col-md-6">
        <div class="account_form">
-           <h2>Đăng nhập</h2>
+           <h4>Đăng nhập</h4>
            <form action="{{URL::to('login-account')}}" method="POST">
            {{ csrf_field() }}
             <?php

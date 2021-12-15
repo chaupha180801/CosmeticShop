@@ -1,57 +1,90 @@
 @extends('frontLayout')
 @section('frontEndContent')
-<div class="breadcums row">
-    <ul>
-        <li>Home</li>
-        <li><i class="fa fa-angle-right"></i></li>
-        <li>Giỏ hàng</li>
-    </ul>
-</div>
-<div class="row cart">
-    <div class="col-md-12">
-        <div class="table_desc">
-            <div class="cart_page table-responsive">
-            <?php
-            $content = Cart::content();
-           
-            ?>
-            <table>
-            
-            <thead>
-                <tr>
-                    
-                    <th class="product_thumb">Hình ảnh</th>
-                    <th class="product_name">Tên sản phẩm</th>
-                    <th class="product-price">Giá</th>
-                    <th class="product_quantity">Số lượng</th>
-                    <th class="product_total">Thành tiền</th>
-                    <th class="product_remove">Xóa</th>
+<div class="container">
+    <div class="breadcums row">
+        <ul>
+            <li>Trang chủ</li>
+            <li><i class="fa fa-angle-right"></i></li>
+            <li>Giỏ hàng</li>
+        </ul>
+    </div>
+    <div class="row cart">
+        <div class="col-md-12">
+            <div class="table_desc">
+                <div class="cart_page table-responsive">
+                <?php
+                $content = Cart::content();
+               
+                ?>
+             <table id="tbl_cart">
+                
+                <thead>
+                    <tr>
+                        
+                        <th class="product_thumb" >Hình ảnh</th>
+                        <th class="product_name" >Tên sản phẩm</th>
+                        <th class="product-price">Giá</th>
+                        <th class="product_quantity">Số lượng</th>
+                        <th class="product_total">Thành tiền</th>
+                        <th class="product_remove">Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($content as $key => $v_content)
+                    <tr>
+                        <td class="product_thumb"><img src="{{asset('public/backEnd/images/'.$v_content->options->image)}}" height="100" width="100"></td>
+                        <td class="product_name">{{$v_content->name}}</td>
+                        <td class="product-price">{{number_format($v_content->price)}} VNĐ</td>
+                        <input class="product-price-value" type="hidden" value={{$v_content->price}}>
+                        <input class="product-row-id" type="hidden" value={{$v_content->rowId}}>
+                        @foreach($sanpham as $sp)
+                            @if($sp->product_id == $v_content->id)
+                                <input class="product-id-quantity" type="hidden" value={{$sp->product_quanity}}>
+                            @endif
+                        @endforeach
+                        
+                        <td class="product-quantity-cell" > 
+                            <button class="minus">-</button>  
+                            <input class='product-quantity' type='text' min=1 value={{$v_content->qty}}> 
+                            <button class="plus">+</button>              
+                        </td> 
+                        <td class="product-price">
+                            <label class="product-total">{{number_format($v_content->price * $v_content->qty)}}</label> VNĐ</td>
+                        <td class="product_remove"><a href="{{URL::to('/delete-to-cart/'.$v_content->rowId)}}"><i class="fas fa-trash"></i></a></td>
+                    </tr>
+                    @endforeach   
+                    <tr>
+                        <td>
+                            <input type="text" id="discount-code" name="discount_id" placeholder="Nhập mã giảm giá">
+                            <button id="apply-discount">Áp dụng</button>
+                        </td>
+                    </tr>
+                </tbody>
+               </table>   
+                </div>  
+                    <div class="cart_submit">
+                </div>          
+            </div>     
+         </div>
+        <div class="col-lg-12 col-md-12 ">
+            <div class="sub_cart_wrap">
+            <table id="tbl_subcart">
+                <tr style="width: 500px;">
+                    <td  class="text-right"><p>Tổng tiền hóa đơn:</p></td>
+                    <td> <span>{{Cart::subtotal()}}</span></td>
+                    <td>&nbsp vnđ</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach($content as $key => $v_content)
-                <tr>
-                    <td class="product_thumb"><img src="{{asset('public/backEnd/images/'.$v_content->options->image)}}" height="100" width="100"></td>
-                    <td class="product_name">{{$v_content->name}}</td>
-                    <td class="product-price">{{number_format($v_content->price)}} VNĐ</td>
-                    <input class="product-price-value" type="hidden" value={{$v_content->price}}>
-                    <input class="product-row-id" type="hidden" value={{$v_content->rowId}}>
-                    @foreach($sanpham as $sp)
-                        @if($sp->product_id == $v_content->id)
-                            <input class="product-id-quantity" type="hidden" value={{$sp->product_quanity}}>
-                        @endif
-                    @endforeach
-                    
-                    <td class="product-quantity-cell" > 
-                        <button class="minus">-</button>  
-                        <input class='product-quantity' type='text' min=1 value={{$v_content->qty}}> 
-                        <button class="plus">+</button>              
-                    </td> 
+                <tr>     
+                    <td class="text-right">
+                    <p>Số tiền giảm:</p>
+    
+                    </td>
                     <td>
-                        <label class="product-total">{{number_format($v_content->price * $v_content->qty)}}</label> VNĐ</td>
-                    <td class="product_remove"><a href="{{URL::to('/delete-to-cart/'.$v_content->rowId)}}"><i class="fas fa-trash"></i></a></td>
+                        <span id="cart-discount">0</span>
+                    </td>
+                    <td>&nbsp vnđ</td>
                 </tr>
-                @endforeach   
+            
             </tbody>
         </table>   
             </div>  
@@ -108,9 +141,10 @@
         </tfoot>
         <div>
         </div>
+        
     </div>
-    
 </div>
+
 
 <script>
     $(document).ready(function(){

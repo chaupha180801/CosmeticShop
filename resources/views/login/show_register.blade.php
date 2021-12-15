@@ -7,9 +7,10 @@
     }
 </style>
 <div class="row login">
+    <div class="col-md-3"></div>
  <div class="col-lg-6 col-md-6">
        <div class="account_form register">
-           <h2>Đăng kí</h2>
+           <h4>Đăng kí</h4>
            <form action="{{URL::to('/add-customer-account')}}" method="POST">
            {{ csrf_field() }}
                <p>   

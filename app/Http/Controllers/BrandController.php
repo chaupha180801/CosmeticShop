@@ -82,4 +82,12 @@ class BrandController extends Controller
         ->orderBy('brand_id', 'ASC')->get();       
         return view('brand.search_brand')->with('brand', $thuonghieu);
     }
+
+    public function DetailBrand($id)
+    {
+        $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
+        ->orderBy('brand_id','DESC')->get();
+        $product = DB::table('tbl_product')->where('brand_id', $id)->take(4)->get();
+        return view('relate.brand_detail')->with('product', $product)->with('brand', $thuonghieu);
+    }
 }

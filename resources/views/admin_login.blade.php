@@ -83,19 +83,19 @@
   
           <div id="register" class="animate form registration_form">
             <section class="login_content">
-              <form>
+              <form method="POST" action="{{URL::to('/register-admin')}}">
                 <h1>Đăng kí tài khoản</h1>
                 <div>
-                  <input type="text" class="form-control" placeholder="Username" required="" />
+                  <input type="text" class="form-control" placeholder="Username" required name="usernamAD_register"/>
                 </div>
                 <div>
-                  <input type="email" class="form-control" placeholder="Email" required="" />
+                  <input type="email" class="form-control" placeholder="Email" required name="emailAD_register"/>
                 </div>
                 <div>
-                  <input type="password" class="form-control" placeholder="Password" required="" />
+                  <input type="password" class="form-control" placeholder="Password" required name="passAD_register"/>
                 </div>
                 <div>
-                  <a class="btn btn-primary submit" href="index.html">Đăng kí</a>
+                 <input type="submit" value="Đăng kí" class="btn btn-primary">
                 </div>
   
                 <div class="clearfix"></div>

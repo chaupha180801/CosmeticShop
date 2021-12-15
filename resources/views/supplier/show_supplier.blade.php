@@ -37,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i =0 ; ?>
+          <?php $i = ($all_supplier->currentPage()-1)*5 ; ?>
         @foreach ($all_supplier as $keysupplier => $eachsupplier)
         <tr>
           <th scope="row">{{++$i}}</th>

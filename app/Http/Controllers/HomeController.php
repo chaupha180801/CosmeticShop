@@ -125,4 +125,16 @@ class HomeController extends Controller
         return Redirect::to('/tim-kiem');
     }
 
+    public function showService(){
+        $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
+        ->orderBy('brand_id','DESC')->get();
+        return view("relate.show_service")->with('brand', $thuonghieu);
+    }
+
+    public function aboutUs(){
+        $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
+        ->orderBy('brand_id','DESC')->get();
+        return view("relate.about_us")->with('brand', $thuonghieu);
+    }
+
 }

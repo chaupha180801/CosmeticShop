@@ -1,0 +1,57 @@
+.top-left,
+.center-right,
+.bottom-left {
+    border: 5px solid salmon;
+    padding: 25px;
+    position: relative;
+}
+
+.bottom-left > img {
+    position: absolute;
+    width: 170px;
+    right: 75px;
+    top: -68px;
+    transform: rotate(19deg);
+}
+
+.center-right > img {
+    position: absolute;
+    width: 100px;
+    right: -37px;
+    top: -47px;
+}
+
+.top-right img {
+    margin-top: 80px;
+    width: 90%;
+}
+
+.center-right {
+    margin-top: 80px;
+    width: 80%;
+}
+
+.center-left img {
+    width: 100%;
+}
+
+.bottom-right img {
+    margin-top: 100px;
+}
+
+.au .row {
+    margin-bottom: 50px;
+}
+
+.au {
+    font-family: monospace;
+}
+
+.au h3 span {
+    font-weight: bold;
+    color: salmon;
+}
+
+.au h5 {
+    font-weight: bold;
+}

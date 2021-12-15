@@ -1,0 +1,55 @@
+.bg_img {
+ height: 300px;
+ background:url(../images/slide_5.png) no-repeat;
+ background-size: cover;
+ background-attachment: fixed;
+}
+
+#brand_img_1 {
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 1px 1px 6px gray;
+}
+
+#brand_img_2 {
+    width: 100%;
+    border-radius: 50px;
+}
+
+.about_brand .row:nth-child(3) {
+    margin: 60px 0;
+}
+
+.about_brand2 .row {
+    margin: 60px 0;
+}
+
+.about_brand2 h4,
+.about_brand h4{
+    font-weight: bold;
+    font-family: monospace;
+    color: salmon;
+    font-size: 30px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.about_brand2 h4::after,
+.about_brand h4::after {
+    position: absolute;
+    content: "";
+    width: 30%;
+    height: 5px;
+    background-color: salmon;
+    top: 120%;
+    left: 0;
+
+}
+
+.brand_header h3 {
+    font-weight: bold;
+}
+
+.brand_header h3.about_br {
+    margin-bottom: 50px;
+}

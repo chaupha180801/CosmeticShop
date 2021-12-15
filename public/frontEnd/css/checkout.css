@@ -153,6 +153,7 @@
 	font-size: 13px;
 	resize: none;
 	line-height: 45px;
+	width: 100%;
 }
 .Checkout_section {
 	padding: 35px 20px;
@@ -200,6 +201,7 @@
 	border: 1px solid rgb(214, 214, 214);
     border-radius: 5px;
 	padding: 20px;
+	background: white;
 
 }
 .payment_method {

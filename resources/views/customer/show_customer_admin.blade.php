@@ -31,11 +31,19 @@
     ?>
 
     <div class="search_box">
+<<<<<<< HEAD
+                  <form action="{{URL::to('/search-customer')}}"  method="GET">
+                      {{csrf_field()}}
+                  <input type="text" id="keywords" placeholder="Tìm kiếm ..." name="tukhoacustomer">
+                  <button type="submit" name="search-items" value="Tìm kiếm" class="search_button"><i class="fa fa-search"></i></button>
+                  </form>
+=======
       <form action="{{URL::to('/search-customer')}}"  method="GET">
         {{csrf_field()}}
         <input type="text" id="keywords" placeholder="Tìm kiếm ..." name="tukhoacustomer">
         <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
     </form>
+>>>>>>> 2f56b98ba6bce032004f15d172209ccea458489a
     </div> 
     <table class="table">
         <thead>
@@ -48,7 +56,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i =0 ; ?>
+          <?php $i = ($all_customer->currentPage()-1)*5 ; ?>
         @foreach ($all_customer as $keyCus => $eachCustomer)
         <tr>
           <th scope="row">{{++$i}}</th>

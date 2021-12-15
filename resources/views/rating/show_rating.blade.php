@@ -27,7 +27,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i =0 ; ?>
+          <?php $i = ($all_rating->currentPage()-1)*5 ; ?>
         @foreach ($all_rating as $key => $each_rating)
         <tr>
 
@@ -53,8 +53,8 @@
                 @endforeach                
               </ul>            
               @if($each_rating->rating_status == 0)
-                <br><textarea name="" cols="3" class="form control" id="reply_comment_{{$each_rating->rating_id}}"></textarea>
-                <br><br><button class="btn_reply_comment" data-rating_id="{{$each_rating->rating_id}}" data-product_id="{{$each_rating->product_id}}">Trả lời đánh giá</button>
+                <textarea name="" cols="3" class="form control" id="reply_comment_{{$each_rating->rating_id}}"></textarea>
+                <br><br><button class="btn_reply_comment btn btn-primary" data-rating_id="{{$each_rating->rating_id}}" data-product_id="{{$each_rating->product_id}}">Trả lời đánh giá</button>
               @endif
               </td>
             <td>{{$each_rating->rating_number}}<i class="fa fa-star " style="color: #ff9705"></i></td>
