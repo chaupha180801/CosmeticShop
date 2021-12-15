@@ -34,10 +34,12 @@
           </div>
           <div class="col-md-6">
             <input type="file" class="form-control" id="file" name="file[]" accept="image/*" multiple>
+            <label for="file" class="btn btn-warning"><i class="fas fa-camera"></i> Thêm ảnh</label>
             <span id="error_gallery"></span>
+            <input type="submit" name="upload" name="taianh" value="Tải ảnh" class="btn btn-success btn-xs">
           </div>
           <div class="col-md-3" aglin="right">
-            <input type="submit" name="upload" name="taianh" value="Tải ảnh" class="btn-btn-success btn-xs">
+           
         </div>
 
       </div>

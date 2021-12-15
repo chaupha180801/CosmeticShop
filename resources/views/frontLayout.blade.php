@@ -13,18 +13,23 @@
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/style.css?v=').time()}}">
 
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/cartHeader.css?v=').time()}}">
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/cart.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/cart.css?v=').time()}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/product_detail.css?v=').time()}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/ightslider.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/lightgallery.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/prettify.css')}}">
     <!-- <link rel="stylesheet" href="{{asset('public/frontEnd/css/cart_ajax.css')}}"> -->
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/login.css?v=').time()}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/checkout.css?v=').time()}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/comment.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('./public/frontEnd/css/extra.css?v=').time()}}">
     <link rel="stylesheet" href="{{asset('public/frontEnd/css/extra2.css?v=').time()}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/login.css?v=').time()}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/service.css?v=').time()}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/brand_detail.css?v=').time()}}">
+    <link rel="stylesheet" href="{{asset('public/frontEnd/css/aboutus.css?v=').time()}}">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -48,16 +53,20 @@
         header include: logo and searchbox , navigaton, breadcums -->
         <!-- logo and search box -->
         <div class="row profile_home">
+            <div class="col-md-3 offset-md-1 contact">
+                <span> <i class="fas fa-phone"></i> 0123456789</span>
+                <img src="{{URL::to('public/frontEnd/images/covn.png')}}" width="20" alt="">
+                <span>VN </span>
+            </div>
             <?php
             $account_id = Session::get('account_id');
             $account_name = Session::get('account_name');
             $account_img = Session::get('account_img');
-
             if($account_id !=NULL){
              ?>
-              <div class="profile">
+              <div class="col-md-3 offset-md-5 profile">
                 <div class="profile__info" >
-                   <img src="{{asset('public/frontEnd/images/'.$account_img)}}" alt="">
+                   <img src="{{URL::to('public/frontEnd/images/'.$account_img)}}" alt="">
                    <p>{{$account_name}} <i class="fas fa-caret-down"></i></p>
                    <div class="profile__sub">
                     <ul>
@@ -80,7 +89,7 @@
             }else{
                 ?>
                  
-                 <div class="login_logout">
+                 <div class=" col-md-3 offset-md-5 login_logout">
                     <a href="{{URL::to('/login-checkout')}}">Đăng nhập</a>
                     <a href="{{URL::to('/register-form')}}">Đăng kí</a>
                 </div>
@@ -98,40 +107,33 @@
                 <ul class="list">
                     <li class="item active">
                         <a href="{{URL::to('/')}}" class="item_link">
-                            Home
+                            Trang chủ
                         </a>
                     </li>
                     <li class="item">
                         <a href="" class="item_link">
-                            Brand <i class="fas fa-angle-down"></i>
+                            Nhãn hiệu <i class="fas fa-angle-down"></i>
                         </a>
                         <div class="sub_list">
                             <ul>
                                 @foreach($brand as $key => $thieu)
-                                    <li><a href="">{{$thieu->brand_name}}</a> </li>
+                                    <li><a href="{{URL::to('/brand-detail/'.$thieu->brand_id)}}">{{$thieu->brand_name}}</a> </li>
                                 @endforeach
                             </ul>
                         </div>
                     </li>
                     <li class="item">
-                        <a href="" class="item_link">
-                            Supplier <i class="fas fa-angle-down"></i>
+                        <a href="{{URL::to('/dich-vu')}}" class="item_link">
+                            Dịch vụ <i class="fas fa-angle-down"></i>
                         </a>
-                        <div class="sub_list">
-                            <ul>
-                            @foreach($supplier as $key => $ncc)
-                                <li><a href="">{{$ncc->supplier_name}}</a> </li>
-                            @endforeach
-                            </ul>
                     </li>
                     <li class="item">
-                        <a href="" class="item_link">
-                            New product
+                        <a href="{{URL::to('/gioi-thieu')}}" class="item_link">
+                            Giới thiệu
                         </a>
                     </li>
                 </ul>
              
-
             </div>
             <div class="search_box col-sm-3">
 
@@ -140,13 +142,13 @@
                     <div class="search_box_wrap">
                         <input type="text" id="keywords" placeholder="Tìm kiếm..." name="tukhoa">
                       
-                        <button name="search-items" value="Tìm kiếm" onclick="showSearchbox(event)"><i class="fa fa-search"></i></button>
+                        <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
                         
                     </div>
                     <div id="search-ajax">
         
                     </div>
-                    <input type="submit" value="search">
+
                 </form>
             
             </div>
@@ -159,21 +161,12 @@
         </div>
         <!-- end logo and search box -->
 
-        <!-- start breadcums -->
-        {{-- <div class="breadcums row">
-            <ul>
-                <li>Home</li>
-                <li><i class="fa fa-angle-right"></i></li>
-                <li>Sản phẩm</li>
-            </ul>
-        </div> --}}
-        <!-- end breadcums -->
+      
         <!-- =====================================================================end header===================================================================== -->
         <!-- =====================================================================start content =================================================================-->
     </div>
-    <div class="container">
+
         @yield('frontEndContent')
-    </div>
 
     
    
@@ -227,11 +220,11 @@
                 </div>
             </div>
             <div class="row end">
-                <div class="copy">
+                <div class="col-md-9 copy">
                     <h6>ABOUT US CUSTOMER SERVIC PRICACY POLICY</h6>
                     <P>Copyright © 2018 <strong style="color: black;">Pos Coron</strong> . All rights reserved.</P>
                 </div>
-                <div class="icon">
+                <div class="col-md-3 icon">
                     <i class="fab fa-facebook"></i>
                     <i class="fab fa-instagram-square"></i>
                     <i class="fab fa-google-plus"></i>

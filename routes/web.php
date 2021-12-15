@@ -22,7 +22,7 @@ use App\Http\Controllers\MailController;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web" middleware group. Now create something great
 |
 */
 
@@ -30,11 +30,22 @@ Route::get('/',[HomeController::class,'index']);
 Route::get('/admin',[AdminController::class,'index']);
 Route::get('/dashboard',[AdminController::class,'show_dasdboard']);
 Route::get('/logout',[AdminController::class,'logout']);
+Route::get('/profile-admin/{id}',[AdminController::class,'showProfile']);
+Route::post('/update-image-admin/{id}',[AdminController::class,'editImageProfile']);
+Route::post('/update-admin-profile/{id}',[AdminController::class,'updateAdminProfile']);
+Route::post('/update-account-profile/{id}',[AdminController::class,'updateAccountProfile']);
+
+
+
 //Danh mục sản phẩm ở trang chủ
 Route::get('/chi-tiet-danh-muc/{id}',[CategoryProduct::class,'showCategoryHome']);
 //tìm kiếm
 Route::get('/tim-kiem',[HomeController::class,'search']);
 Route::post('/add-product-search-to-cart',[HomeController::class,'AddProducSearchCart']);
+Route::get('/dich-vu',[HomeController::class,'showService']);
+Route::get('/gioi-thieu',[HomeController::class,'aboutUs']);
+
+
 Route::post('/timkiem-ajax',[HomeController::class,'autocomplete_ajax']);
 
 Route::post('/admin-dashboard',[AdminController::class,'check_login']);
@@ -61,6 +72,8 @@ Route::get('/edit-brand/{id}',[BrandController::class,'editBrand']);
 Route::get('/delete-brand/{id}',[BrandController::class,'deleteBrand']);
 Route::post('/update-brand/{id}',[BrandController::class,'updateBrand']);
 Route::get('/search-brand-admin',[BrandController::class,'searchBrandAdmin']);
+Route::get('/brand-detail/{id}',[BrandController::class,'DetailBrand']);
+
 //Route::get('/update-brand/{id}', 'BrandController@updateBrand');
 
 //đánh giá
@@ -148,6 +161,9 @@ Route::post('/update_profile/{id}',[CheckoutController::class,'updateProfile']);
 Route::get('/checkout/{id}',[CheckoutController::class,'checkOut']);
 Route::post('/save-checkout-customer',[CheckoutController::class,'saveCheckoutCustomer']);
 Route::post('/address',[CheckoutController::class,'selectAddress']);
+Route::get('/delete-shipping/{id}',[CheckoutController::class,'deleteShipping']);
+
+
 Route::post('/show-purchase-order-details',[OrderController::class,'showPurchaseOrderDetail']);
 //order
 Route::get('/history-order',[OrderController::class,'historyOrder']);

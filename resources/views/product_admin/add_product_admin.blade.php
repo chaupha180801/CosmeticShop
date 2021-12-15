@@ -2,14 +2,7 @@
 @section('admin_content')
 <div class="x_panel">
     <div class="x_title">
-        <h2>Thêm sản phẩm mới </h2>
-        <ul class="nav navbar-right panel_toolbox" style="margin-left:100px">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
+        <h2 class="admin_part_heading">Thêm sản phẩm mới </h2>
     </div>
     <div class="x_content">
         <br />
@@ -59,7 +52,7 @@
             <div class=" item form-group">
                 <label class="col-form-label col-md-3 col-sm-3  label-align">Mô tả sản phẩm<span class="required">*</span></label>
                 <div class="col-md-9 col-sm-9">
-                    <textarea  required="required" name='product_desc' cols="30" rows="5"></textarea></div>
+                    <textarea class="note_addProductAdmin"  required="required" name='product_desc' cols="30" rows="5"></textarea></div>
             </div>
             <div class="form-group item">
                 <label class="control-form-label col-md-3 col-sm-3 label-align" >Danh mục</label>

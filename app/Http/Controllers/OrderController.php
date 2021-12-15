@@ -105,7 +105,7 @@ class OrderController extends Controller
         $order_details = DB::table('tbl_order_detail')->where('order_id', $data['order_id'])->get();
         $output ='';
         $output = '
-        <table class="table">
+        <table class="table_detail_history_order">
             <thead>
                 <tr>
                     <th scope="col">STT</th>

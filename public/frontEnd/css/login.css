@@ -29,10 +29,10 @@
 	height: 32px;
 	width: 100%;
 	padding: 0 0 0 10px;
-	background: none;
+	outline: none;
 }
 .login_submit button {
-	background: #00BBA6;
+	background: var(--x);
 	border: 0;
 	color: #fff;
 	display: inline-block;

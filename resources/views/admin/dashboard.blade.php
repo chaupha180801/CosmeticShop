@@ -31,7 +31,9 @@
             <h2>Biểu đồ doanh thu</h2>
           </div>
           <div class="x_content">
-            <div id="graph_bar" style="width:100%; height:200px;"></div>
+            <div style="width:100%; height:200px;">
+              <canvas id="barChart"></canvas>
+            </div>
           </div>
         </div>
       </div>
@@ -113,4 +115,7 @@
       </div>
 
   </div>
+
+  <script>
+  </script>
 @endsection

@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i =0 ; ?>
+          <?php $i = ($all_discount->currentPage()-1)*5 ; ?>
         @foreach ($all_discount as $keyDiscount => $eachDiscount)
         <tr>
             <th scope="row">{{++$i}}</th>

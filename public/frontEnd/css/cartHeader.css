@@ -4,6 +4,7 @@
 
 .header_search .header_cart {
    position: relative;
+   top: 2px;
 }
    
 
@@ -26,7 +27,7 @@
 
 .header_search .header_cart a i {
     
-   font-size: 30px;
+   font-size: 35px;
    color: var(--primary-color);
 }
 

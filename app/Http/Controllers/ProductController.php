@@ -276,6 +276,8 @@ class ProductController extends Controller
         ->join('tbl_brand','tbl_brand.brand_id', '=', 'tbl_product.brand_id')
         ->join('tbl_supplier','tbl_supplier.supplier_id', '=', 'tbl_product.supplier_id')
         ->where('tbl_category_product.category_id', $category_id)->whereNotIn('tbl_product.product_id', [$id])->paginate(4);
+
+       
        
         return view('pages.product_detail.show_product_detail')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)
         ->with('product_details', $detail_product)->with('product_relative', $relative_product)->with('gallery', $gallery)
