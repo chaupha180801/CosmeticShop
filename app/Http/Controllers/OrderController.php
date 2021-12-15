@@ -15,7 +15,7 @@ use App\Models\Order;
 use App\Models\OrderDetails;
 use App\Models\Shipping;
 use App\Models\Account;
-
+use PDF;
 session_start();
 
 class OrderController extends Controller
@@ -30,6 +30,134 @@ class OrderController extends Controller
                 ->orderby('order_date', 'DESC')->paginate(5)->appends(request()->query());
             return view('order.show_order')->with('all_order', $all_order);
         }
+    }
+    
+    public function printOrder($id){
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->print_order_convert($id));
+        return $pdf->stream();
+    }
+
+    public function print_order_convert($id){
+        $order_details = DB::table('tbl_order_detail')->where('order_id',$id)->get();
+        $order = DB::table('tbl_order')->where('order_id',$id)->get();
+        foreach($order as $key => $ord){
+            $customer_id = $ord->account_id;
+            $shipping_id = $ord->shipping_id;
+            $discount_id = $ord->discount_id;
+        }
+
+        $customer = DB::table('tbl_account')->where('account_id',$customer_id)->first();
+        $shipping = DB::table('tbl_shipping')->where('shipping_id',$shipping_id)->first();
+        $tp = DB::table('tbl_tinhthanhpho')->where('matp',$shipping->shipping_district)->first();
+        $qh = DB::table('tbl_quanhuyen')->where('maqh',$shipping->shipping_province)->first();
+        $xptt = DB::table('tbl_xaphuongthitran')->where('xaid',$shipping->shipping_commune)->first();
+        $discount = DB::table('tbl_discount')->where('discount_id',$discount_id)->first();
+
+        $output = '';
+        $output .='
+        <style>
+            body{
+                font-family: DejaVu Sans;
+            }
+            .table-styling{
+                border:1px solid #000;
+            }
+            
+        </style>
+        <h1>CosmeticShop</h1>
+        <h4>Địa chỉ: khu phố 6, phường Linh Trung, thành phố Thủ Đức</h4>
+        <p>Người đặt hàng</p>
+        <table class="table-styling">
+                <thead>
+                    <tr>
+                        <th>Tên khách hàng</th>
+                        <th>SĐT</th>
+                        <th>Email</th>
+                </thead>
+                <tbody>';
+          
+        $output.='
+                <tr>
+                    <td>'.$customer->account_name.'</td>
+                    <td>'.$customer->account_phone.'</td>
+                    <td>'.$customer->account_email.'</td>
+                </tr>';
+            
+        $output.='</tbody>
+        </table>
+        <p>Người nhận</p>
+        <table class="table-styling">
+                <thead>
+                    <tr>
+                        <th>Tên người nhận</th>
+                        <th>SĐT</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Ghi chú</th>
+                </thead>
+                <tbody>';
+          
+        $output.='
+                <tr>
+                    <td>'.$shipping->shipping_name.'</td>
+                    <td>'.$shipping->shipping_phone.'</td>
+                    <td>'.$shipping->shipping_email.'</td>
+                    <td>'.$shipping->shipping_address.','.$xptt->name_commue.','.$qh->name_province.','.$tp->name_city.'</td>
+                    <td>'.$shipping->shipping_note.'</td>
+                </tr>';
+            
+        
+        $output.='</tbody>
+                </table>
+                <p>Đơn đặt hàng</p>
+                <table class="table-styling">
+                        <thead>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Số lượng</th>
+                                <th>Giá sản phẩm</th>
+                                <th>Tổng tiền</th>
+                        </thead>
+                        <tbody>';
+                    $subtotal = 0;
+                foreach($order_details as $key =>$ord){
+                    $total = $ord->order_product_quanity * $ord->product_price;
+                    $subtotal +=$total;
+                    $output.='
+                            <tr>
+                                <td>'.$ord->product_name.'</td>
+                                <td>'.$ord->order_product_quanity.'</td>
+                                <td>'.number_format($ord->product_price,0,',','.').'đ'.'</td>
+                                <td>'.number_format($total,0,',','.').'đ'.'</td>
+                            </tr>';
+                } 
+                if($discount){
+                    $output.='
+                        <tr>
+                            <td colspan="2">
+                                <p>Mã giảm giá: '.$discount->discount_code.'</p>                               
+                                <p>Phí ship:'.number_format(30000,0,',','.').'đ'.'</p>
+                                <p>Tổng tiền giảm: '.number_format($subtotal* ($discount->discount_percent/100),0,',','.').'đ'.'</p>
+                                <p>Tổng tiền:'.number_format($subtotal*(1 - $discount->discount_percent/100)+30000,0,',','.').'đ'.'</p>
+                            </td>
+                        </tr>
+                        ';
+                }else{
+                    $output.='
+                    <tr>
+                        <td colspan="2">                                                  
+                            <p>Phí ship:'.number_format(30000,0,',','.').'đ'.'</p>
+                            <p>Tổng tiền:'.number_format($subtotal+30000,0,',','.').'đ'.'</p>
+                        </td>
+                    </tr>
+                    ';
+                } 
+                
+                $output.='</tbody>
+                        </table>';
+                $output.='<p>Cảm ơn quý khách đã ủng hộ shop nhé.</p>';
+        return $output;
     }
 
     public function detailOrder($id)
@@ -124,7 +252,7 @@ class OrderController extends Controller
             $order_details = DB::table('tbl_order_detail')->where('order_id', $data['order_id'])->get();
             $output = '';
             $output = '
-        <table class="table">
+        <table class="table_detail_history_order">
             <thead>
                 <tr>
                     <th scope="col">STT</th>

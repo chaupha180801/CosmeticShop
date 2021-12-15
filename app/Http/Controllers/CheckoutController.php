@@ -45,16 +45,19 @@ class CheckoutController extends Controller
         $data['account_email'] = $request->customer_email;
         $data['account_password'] = md5($request->customer_password);
         $data['account_phone'] = $request->customer_phone;
+        $data['account_avatar'] = "default_avatar.png";
+
 
         if (($request->customer_password) != ($request->customer_re_password)) {
             Session::put('ErrorMessage', 'Mật khẩu không khớp');
             return redirect()->back();
-        } else {
-            $account_id = DB::table('tbl_account')->insertGetId($data);
-            Session::put('account_id', $account_id);
-            Session::put('account_name', $request->customer_name);
-            return redirect()->intended();
-        }
+        }else{
+        $account_id = DB::table('tbl_account')->insertGetId($data);
+        Session::put('account_id', $account_id);
+        Session::put('account_name', $request->customer_name);
+        Session::put('account_img', $result->account_avatar);
+        return redirect()->intended();
+        }   
     }
 
     public function checkOut(Request $request, $id)
@@ -66,9 +69,34 @@ class CheckoutController extends Controller
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
             ->orderBy('brand_id', 'DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
-            ->orderBy('supplier_id', 'DESC')->get();
+        ->orderBy('supplier_id','DESC')->get();
+
+        $address = array();
+       
+        foreach($shipping_list as $key => $value)
+        {
+            $tinh = DB::table('tbl_tinhthanhpho')->where('matp', $value->shipping_district)->get();
+            foreach($tinh as $key1 => $value1)
+            {
+                $address[0] = $value1->name_city;
+            }
+
+            $huyen = DB::table('tbl_quanhuyen')->where('maqh', $value->shipping_province)->get();
+            foreach($huyen as $key2 => $value2)
+            {
+                $address[1] = $value2->name_province;
+            }
+
+            $thon = DB::table('tbl_xaphuongthitran')->where('xaid', $value->shipping_commune)->get();
+            foreach($thon as $key3 => $value3)
+            {
+                $address[2] = $value3->name_commue;
+            }
+        }
+
+
         return view('login.checkout')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)
-            ->with('shipping_list', $shipping_list)->with('discount', $discount)->with('city', $city);
+        ->with('shipping_list', $shipping_list)->with('discount', $discount)->with('city',$city)->with('address', $address);
     }
 
     public function saveCheckoutCustomer(Request $request)
@@ -131,6 +159,7 @@ class CheckoutController extends Controller
 
     public function loginAccount(Request $request)
     {
+        
         $email = $request->account_email;
         $password = md5($request->account_password);
         $remember = $request->remember;
@@ -156,7 +185,6 @@ class CheckoutController extends Controller
     public function saveShipping(Request $request, $id)
     {
         $data = array();
-        $data = array();
         $data['shipping_name'] = $request->shipping_name;
         $data['shipping_phone'] = $request->shipping_phone;
         $data['shipping_email'] = $request->shipping_email;
@@ -169,23 +197,41 @@ class CheckoutController extends Controller
 
         $shipping_id = DB::table('tbl_shipping')->insertGetId($data);
         Session::put('shipping_id', $shipping_id);
-        return Redirect::to('checkout/' . $id);
+       return redirect()->back();
     }
 
-    public function showProfile($id)
-    {
-        if (!Session::get('account_id')) {
-            return Redirect::to('/login-checkout')->with('error', 'Vui lòng đăng nhập!');
-        } else {
-            $profile = DB::table('tbl_account')->where('account_id', $id)->get();
-            $shipping_list = DB::table('tbl_shipping')->where('account_id', $id)->get();
+    public function showProfile($id){
+        $profile = DB::table('tbl_account')->where('account_id', $id)->get();
+        $shipping_list = DB::table('tbl_shipping')->where('account_id', $id)->get();
+        $city = DB::table('tbl_tinhthanhpho')->orderBy('matp','ASC')->get();
 
-            $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
-                ->orderBy('brand_id', 'DESC')->get();
-            $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
-                ->orderBy('supplier_id', 'DESC')->get();
-            return view('profile.show_profile')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)->with('shipping_list', $shipping_list)->with('profile', $profile);
+        $address = array();
+       
+        foreach($shipping_list as $key => $value)
+        {
+            $tinh = DB::table('tbl_tinhthanhpho')->where('matp', $value->shipping_district)->get();
+            foreach($tinh as $key1 => $value1)
+            {
+                $address[0] = $value1->name_city;
+            }
+
+            $huyen = DB::table('tbl_quanhuyen')->where('maqh', $value->shipping_province)->get();
+            foreach($huyen as $key2 => $value2)
+            {
+                $address[1] = $value2->name_province;
+            }
+
+            $thon = DB::table('tbl_xaphuongthitran')->where('xaid', $value->shipping_commune)->get();
+            foreach($thon as $key3 => $value3)
+            {
+                $address[2] = $value3->name_commue;
+            }
         }
+        $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')
+        ->orderBy('brand_id','DESC')->get();
+        $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
+        ->orderBy('supplier_id','DESC')->get();
+        return view('profile.show_profile')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)->with('shipping_list', $shipping_list)->with('profile', $profile)->with('address', $address)->with('city', $city);
     }
 
     public function saveImage($image)
@@ -235,6 +281,12 @@ class CheckoutController extends Controller
                 }
             }
         }
-        return response($output);
-    }
+        return response($output); 
+    } 
+  public function deleteShipping($id)
+  {
+    $delete_shipping = DB::table('tbl_shipping')->where('account_id', $id)->delete();
+
+    return redirect()->back();
+  }
 }

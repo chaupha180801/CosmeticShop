@@ -29,16 +29,16 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Email <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="first-name" required="required" class="form-control " value="{{$edit_customer->account_email}}" name="account_email" >
-                    
-                    
+                    <input type="text" id="first-name" required="required" class="form-control " value="{{$edit_customer->account_email}}" name="account_email" 
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}" title="Email không hợp lệ.">
                 </div>
             </div>
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="account_phone">Số điện thoại <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="first-name" required="required" class="form-control " value="{{$edit_customer->account_phone}}" name="account_phone" >
+                    <input type="text" id="first-name" required="required" class="form-control " value="{{$edit_customer->account_phone}}" name="account_phone"
+                    pattern="[0]{1}[0-9]{9}" title="Số điện thoại phải bắt đầu bằng số 0 và có 10 chữ số.">
                 </div>
             </div>
             <div class="ln_solid"></div>

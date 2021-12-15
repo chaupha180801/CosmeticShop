@@ -43,7 +43,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i =0 ; ?>
+          <?php $i = ($all_brand->currentPage()-1)*5 ; ?>
         @foreach ($all_brand as $keyBrand => $eachBrand)
         <tr>
           <th scope="row">{{++$i}}</th>

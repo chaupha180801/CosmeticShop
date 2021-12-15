@@ -2,15 +2,7 @@
 @section('admin_content')
 <div class="x_panel">
     <div class="x_title">
-      <h2>Danh sách đơn hàng</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-        </li>
-        <li class="dropdown">
-        <li><a class="close-link"><i class="fa fa-close"></i></a>
-        </li>
-      </ul>
-      <div class="clearfix"></div>
+      <h2 class="admin_part_heading">Danh sách đơn hàng</h2>
  
     </div>
   
@@ -34,7 +26,7 @@
                   <form action="{{URL::to('/search-order')}}"  method="GET">
                       {{csrf_field()}}
                   <input type="text" id="keywords" placeholder="Tìm kiếm ..." name="tukhoaorder">
-                  <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
+                  <button type="submit" name="search-items" value="Tìm kiếm" class="search_button"><i class="fa fa-search"></i></button>
                   </form>
     </div> 
     <table class="table">
@@ -50,7 +42,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i =0 ; ?> 
+          <?php $i = ($all_order->currentPage()-1)*5 ; ?> 
         @foreach ($all_order as $keyOrd => $eachOrder)
         <tr>
           <th scope="row">{{++$i}}</th>
@@ -69,6 +61,7 @@
           <td>
             <a href="{{URL::to('/detail-order/'.$eachOrder->order_id)}}" class="btn btn-sm btn-primary">Chi tiết</a>
             <a href="{{URL::to('/delete-order/'.$eachOrder->order_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa đơn hàng {{$eachOrder->order_id}} không?')">Xóa</a>
+            <a target="_blank" href="{{URL::to('/print-order/'.$eachOrder->order_id)}}" class="btn btn-sm btn-primary">IN</a>
           </td>
         </tr>
         @endforeach
