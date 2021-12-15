@@ -16,10 +16,7 @@ class AdminController extends Controller
         //echo "abcd";
     }
 
-    public function show_dasdboard()
-    {
-        return view('admin.dashboard');
-    }
+   
 
     public function check_login(Request $request)
     {
@@ -41,10 +38,35 @@ class AdminController extends Controller
         }
     }
 
+    public function show_dasdboard()
+    {
+        if(!Session::get('adminId'))
+        {
+            return Redirect::to('/admin')->with('error','Vui lòng đăng nhập!');
+        }else{
+            return view('admin.dashboard');
+        }
+       
+    }
+
     public function logout()
     {
         Session::put('adminUserName','');
         Session::put('adminId', '');
         return redirect('/admin');
+    }
+
+    public function saveAdmin(Request $request)
+    {
+        $data = array();
+        $data['admin_name'] = $request->adminName;
+        $data['admin_username'] = $request->adminName;
+        $data['admin_email'] = $request->adminEmail;
+        $data['admin_pass'] = md5($request->adminPass);
+ 
+        $admin_id = DB::table('tbl_admin')->insertGetId($data);
+        Session::put('adminId', $admin_id);
+        Session::put('adminUserName', $request->adminName);
+        return redirect('/dashboard');
     }
 }

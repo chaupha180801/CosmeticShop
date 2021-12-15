@@ -59,7 +59,7 @@
          </td>
           <td>
             <a href="{{URL::to('/edit-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-primary">Sửa</a>
-            <a href="{{URL::to('/delete-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa danh mục {{$eachCategory->category_name}} không?')">Xóa</a>
+            <a href="{{URL::to('/delete-category-product/'.$eachCategory->category_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Danh mục {{$eachCategory->category_name}} vẫn còn tồn tại sản phẩm, ban có muốn xóa toàn bộ sản phẩm thuộc danh mục {{$eachCategory->category_name}} hay không?')">Xóa</a>
           </td>
         </tr>
         @endforeach
