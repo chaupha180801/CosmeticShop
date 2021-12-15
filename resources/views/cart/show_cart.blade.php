@@ -84,41 +84,62 @@
                     </td>
                     <td>&nbsp vnđ</td>
                 </tr>
-            <tr>     
-                <td class="text-right">
-                  <p>  Thành tiền: </p>
-                </td>
-                <td>
-                    <span id="cart-total">{{Cart::subtotal()}}</span>
-                </td>
-                <td>&nbsp vnđ</td>
-            </tr>
-            <tr>
-                <td colspan="3" class="subcart_btn">
-                    <a href="{{ url('/') }}" class="btn btn-warning">Tiếp tục mua sắm</a>
+            
+            </tbody>
+        </table>   
+            </div>  
+                <div class="cart_submit">
+            </div>          
+        </div>     
+     </div>
+    <div class="col-lg-6 col-md-6">
+        <tfoot>
+        <tr>
+            <td>
+                <input type="text" id="discount-code" name="discount_id">
+                <button id="apply-discount">Áp dụng</button>
+            </td>
+        </tr>
+        <tr>     
+            <td colspan="5" class="text-right"><h3>
+                <strong>Số tiền giảm: </strong>
+                <strong id="cart-discount">0</strong>
+                <strong> VNĐ </strong>
+            </h3></td>
+        </tr>
+        <tr>     
+            <td colspan="5" class="text-right"><h3>
+                <strong>Thành tiền: </strong>
+                <strong id="cart-total">{{Cart::subtotal()}}</strong>
+                <strong> VNĐ </strong>
+            </h3></td>
+        </tr>
+        <tr>
+            <td colspan="5" class="text-right">
+                <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>Tiếp tục mua sắm</a>
+                <?php
+                   $account_id = Session::get('account_id');
+                   if($account_id !=NULL){
+                    ?>
+                    <form action="{{URL::to('/checkout/'.$account_id)}}">
+                        <input type="hidden" id="discount-id" name="discount_code" value="">
+                        <button class="btn btn-success " id="choose-active">Thanh toán</button>
+                        <input type="hidden" class="check-checkout" value={{Cart::content()->count()}}>
+                   </form>
                     <?php
-                       $account_id = Session::get('account_id');
-                       if($account_id !=NULL){
-                        ?>
-                        <form action="{{URL::to('/checkout/'.$account_id)}}">
-                            <input type="hidden" id="discount-id" name="discount_code" value="">
-                            <button class="btn btn-success">Thanh toán</button>
-                       </form>
-                        <?php
-                       }else{
-                           ?>
-                            <a href="{{URL::to('/login-checkout')}}">
-                                <button class="btn btn-success">Thanh toán</button>
-                             </a>
-                           <?php
-                        }
-                    ?>          
-                </td>
-            </tr>
-        </table>
-    </div>
-            <div>
-            </div>
+                   }else{
+                       ?>
+                        <a href="{{URL::to('/login-checkout')}}">
+                            <button class="btn btn-success" id="choose-active">Thanh toán</button>
+                            <input type="hidden" class="check-checkout" value={{Cart::content()->count()}}>
+                         </a>
+                       <?php
+                    }
+                ?>          
+            </td>
+        </tr>
+        </tfoot>
+        <div>
         </div>
         
     </div>
@@ -126,6 +147,17 @@
 
 
 <script>
+    $(document).ready(function(){
+        var count = $('.check-checkout').val();
+        if(count == 0){
+            var x = document.getElementById("choose-active");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }         
+        }
+    });
     function calc_cart_total() {
         var sum = 0;
         var all_prices = $('.product-total');

@@ -37,6 +37,7 @@ Route::post('/update-account-profile/{id}',[AdminController::class,'updateAccoun
 
 
 
+Route::get('/print-order/{id}',[OrderController::class,'printOrder']);
 //Danh mục sản phẩm ở trang chủ
 Route::get('/chi-tiet-danh-muc/{id}',[CategoryProduct::class,'showCategoryHome']);
 //tìm kiếm

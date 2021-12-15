@@ -42,7 +42,11 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+    <link href="https://code.highcharts.com/css/highcharts.css" rel="stylesheet">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -338,8 +342,8 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{asset('public/backEnd/build/js/custom.min.js')}}"></script>
-
-
+    <!-- Chart-->
+    @yield('script')
     <script type="text/javascript">
       $('.btn_reply_comment').click(function () {
         var rating_id = $(this).data('rating_id');

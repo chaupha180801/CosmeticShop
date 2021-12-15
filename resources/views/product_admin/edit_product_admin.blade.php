@@ -47,13 +47,15 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Giá sản phẩm <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="last-name" name="product_price" required="required" class="form-control" value ="{{$edit_product->product_price}}">
+                    <input type="text" id="last-name" name="product_price" required="required" class="form-control" value ="{{$edit_product->product_price}}"
+                    pattern="[0-9]+" title="Giá tiền không hợp lệ">
                 </div>
             </div>
             <div class="item form-group">
                 <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Số  lượng </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input id="middle-name" class="form-control" type="text" name="product_quanity" value ="{{$edit_product->product_quanity}}">
+                    <input id="middle-name" class="form-control" type="text" name="product_quanity" value ="{{$edit_product->product_quanity}}"
+                    pattern="[0-9]+" title="Số tiền không hợp lệ">
                 </div>
             </div>
             <div class=" item form-group">

@@ -28,11 +28,9 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Mô tả nhãn hiệu <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <textarea id="first-name" required="required" class="form-control "  cols="30" rows="5"  name="brand_desc">{{$edit_brand->brand_desc}}</textarea>
-                    
+                    <textarea id="first-name" required="required" class="form-control "  cols="30" rows="5"  name="brand_desc">{{$edit_brand->brand_desc}}</textarea>                
                 </div>
-            </div>
-          
+            </div>     
             <div class="ln_solid"></div>
             <div class="item form-group">
                 <div class="col-md-6 col-sm-6 offset-md-3">

@@ -28,11 +28,12 @@
             ?>
                <p>   
                    <label>Email đăng nhập <span>*</span></label> <br>
-                   <input type="text" name="account_email" >
+                   <input type="text" name="account_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}" title="Email không hợp lệ." >
                 </p>
                 <p>   
                    <label>Mật khẩu <span>*</span></label> <br>
-                   <input type="password" name="account_password">
+                   <input type="password" name="account_password"
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Mật khẩu phải có ít nhất kí tự hoa,thường,ít nhất 1 chữ số và ít nhất là 8 kí tự.">
                 </p>   
                <div class="login_submit">
                    <button type="submit">Đăng nhập</button>
