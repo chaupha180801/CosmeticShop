@@ -176,13 +176,17 @@
                             <th colspan="2">Số tiền giảm</th>
                             <td><strong>{{number_format($total_discount)}} VNĐ</strong></td>
                         </tr>
+                        <tr>                           
+                            <th colspan="2">Phí vận chuyển</th>
+                            <td><strong>30,000 VNĐ</strong></td>
+                        </tr>
                         <tr class="order_total">
                             <th colspan="2">Tổng tiền hóa đơn</th>
                             <td>
                                 <?php
                                     $total = str_replace(',','',Cart::subtotal());
                                     $total_cart = floatval($total);
-                                    $total_discount = $total_cart *(1- $discount->discount_percent/100);
+                                    $total_discount = $total_cart *(1- $discount->discount_percent/100) + 30000;
                                 ?>
                                 <input type="hidden" name="cart_total" value={{number_format($total_discount)}}>
                                 <strong>Thành tiền: </strong>
@@ -199,11 +203,20 @@
                             <th colspan="2">Tổng tiền sản phẩm</th>
                             <td> {{Cart::subtotal()}} VNĐ</td>
                         </tr>
+                        <tr>                           
+                            <th colspan="2">Phí vận chuyển</th>
+                            <td><strong>30,000 VNĐ</strong></td>
+                        </tr>
                         <tr class="order_total">
                             <th colspan="2">Tổng tiền hóa đơn</th>
                             <td>
+                            <?php
+                                    $total = str_replace(',','',Cart::subtotal());
+                                    $total_cart = floatval($total);
+                                    $total_final = $total_cart + 30000;
+                                ?>
                                 <input type="hidden" name="cart_total" value={{Cart::subtotal()}}>
-                                <strong id="cart-total">{{Cart::subtotal()}}</strong>
+                                <strong id="cart-total">{{number_format($total_final)}}</strong>
                                 <strong> VNĐ </strong>
                             </td>
                         </tr>

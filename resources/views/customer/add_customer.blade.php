@@ -39,21 +39,24 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Email <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="first-name" required="required" class="form-control " name="account_email">
+                    <input type="text" id="first-name" required="required" class="form-control " name="account_email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}" title="Email không hợp lệ." >
                 </div>
             </div>
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Password <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="first-name" required="required" class="form-control " name="account_password">
+                    <input type="text" id="first-name" required="required" class="form-control " name="account_password" 
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Mật khẩu phải có ít nhất kí tự hoa,thường,ít nhất 1 chữ số và ít nhất là 8 kí tự.">
                 </div>
             </div>
             <div class="item form-group">
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Số điện thoại <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                    <input type="text" id="first-name" required="required" class="form-control " name="account_phone">
+                    <input type="text" id="first-name" required="required" class="form-control " name="account_phone" 
+                    pattern="[0]{1}[0-9]{9}" title="Số điện thoại phải bắt đầu bằng số 0 và có 10 chữ số.">
                 </div>
             </div>
             

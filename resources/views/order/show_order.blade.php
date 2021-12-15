@@ -69,6 +69,7 @@
           <td>
             <a href="{{URL::to('/detail-order/'.$eachOrder->order_id)}}" class="btn btn-sm btn-primary">Chi tiết</a>
             <a href="{{URL::to('/delete-order/'.$eachOrder->order_id)}}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa đơn hàng {{$eachOrder->order_id}} không?')">Xóa</a>
+            <a target="_blank" href="{{URL::to('/print-order/'.$eachOrder->order_id)}}" class="btn btn-sm btn-primary">IN</a>
           </td>
         </tr>
         @endforeach

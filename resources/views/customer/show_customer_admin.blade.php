@@ -31,11 +31,11 @@
     ?>
 
     <div class="search_box">
-                  <form action="{{URL::to('/search-customer')}}"  method="GET">
-                      {{csrf_field()}}
-                  <input type="text" id="keywords" placeholder="Tìm kiếm ..." name="tukhoacustomer">
-                  <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
-                  </form>
+      <form action="{{URL::to('/search-customer')}}"  method="GET">
+        {{csrf_field()}}
+        <input type="text" id="keywords" placeholder="Tìm kiếm ..." name="tukhoacustomer">
+        <button type="submit" name="search-items" value="Tìm kiếm"><i class="fa fa-search"></i></button>
+    </form>
     </div> 
     <table class="table">
         <thead>

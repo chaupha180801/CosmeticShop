@@ -30,6 +30,7 @@ Route::get('/',[HomeController::class,'index']);
 Route::get('/admin',[AdminController::class,'index']);
 Route::get('/dashboard',[AdminController::class,'show_dasdboard']);
 Route::get('/logout',[AdminController::class,'logout']);
+Route::get('/print-order/{id}',[OrderController::class,'printOrder']);
 //Danh mục sản phẩm ở trang chủ
 Route::get('/chi-tiet-danh-muc/{id}',[CategoryProduct::class,'showCategoryHome']);
 //tìm kiếm

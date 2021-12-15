@@ -90,13 +90,15 @@
                     ?>
                     <form action="{{URL::to('/checkout/'.$account_id)}}">
                         <input type="hidden" id="discount-id" name="discount_code" value="">
-                        <button class="btn btn-success">Thanh toán</button>
+                        <button class="btn btn-success " id="choose-active">Thanh toán</button>
+                        <input type="hidden" class="check-checkout" value={{Cart::content()->count()}}>
                    </form>
                     <?php
                    }else{
                        ?>
                         <a href="{{URL::to('/login-checkout')}}">
-                            <button class="btn btn-success">Thanh toán</button>
+                            <button class="btn btn-success" id="choose-active">Thanh toán</button>
+                            <input type="hidden" class="check-checkout" value={{Cart::content()->count()}}>
                          </a>
                        <?php
                     }
@@ -111,6 +113,17 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        var count = $('.check-checkout').val();
+        if(count == 0){
+            var x = document.getElementById("choose-active");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }         
+        }
+    });
     function calc_cart_total() {
         var sum = 0;
         var all_prices = $('.product-total');

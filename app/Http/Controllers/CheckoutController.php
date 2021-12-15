@@ -154,7 +154,6 @@ class CheckoutController extends Controller
 
     public function saveShipping(Request $request, $id){
         $data = array();
-        $data = array();
         $data['shipping_name'] = $request->shipping_name;
         $data['shipping_phone'] = $request->shipping_phone;
         $data['shipping_email'] = $request->shipping_email;
