@@ -98,7 +98,7 @@
                                     
                                 <form action="{{URL::to('/add-relative-to-cart')}}" method="POST">
                                     {{ csrf_field() }}
-                                     <label>Quantity</label>
+                                     <label>Số lượng mua</label>
                                     <input min="1" max="100" value="1" type="number" name="qty_cart" id="cart-product-quanity">
                                     <input type="hidden" name="productid_hidden" value="{{$product->product_id}}" />
                                     <input type="hidden" name="product_cart_name" value="{{$product->product_name}}" />
@@ -204,8 +204,8 @@
                                                @endforeach
                                            </div>
                                            <?php
-                                                $account_id = Session::get('account_id');
-                                                if($account_id !=NULL){
+                                                $account_id = Session::get('account_id') ;
+                                                if($account_id !=NULL && !empty($productAccount)){
                                                     ?>
                                                     <div style="width:20%">
                                                         <a href="" title="Gửi đánh giá của bạn" style="width:200px;background:#288ad6;padding:10px;color:white;border-radius:5px;"class="js_rating_action">
@@ -213,12 +213,11 @@
                                                         </a>
                                                     </div>
                                                     <?php
-                                                }else{
+                                                }elseif($account_id == NULL){
                                                     ?>
                                                    <div style="width:20%">
                                                     <a href="{{URL::to('/login-checkout')}}">Vui lòng đăng nhập để đánh giá</a>
                                                     </div>
-                                                    <!-- <p>Đăng nhập để đánh giá</p> -->
                                                     <?php
                                                 }
                                                 ?>    

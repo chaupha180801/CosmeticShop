@@ -19,29 +19,31 @@ class AdminController extends Controller
 
     public function show_dasdboard()
     {
-        $date = getdate();
-        
-        $search_product = DB::table('tbl_product')
-                ->join('tbl_order_detail','tbl_order_detail.product_id','=','tbl_product.product_id')            
-                ->selectRaw('sum(tbl_order_detail.order_product_quanity) as soluongban')
-                ->groupBy('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
-                'tbl_product.product_name','tbl_product.product_price',
-                'tbl_product.product_total_comment','tbl_product.product_total_rating')
-                ->orderByDesc('soluongban')
-                ->addSelect('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
-                'tbl_product.product_name','tbl_product.product_price',
-                'tbl_product.product_total_comment','tbl_product.product_total_rating')
-                ->get(5);
-        $dtt = DB::table('tbl_order')->whereMonth('order_date', '=' , $date['mon'])->sum('order_total');
-        $dtn = DB::table('tbl_order')->whereYear('order_date', '=' , $date['year'])->sum('order_total');
-        $total_order = DB::table('tbl_order')->count('order_id');
-        $dhxn = DB::table('tbl_order')->where('order_status' , '0')->count('order_id');
-        $dhdg = $total_order - $dhxn;
+       
        
         
         if (!Session::get('adminId')) {
             return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
         } else {
+
+            $date = getdate();
+        
+            $search_product = DB::table('tbl_product')
+                    ->join('tbl_order_detail','tbl_order_detail.product_id','=','tbl_product.product_id')            
+                    ->selectRaw('sum(tbl_order_detail.order_product_quanity) as soluongban')
+                    ->groupBy('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
+                    'tbl_product.product_name','tbl_product.product_price',
+                    'tbl_product.product_total_comment','tbl_product.product_total_rating')
+                    ->orderByDesc('soluongban')
+                    ->addSelect('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
+                    'tbl_product.product_name','tbl_product.product_price',
+                    'tbl_product.product_total_comment','tbl_product.product_total_rating')
+                    ->get(5);
+            $dtt = DB::table('tbl_order')->whereMonth('order_date', '=' , $date['mon'])->sum('order_total');
+            $dtn = DB::table('tbl_order')->whereYear('order_date', '=' , $date['year'])->sum('order_total');
+            $total_order = DB::table('tbl_order')->count('order_id');
+            $dhxn = DB::table('tbl_order')->where('order_status' , '0')->count('order_id');
+            $dhdg = $total_order - $dhxn;
             $listDay = Date::getListDayInMonth();
             $listMonth = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
             $revenueMonth = DB::table('tbl_order')->where('order_status', 0)
@@ -115,12 +117,15 @@ class AdminController extends Controller
                 'arrayRevenueEstimated' => json_encode($arrayRevenueEstimated),
                 'listMonth' => json_encode($listMonth),
                 'arrayRevenueYear' => json_encode($arrayRevenueYear),
-                'arrayTotalYear' => json_encode($arrayTotalYear)
-            ];
+                'arrayTotalYear' => json_encode($arrayTotalYear),
+                'dtt' => $dtt,
+                'dtn' => $dtn,
+                'search_product' => $search_product,
+                'dhxn' => $dhxn,
+                'dhdg' => $dhdg
 
-            //fix lỗi view
-            return view('admin.dashboard')->with('dtt', $dtt)->with('dtn', $dtn)->with('search_product', $search_product)
-            ->with('dhxn', $dhxn)->with('dhdg', $dhdg)->with('admin.dashboard', $viewData);
+            ];
+            return view('admin.dashboard', $viewData);
         }
     }
 
