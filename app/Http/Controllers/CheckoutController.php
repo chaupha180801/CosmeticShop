@@ -55,7 +55,7 @@ class CheckoutController extends Controller
         $account_id = DB::table('tbl_account')->insertGetId($data);
         Session::put('account_id', $account_id);
         Session::put('account_name', $request->customer_name);
-        Session::put('account_img', $result->account_avatar);
+        Session::put('account_img', 'default_avatar.png');
         return redirect()->intended();
         }   
     }

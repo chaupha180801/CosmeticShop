@@ -304,3 +304,33 @@ input#file {
   
 }
 
+.highcharts-background {
+    width: 1150;
+}
+
+ul.top_profiles li {
+    margin: 0;
+    padding: 3px 5px;
+    width: 300px;
+}
+
+ul.top_profiles {
+    width: 100%;
+    display: flex;
+}
+
+.banchay_gia,
+.banchay_name {
+    color: black;
+}
+
+ul.top_profiles {
+    width: 100%;
+    display: flex;
+}
+
+ul.top_profiles li:nth-child(even) {
+    background-color: white;
+}
+
+
