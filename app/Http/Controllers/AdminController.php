@@ -167,10 +167,10 @@ class AdminController extends Controller
     public function saveAdmin(Request $request)
     {
         $data = array();
-        $data['admin_name'] = $request->adminName;
         $data['admin_username'] = $request->adminName;
         $data['admin_email'] = $request->adminEmail;
         $data['admin_pass'] = md5($request->adminPass);
+        $data['admin_avatar'] = 'default_avatar.png';
 
         $admin_id = DB::table('tbl_admin')->insertGetId($data);
         Session::put('adminId', $admin_id);
