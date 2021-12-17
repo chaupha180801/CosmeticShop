@@ -1,52 +1,6 @@
 @extends('frontLayout')
 @section('frontEndContent')
-<style>
-    .list_start i:hover{
-       cursor: pointer;
-   }
-   .list_text{
-       display: inline-block;
-       margin-left: 10px;
-       position: relative;
-       background: #52b858;
-       color: #fff;
-       padding: 2px 8px;
-       box-sizing: border-box;
-       font-size: 12px;
-       border-radius: 2px;
-       display: none;
-   }
-   
 
-   .list_text:after{
-       right: 100%;
-       top: 50%;
-       border: solid transparent;
-       content: " ";
-       height: 0;
-       width: 0;
-       position: absolute;
-       pointer-events: none;
-       border-color: rgba(82,184,88,0);
-       border-right-color: #52b858;
-       border-width: 6px;
-       margin-top: -6px;
-   }
-   .list_start .rating_active{
-       color: #ff9705;
-   }
-   .hide{
-    opacity: 0;
-   }
-
-   .product_rating .active{
-    color: #ff9705 !important;
-   }
-
-   .each_rating .active{
-    color: #ff9705 !important;
-   }
-</style>
 <div class="container">
     <div class="row productDetail">
         @foreach($product_details as $key => $product)
@@ -330,7 +284,6 @@
         @endforeach
         <div class="related_product">
             <div class="row">
-    
                 <div class="col-sm-12">
                     <h2 class="realted_product_name">Sản phẩm liên quan</h2>
                 </div>
@@ -407,7 +360,7 @@
                     </div>
                 </div>
         </div>
-    
+    </div>
     </div>
 </div>
 

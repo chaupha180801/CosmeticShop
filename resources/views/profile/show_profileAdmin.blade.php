@@ -15,10 +15,6 @@
         <i class="far fa-times-circle" onclick="overlay_click()"></i>
         {{ csrf_field() }}
         <h5 class="edit_profile_heading">Chỉnh sửa thông tin cá nhân</h5>
-            <div class="col-md-6 input_item">
-                <label>Họ và tên</label> <br>
-                <input type="text" name="update_admin_name" id="" value="{{$item->admin_name}}" required>
-            </div>
             <div class="col-lg-6 input_item">
                 <label>Tên đăng nhập<span>*</span></label> <br>
                 <input type="text" name="update_admin_username" id="" value="{{$item->admin_username}}" required>
@@ -66,7 +62,7 @@
                 <i class="fas fa-camera"></i>
             </label>
             <br>
-        <p class="name_profile">{{$item->admin_name}}</p>
+        <p class="name_profile">{{$item->admin_username}}</p>
 
             <input type="submit" value="Cập nhật ảnh đại diện" class="btn-sm btn-primary">
         </form>

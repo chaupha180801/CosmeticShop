@@ -100,10 +100,10 @@
             ?>
         </div>
         <div class="row header_search">
-            <a href="{{URL::to('/')}}" class="image col-sm-1">
-                <img src="{{asset('public/frontEnd/images/logo.png')}}" alt="">
+            <a href="{{URL::to('/')}}" class="image col-md-2">
+                <img src="{{asset('public/frontEnd/images/logo_main.png')}}" alt="">
             </a>
-            <div class="navigation col-sm-6">
+            <div class="navigation col-md-5">
                 <ul class="list">
                     <li class="item active">
                         <a href="{{URL::to('/')}}" class="item_link">
@@ -135,7 +135,7 @@
                 </ul>
              
             </div>
-            <div class="search_box col-sm-3">
+            <div class="search_box col-md-3">
 
                 <form action="{{URL::to('/tim-kiem')}}" autocomplete="off" method ="GET" id="search_product">
                     {{ csrf_field() }}
@@ -152,7 +152,7 @@
                 </form>
             
             </div>
-            <div class="header_cart col-sm-1">
+            <div class="header_cart col-md-1">
                 <a href="{{URL::to('/cart')}}" class="">
                     <i class="fas fa-shopping-cart"></i>
                     <p class="cart_quanity_header">{{Cart::content()->count()}}</p>
