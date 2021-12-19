@@ -1,10 +1,18 @@
 @extends('frontLayout')
 @section('frontEndContent')
 
-<div>
-    <h3>Đơn hàng của bạn đã đặt thành công</h3>
-    <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i>Tiếp tục mua sắm</a>
-    
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="success_order">
+                <i class="far fa-check-circle"></i>
+                <p>Bạn đã đặt đơn hàng thành công!</p>
+                <div class="success_button">
+                    <a href="{{ url('/') }}" class="btn btn-warning">Tiếp tục mua sắm</a>
+                    <a href="{{URL::to('/history-order')}}" class="btn btn-primary">Lịch sử mua hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 @endsection

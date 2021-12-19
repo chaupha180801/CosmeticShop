@@ -113,9 +113,7 @@ class CategoryProduct extends Controller
     //end admin page
     public function showCategoryHome(Request $request, $id)
     {
-        if (!Session::get('adminId')) {
-            return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
-        } else {
+     
             $danhmuc = DB::table('tbl_category_product')->where('category_status', '1')->orderBy('category_id', 'DESC')->get();
             $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')->orderBy('brand_id', 'DESC')->get();
             $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')->orderBy('supplier_id', 'DESC')->get();
@@ -169,7 +167,6 @@ class CategoryProduct extends Controller
             $category_name = DB::table('tbl_category_product')->where('tbl_category_product.category_id', $id)->limit(1)->get();
             return view('pages.category.show_category')->with('category', $danhmuc)->with('brand', $thuonghieu)->with('supplier', $nhacungcap)
                 ->with('category_by_id', $danhmuc_sanpham)->with('category_name', $category_name);
-        }
     }
 
     public function searchCategoryAdmin(Request $request)

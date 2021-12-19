@@ -4,7 +4,7 @@
   .highcharts-figure,
   .highcharts-data-table table {
       min-width: 310px;
-      max-width: 800px;
+      max-width: 1250px;
       margin: 1em auto;
   }
 
@@ -69,8 +69,39 @@
       </div>
     
     </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div>
+              <div class="x_title">
+                <h2>Sản phẩm bán chạy</h2>
+              </div>
+              <ul class="list-unstyled top_profiles scroll-view">
+                <?php
+                  $i = 1;
+                ?>
+                @foreach($search_product as $Key => $value)
+                <li class="media event">
+                  <a class="pull-left border-aero profile_thumb top_product_image">
+                   <img src="{{URL::to('public/backEnd/images/'.$value->product_img)}}" alt="">
+                  </a>
+                  <div class="media-body">
+                    <a class="title banchay_name" href="#">{{$value->product_name}}</a>
+                    <p><strong class="banchay_gia">{{number_format($value->product_price,0,',','.')}} vnd </strong></p>
+                  </div>
+                  <div class="stt">
+                    <i class="fas fa-award"></i>
+                    <span><?php echo $i++ ?></span>
+                </div>
+                </li>
+                @endforeach
+              
+              </ul>
+            </div>
+          </div>
+    
+    </div>
   <div class="row">
-    <div class="col-md-8  widget_tally_box">
+    <div class="col-md-12  widget_tally_box">
       <figure class="highcharts-figure">
       <div id="container" data-list-day="{{$listDay}}" data-total={{$arrayRevenue}}
           data-total-Estimated={{$arrayRevenueEstimated}}></div>
@@ -80,35 +111,7 @@
       </figure>
     </div>
       
-    <div class="col-md-3 col-sm-12 ">
-        <div>
-          <div class="x_title">
-            <h2>Sản phẩm bán chạy</h2>
-          </div>
-          <ul class="list-unstyled top_profiles scroll-view">
-            <?php
-              $i = 1;
-            ?>
-            @foreach($search_product as $Key => $value)
-            <li class="media event">
-              <a class="pull-left border-aero profile_thumb top_product_image">
-               <img src="{{URL::to('public/backEnd/images/'.$value->product_img)}}" alt="">
-              </a>
-              <div class="media-body">
-                <a class="title" href="#">{{$value->product_name}}</a>
-                <p><strong>{{number_format($value->product_price,0,',','.')}} vnd </strong></p>
-              </div>
-              <div class="stt">
-                <i class="fas fa-award"></i>
-                <span><?php echo $i++ ?></span>
-            </div>
-            </li>
-            @endforeach
-          
-          </ul>
-        </div>
-      </div>
-
+    
   </div>
 
     <script type="text/javascript">

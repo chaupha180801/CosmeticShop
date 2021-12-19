@@ -235,7 +235,7 @@
                             @endfor
                           </div>
                             <p class="price">
-                             <span> {{number_format($sp->product_price)}}</span> vnđ
+                             <span> {{number_format($sp->product_price)}} vnđ </span>
                             </p>
                             <div class="add_to">
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">

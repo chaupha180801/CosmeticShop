@@ -49,7 +49,6 @@ body {
 } 
 
 .header_search .image {
-    width: 130px;
     height: 100px;
 }
 
@@ -204,6 +203,7 @@ body {
 
 .navigation .list .item .sub_list ul {
     list-style: none;
+    padding-left: 0;
 }
 
 .navigation .list .item .sub_list ul li {
@@ -217,13 +217,14 @@ body {
 }
 
 .navigation .list .item .sub_list ul li:hover a {
-    color: #00BBA6;
+    color: var(--primary-color);
 }
 
 .navigation .list .item .sub_list ul li a {
     color: rgb(110, 110, 110);
     text-decoration: none;
     font-weight: 400;
+    padding-left: 20px;
 }
 
 .navigation .list .item .item_link {
@@ -1324,7 +1325,6 @@ span.each_rating  {
 #tbl_subcart tr:last-child {
     /* margin-top: 18px; */
     padding-top: 11px;
-    display: block;
 }
 
 td.text-right {
@@ -1342,8 +1342,9 @@ td.text-right {
 }
 
 #rating_content {
-    border: none;
     padding: 5px;
+    outline: none;
+    
 
 }
 
@@ -1537,4 +1538,76 @@ tr.row_order {
     background: white;
     border-radius: 20px;
     padding: 34px;
+}
+
+.success_order {
+    margin: 100px 0;
+    text-align: center;
+}
+
+.success_order i {
+    color: green;
+    margin: 10px 0;
+    font-size: 80px;
+}
+
+.success_order > p {
+    font-size: 24px;
+    margin: 20px 0;
+    font-style: italic;
+}
+
+.reply_item {
+    margin-top: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    border-left: 3px solid rgb(218, 218, 218);
+    padding-left: 10px;
+}
+
+.list_start i:hover{
+    cursor: pointer;
+}
+.list_text{
+    display: inline-block;
+    margin-left: 10px;
+    position: relative;
+    background: #52b858;
+    color: #fff;
+    padding: 2px 8px;
+    box-sizing: border-box;
+    font-size: 12px;
+    border-radius: 2px;
+    display: none;
+}
+
+
+.list_text:after{
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(82,184,88,0);
+    border-right-color: #52b858;
+    border-width: 6px;
+    margin-top: -6px;
+}
+.list_start .rating_active{
+    color: #ff9705;
+}
+.hide{
+ /* opacity: 0; */
+ display: none;
+}
+
+.product_rating .active{
+ color: #ff9705 !important;
+}
+
+.each_rating .active{
+ color: #ff9705 !important;
 }

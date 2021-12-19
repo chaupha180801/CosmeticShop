@@ -234,8 +234,6 @@ class ProductController extends Controller
             $sort_field = 'product_id';
             $sort_order = 'ASC';
         }
-
-
         $all_product = DB::table('tbl_product')->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
             ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
             ->join('tbl_supplier', 'tbl_supplier.supplier_id', '=', 'tbl_product.supplier_id')
@@ -291,7 +289,6 @@ class ProductController extends Controller
     // end pages admin
     public function detailProduct($id)
     {
-
         $thuonghieu = DB::table('tbl_brand')->where('brand_status', '1')->orderBy('brand_id', 'DESC')->get();
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')->orderBy('supplier_id', 'DESC')->get();
 
@@ -305,6 +302,11 @@ class ProductController extends Controller
             $category_id = $result->category_id;
             $product_id = $result->product_id;
         }
+        $account_id = Session::get('account_id');
+        $productAccount = DB::table('tbl_order_detail')
+        ->join('tbl_order','tbl_order_detail.order_id','=','tbl_order.order_id')
+        ->where('tbl_order.account_id',$account_id)->where('tbl_order_detail.product_id',$id)->first();
+        
         //gallery
         $gallery = DB::table('tbl_gallery')->where('product_id', $product_id)->get();
         //rating
@@ -331,7 +333,8 @@ class ProductController extends Controller
 
         return view('pages.product_detail.show_product_detail')->with('brand', $thuonghieu)->with('supplier', $nhacungcap)
             ->with('product_details', $detail_product)->with('product_relative', $relative_product)->with('gallery', $gallery)
-            ->with('rating', $rating)->with('ratingDefault', $ratingDefault)->with('reply', $reply);
+            ->with('rating', $rating)->with('ratingDefault', $ratingDefault)->with('reply', $reply)
+            ->with('productAccount',$productAccount);
     }
 
     public function AddRelativeProductCart(Request $request)

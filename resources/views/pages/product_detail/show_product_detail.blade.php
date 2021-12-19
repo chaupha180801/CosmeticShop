@@ -1,52 +1,6 @@
 @extends('frontLayout')
 @section('frontEndContent')
-<style>
-    .list_start i:hover{
-       cursor: pointer;
-   }
-   .list_text{
-       display: inline-block;
-       margin-left: 10px;
-       position: relative;
-       background: #52b858;
-       color: #fff;
-       padding: 2px 8px;
-       box-sizing: border-box;
-       font-size: 12px;
-       border-radius: 2px;
-       display: none;
-   }
-   
 
-   .list_text:after{
-       right: 100%;
-       top: 50%;
-       border: solid transparent;
-       content: " ";
-       height: 0;
-       width: 0;
-       position: absolute;
-       pointer-events: none;
-       border-color: rgba(82,184,88,0);
-       border-right-color: #52b858;
-       border-width: 6px;
-       margin-top: -6px;
-   }
-   .list_start .rating_active{
-       color: #ff9705;
-   }
-   .hide{
-    opacity: 0;
-   }
-
-   .product_rating .active{
-    color: #ff9705 !important;
-   }
-
-   .each_rating .active{
-    color: #ff9705 !important;
-   }
-</style>
 <div class="container">
     <div class="row productDetail">
         @foreach($product_details as $key => $product)
@@ -98,7 +52,7 @@
                                     
                                 <form action="{{URL::to('/add-relative-to-cart')}}" method="POST">
                                     {{ csrf_field() }}
-                                     <label>Quantity</label>
+                                     <label>Số lượng mua</label>
                                     <input min="1" max="100" value="1" type="number" name="qty_cart" id="cart-product-quanity">
                                     <input type="hidden" name="productid_hidden" value="{{$product->product_id}}" />
                                     <input type="hidden" name="product_cart_name" value="{{$product->product_name}}" />
@@ -204,8 +158,8 @@
                                                @endforeach
                                            </div>
                                            <?php
-                                                $account_id = Session::get('account_id');
-                                                if($account_id !=NULL){
+                                                $account_id = Session::get('account_id') ;
+                                                if($account_id !=NULL && !empty($productAccount)){
                                                     ?>
                                                     <div style="width:20%">
                                                         <a href="" title="Gửi đánh giá của bạn" style="width:200px;background:#288ad6;padding:10px;color:white;border-radius:5px;"class="js_rating_action">
@@ -213,12 +167,11 @@
                                                         </a>
                                                     </div>
                                                     <?php
-                                                }else{
+                                                }elseif($account_id == NULL){
                                                     ?>
                                                    <div style="width:20%">
                                                     <a href="{{URL::to('/login-checkout')}}">Vui lòng đăng nhập để đánh giá</a>
                                                     </div>
-                                                    <!-- <p>Đăng nhập để đánh giá</p> -->
                                                     <?php
                                                 }
                                                 ?>    
@@ -331,7 +284,6 @@
         @endforeach
         <div class="related_product">
             <div class="row">
-    
                 <div class="col-sm-12">
                     <h2 class="realted_product_name">Sản phẩm liên quan</h2>
                 </div>
@@ -408,7 +360,7 @@
                     </div>
                 </div>
         </div>
-    
+    </div>
     </div>
 </div>
 
