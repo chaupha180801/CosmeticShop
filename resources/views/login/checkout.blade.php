@@ -84,10 +84,9 @@
             </form>
     </div>
     <div>
-        <form action="{{URL::to('/save-checkout-customer')}}" method="POST" class="row checkout">
+        <form action="{{URL::to('/save-checkout-customer')}}" id="checkout_form" method="POST" class="row checkout">
                     {{ csrf_field() }}
             <div class="col-lg-6 col-md-6">
-            
                         <h3 class="checkout_heading">Thông tin nhận hàng</h3>
                         <?php
                             $i = 1;
@@ -215,7 +214,7 @@
                         @endif
                     </div>
                     <div class="payment_method"> 
-                            <button type="submit" class="btn btn-primary">Đặt hàng</button>
+                            <button type="submit" class="btn btn-primary" onclick="checkoutFinal(event)">Đặt hàng</button>
                             <a href="{{URL::to('/cart')}}">
                                 <button class="btn btn-success">Quay lại giỏ hàng</button>
                             </a>
@@ -258,6 +257,19 @@
     }
     function overlay_click(){
         new_shipping.style.display = "none";
+    }
+
+    function checkoutFinal(event){
+        event.preventDefault();
+        var shipping_item = document.getElementsByClassName("shipping_item");
+        console.log(shipping_item);
+        if(shipping_item.length > 0) {
+            checkout_form.submit();
+        }
+        else {
+         alert("Bạn chưa có địa chỉ giao hàng nào, vui lòng chọn địa chỉ giao hàng.");
+         addShipping()
+        }
     }
     </script>
  @endsection

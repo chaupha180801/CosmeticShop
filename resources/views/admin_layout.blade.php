@@ -97,13 +97,14 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+                  
                   <li><a><i class="fa fa-product-hunt"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('/show-product-admin')}}">Danh sách sản phẩm</a></li>
                       <li><a href="{{URL::to('/add-product-admin')}}">Thêm sản phẩm</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-star"></i></i>Đánh giá<span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-star"></i></i> Đánh giá<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('/show-rating')}}">Danh sách đánh giá</a></li>
                     </ul>

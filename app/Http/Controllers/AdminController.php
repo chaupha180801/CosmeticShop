@@ -38,7 +38,7 @@ class AdminController extends Controller
                     ->addSelect('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
                     'tbl_product.product_name','tbl_product.product_price',
                     'tbl_product.product_total_comment','tbl_product.product_total_rating')
-                    ->get(5);
+                    ->take(5)->get();
             $dtt = DB::table('tbl_order')->whereMonth('order_date', '=' , $date['mon'])->sum('order_total');
             $dtn = DB::table('tbl_order')->whereYear('order_date', '=' , $date['year'])->sum('order_total');
             $total_order = DB::table('tbl_order')->count('order_id');
@@ -170,11 +170,17 @@ class AdminController extends Controller
         $data['admin_username'] = $request->adminName;
         $data['admin_email'] = $request->adminEmail;
         $data['admin_pass'] = md5($request->adminPass);
-        $data['admin_avatar'] = 'default_avatar.png';
+        $data['admin_avatar'] = "default_avatar.png";
+        $data['admin_phone'] = "Chưa có thông tin";
+
 
         $admin_id = DB::table('tbl_admin')->insertGetId($data);
         Session::put('adminId', $admin_id);
         Session::put('adminUserName', $request->adminName);
+        Session::put('adminImg', "default_avatar.png");
+
+   
+
         return redirect('/dashboard');
     }
     public function editImageProfile(Request $request, $id)
@@ -194,7 +200,6 @@ class AdminController extends Controller
     public function updateAdminProfile(Request $request, $id)
     {
         $profile = array();
-        $profile['admin_name'] = $request->update_admin_name;
         $profile['admin_username'] = $request->update_admin_username;
         $profile['admin_birth'] = $request->update_admin_birth;
         $profile['admin_phone'] = $request->update_admin_phone;

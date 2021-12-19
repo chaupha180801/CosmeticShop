@@ -4,6 +4,7 @@
      .rating .active{
     color: #ff9705 !important;
    }
+
 </style>
 <div class="container-fluid">
     <div class="row slide">
@@ -19,22 +20,22 @@
                     <div class="carousel-item active">
                         <img src="{{asset('public/frontEnd/images/slide_1.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                            {{-- <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('public/frontEnd/images/slider_2.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('public/frontEnd/images/slide_2.jpg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                            {{-- <h5>Second slide label</h5>
+                            <p>Some representative placeholder content for the second slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('public/frontEnd/images/slider_3.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('public/frontEnd/images/slide_3.jpg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                            {{-- <h5>Third slide label</h5>
+                            <p>Some representative placeholder content for the third slide.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -186,7 +187,7 @@
                             @endfor
                           </div>
                             <p class="price">
-                             <span> {{number_format($sp->product_price)}}</span>   vnđ
+                             <span> {{number_format($sp->product_price)}} vnđ </span> 
                             </p>
                             <div class="add_to">
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
