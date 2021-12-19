@@ -115,12 +115,15 @@ class AdminController extends Controller
                 'arrayRevenueEstimated' => json_encode($arrayRevenueEstimated),
                 'listMonth' => json_encode($listMonth),
                 'arrayRevenueYear' => json_encode($arrayRevenueYear),
-                'arrayTotalYear' => json_encode($arrayTotalYear)
-            ];
+                'arrayTotalYear' => json_encode($arrayTotalYear),
+                'dtt' => $dtt,
+                'dtn' => $dtn,
+                'search_product' => $search_product,
+                'dhxn' => $dhxn,
+                'dhdg' => $dhdg
 
-            //fix lỗi view
-            return view('admin.dashboard')->with('dtt', $dtt)->with('dtn', $dtn)->with('search_product', $search_product)
-            ->with('dhxn', $dhxn)->with('dhdg', $dhdg)->with('admin.dashboard', $viewData);
+            ];
+            return view('admin.dashboard', $viewData);
         }
     }
 
