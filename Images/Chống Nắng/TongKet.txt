@@ -1,0 +1,9 @@
+- Tạo hóa đơn bên mua hàng (15 đơn) NHỚ NHẬP TÀI KHOẢN NGÂN HÀNG
+- Ghi nhận thanh toán (5 đơn) 
+- Xác nhận 15 đơn bán hàng
+- Tạo 20 cơ hội (phân đều các cột để mỗi cột ít nhất 10 cơ hội)
+- Tạo 2 công nợ âm KH, 2 công nợ âm NCC
+- Tạo kiểm kê kho 6 phiếu
+- tạo CÔNG NỢ ĐẦU KỲ cho 10 KH/ 10 NCC 
+Còn GIAO HÀNG sẽ tìm hiểu sau 
+DEADLINE thứ 7 họp lại

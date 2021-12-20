@@ -92,11 +92,11 @@ class HomeController extends Controller
                 ->addSelect('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
                 'tbl_product.product_name','tbl_product.product_price',
                 'tbl_product.product_total_comment','tbl_product.product_total_rating')
-                ->paginate(4)->appends(request()->query());
+                ->paginate(6)->appends(request()->query());
         }
         else{
             $search_product = DB::table('tbl_product')->where('product_name', 'like','%'.$timkiem.'%')
-            ->orderBy($sort_field, $sort_order)->paginate(4)->appends(request()->query());
+            ->orderBy($sort_field, $sort_order)->paginate(6)->appends(request()->query());
         }
             
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
