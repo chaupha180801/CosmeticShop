@@ -311,7 +311,7 @@ class ProductController extends Controller
         $gallery = DB::table('tbl_gallery')->where('product_id', $product_id)->get();
         //rating
         $rating = DB::table('tbl_rating')->join('tbl_account', 'tbl_account.account_id', '=', 'tbl_rating.rating_user_id')
-            ->where('product_id', $product_id)->orderBy('rating_id', 'DESC')->paginate(10);
+            ->where('product_id', $product_id)->where('rating_parent_id',0)->orderBy('rating_id', 'DESC')->paginate(10);
         $reply = DB::table('tbl_rating')->where('product_id', $product_id)->orderBy('rating_id', 'DESC')->paginate(10);
         $ratingDashBoard = DB::table('tbl_rating')->groupBy('rating_number')
             ->where('product_id', $product_id)
@@ -381,7 +381,7 @@ class ProductController extends Controller
         }
         $rating = DB::table('tbl_rating')
             ->join('tbl_account', 'tbl_account.account_id', '=', 'tbl_rating.rating_user_id')
-            ->where('product_id', $product_id)->orderBy('rating_id', 'DESC')->paginate(10);
+            ->where('product_id', $product_id)->where('rating_parent_id',0)->orderBy('rating_id', 'DESC')->paginate(10);
         $reply = DB::table('tbl_rating')->where('product_id', $product_id)->orderBy('rating_id', 'DESC')->paginate(10);
         //relative
         $relative_product = DB::table('tbl_product')
