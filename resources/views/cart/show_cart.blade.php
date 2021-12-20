@@ -20,7 +20,6 @@
                 
                 <thead>
                     <tr>
-                        
                         <th class="product_thumb" >Hình ảnh</th>
                         <th class="product_name" >Tên sản phẩm</th>
                         <th class="product-price">Giá</th>
@@ -54,7 +53,7 @@
                     </tr>
                     @endforeach   
                     <tr>
-                        <td>
+                        <td colspan="2" align="left" style="text-align: left;">
                             <input type="text" id="discount-code" name="discount_id" placeholder="Nhập mã giảm giá">
                             <button id="apply-discount">Áp dụng</button>
                         </td>
@@ -72,7 +71,7 @@
                 <tr style="width: 500px;">
                     <td  class="text-right"><p>Thành tiền:</p></td>
                     <td> <span id="total-product">{{Cart::subtotal()}}</span></td>
-                    <td>&nbsp vnđ</td>
+                    <td  id="vnd">&nbsp VNĐ</td>
                 </tr>
                 <tr>     
                     <td class="text-right">
@@ -81,7 +80,7 @@
                     <td>
                         <span id="cart-discount">0</span>
                     </td>
-                    <td>&nbsp vnđ</td>
+                    <td id="vnd">&nbsp VNĐ</td>
                 </tr>
                 <tr>
                     <td class="text-right">
@@ -90,7 +89,7 @@
                     <td>
                         <span id="cart-total">{{Cart::subtotal()}}</span>
                     </td>
-                    <td>&nbsp vnđ</td>
+                    <td  id="vnd">&nbsp VNĐ</td>
                 </tr>
                 <tr>
                     <td  class="text-right">
@@ -168,9 +167,8 @@
                     var cart_total = calc_cart_total();
                     var cart_discount = cart_total * data.discount_percent/100;
                     cart_total = cart_total * (1 - data.discount_percent/100);
-                   
-                    $('#cart-total').text(cart_total.toLocaleString());
-                    $('#cart-discount').text(cart_discount.toLocaleString());
+                    $('#cart-total').text(cart_total.toLocaleString("en-GB"));
+                    $('#cart-discount').text(cart_discount.toLocaleString("en-GB"));
                     $('#discount-id').val(code);
                 }
             },
@@ -194,14 +192,13 @@
             if (product_price == '') {
                 product_price = 0;
             }
-        
         var product_total = product_price * product_quantity;
         var old_product_total = parseInt(row.find(".product-total").text().replaceAll(',', ''));
         var total = calc_cart_total() - old_product_total + product_total;   
-        row.find(".product-total").text(product_total.toLocaleString());
-        $('#cart-total').text(total.toLocaleString());
-        $('#total-product').text(total.toLocaleString());
-      
+        row.find(".product-total").text(product_total.toLocaleString("en-GB"));
+        $('#cart-total').text(total.toLocaleString("en-GB"));
+        $('#total-product').text(total.toLocaleString("en-GB"));
+
         $.ajax({
             url: "{{url('/update-cart-quantity')}}",
             method: "POST",
@@ -231,10 +228,10 @@
             var product_total = product_price * product_quantity;
             var old_product_total = parseInt(row.find(".product-total").text().replaceAll(',', ''));
             var total = calc_cart_total() - old_product_total + product_total;
-            
-            row.find(".product-total").text(product_total.toLocaleString());
-            $('#cart-total').text(total.toLocaleString());
-            $('#total-product').text(total.toLocaleString());
+            row.find(".product-total").text(product_total.toLocaleString("en-GB"));
+            $('#cart-total').text(total.toLocaleString("en-GB"));
+            $('#total-product').text(total.toLocaleString("en-GB"));
+            $('#cart-discount').text("0");
             $.ajax({
                 url: "{{url('/update-cart-quantity')}}",
                 method: "POST",
@@ -249,4 +246,3 @@
 </script>
 
 @endsection
-
