@@ -103,7 +103,7 @@
   <div class="row">
     <div class="col-md-12  widget_tally_box">
       <figure class="highcharts-figure">
-          <div id="container" data-list-day="{{$listDay}}" data-total={{$arrayRevenue}}
+      <div id="container" data-list-day="{{$listDay}}" data-total={{$arrayRevenue}}
           data-total-Estimated={{$arrayRevenueEstimated}}></div>
  
           <div id="container2" data-list-month="{{$listMonth}}" data-total-year={{$arrayRevenueYear}}
