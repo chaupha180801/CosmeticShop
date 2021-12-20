@@ -54,7 +54,7 @@
                     </tr>
                     @endforeach   
                     <tr>
-                        <td>
+                        <td colspan="2" align="left" style="text-align: left;">
                             <input type="text" id="discount-code" name="discount_id" placeholder="Nhập mã giảm giá">
                             <button id="apply-discount">Áp dụng</button>
                         </td>

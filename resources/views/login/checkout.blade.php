@@ -136,7 +136,7 @@
                             <tbody>
                             @foreach($content as $v_content)
                                 <tr>
-                                    <td class="product_name"> {{$v_content->name}} <strong> × {{$v_content->qty}}</strong></td>
+                                    <td class="product_name"> <span>{{$v_content->name}}</span>  <strong> × {{$v_content->qty}}</strong></td>
                                     <td> {{number_format($v_content->price)}} VNĐ</td>
                                     <input class="product-price-value" type="hidden" value={{$v_content->price}}>
                                     <input class="product-row-id" type="hidden" value={{$v_content->rowId}}>
@@ -215,12 +215,13 @@
                     </div>
                     <div class="payment_method"> 
                             <button type="submit" class="btn btn-primary" onclick="checkoutFinal(event)">Đặt hàng</button>
-                            <a href="{{URL::to('/cart')}}">
-                                <button class="btn btn-success">Quay lại giỏ hàng</button>
+                            <a class="btn btn-success"  href="{{URL::to('/cart')}}">
+                               Quay lại giỏ hàng
                             </a>
                     </div>                 
                     </div>                
         </form> 
+      
     </div>
         
 </div>
