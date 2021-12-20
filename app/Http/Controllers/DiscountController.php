@@ -90,12 +90,10 @@ class DiscountController extends Controller
 
     public function getDiscountInfo($code)
     {
-        
-        $discount = DB::table('tbl_discount')->where('discount_code', $code)->first();
-        if ($discount == NULL) {
-            return response('', 404);
-        }
-       return response()->json($discount);
-        
+            $discount = DB::table('tbl_discount')->where('discount_code', $code)->first();
+            if ($discount == NULL) {
+                return response('', 404);
+            }
+            return response()->json($discount);
     }
 }
