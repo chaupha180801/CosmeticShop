@@ -333,4 +333,14 @@ ul.top_profiles li:nth-child(even) {
     background-color: white;
 }
 
+#divmessage {
+    position: relative;
+}
+
+#icon_hide_message {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
 

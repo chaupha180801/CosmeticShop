@@ -19,7 +19,7 @@
           ?>
               <div class="alert alert-success" id="divmessage" role="alert">
               <?php echo $message; ?>
-              <i class="fa fa-times" onclick="hidemessage()"></i>
+              <i class="fa fa-times" id="icon_hide_message" onclick="hidemessage()"></i>
               </div>
           <?php
           Session::put('message','');
@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php $i = ($all_discount->currentPage()-1)*5 ; ?>
+          <?php $i = 1 ; ?>
         @foreach ($all_discount as $keyDiscount => $eachDiscount)
         <tr>
             <th scope="row">{{++$i}}</th>
