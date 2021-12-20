@@ -770,7 +770,7 @@ td.product_name {
     width: 50%;
     height: 4px;
     background: #F2F2F2;
-    right: -13px;
+    right: -35px;
     top: 50%;
     transform: translatey(-50%);
 }
@@ -891,6 +891,10 @@ td.product_name {
 
 .single_sale .single_sale_imgae:hover img {
     transform: scale(1.2);
+}
+
+#vnd {
+    color: var(--primary-color);
 }
 
 

@@ -241,7 +241,7 @@
                             </p>
                             <div class="add_to">
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
-                                <button>View detail</button>
+                                <button>Xem chi tiết</button>
                             </div>
                         </div>
                     </div>
