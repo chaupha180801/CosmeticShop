@@ -27,7 +27,7 @@ class OrderController extends Controller
         } else {
             $all_order = DB::table('tbl_order')->join('tbl_shipping', 'tbl_shipping.shipping_id', '=', 'tbl_order.shipping_id')
                 ->join('tbl_order_detail', 'tbl_order_detail.order_id', '=', 'tbl_order.order_id')
-                ->orderby('order_date', 'DESC')->paginate(5)->appends(request()->query());
+                ->orderby('order_date', 'DESC')->paginate(6)->appends(request()->query());
             return view('order.show_order')->with('all_order', $all_order);
         }
     }

@@ -149,13 +149,13 @@
 
 
     <!-- start list product -->
-
+        @php
+            $count = count($products);
+        @endphp
 
 <div class="col-sm-9 main_product">
         <div class="container">
-            @php
-                $count = count($search_product);
-            @endphp
+            
             <div class="row heading">
                 <p>Kết quả tìm kiếm<p>
                     @if($count == 0)

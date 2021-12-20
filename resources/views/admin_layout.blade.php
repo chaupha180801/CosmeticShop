@@ -474,7 +474,7 @@
 
       });
 
-      function hidemessage() {
+     function hidemessage() {
         divmessage.style.display="none"
       }
       setTimeout(() => {

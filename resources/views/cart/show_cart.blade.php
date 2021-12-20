@@ -71,7 +71,7 @@
             <table id="tbl_subcart">
                 <tr style="width: 500px;">
                     <td  class="text-right"><p>Thành tiền:</p></td>
-                    <td> <span>{{Cart::subtotal()}}</span></td>
+                    <td> <span id="total-product">{{Cart::subtotal()}}</span></td>
                     <td>&nbsp vnđ</td>
                 </tr>
                 <tr>     
@@ -150,6 +150,9 @@
         return sum;
     }
 
+    
+
+
     $('#apply-discount').click(function(){
         var code = $('#discount-code').val();
         
@@ -165,6 +168,7 @@
                     var cart_total = calc_cart_total();
                     var cart_discount = cart_total * data.discount_percent/100;
                     cart_total = cart_total * (1 - data.discount_percent/100);
+                   
                     $('#cart-total').text(cart_total.toLocaleString());
                     $('#cart-discount').text(cart_discount.toLocaleString());
                     $('#discount-id').val(code);
@@ -193,11 +197,11 @@
         
         var product_total = product_price * product_quantity;
         var old_product_total = parseInt(row.find(".product-total").text().replaceAll(',', ''));
-        var total = calc_cart_total() - old_product_total + product_total;
-                
+        var total = calc_cart_total() - old_product_total + product_total;   
         row.find(".product-total").text(product_total.toLocaleString());
         $('#cart-total').text(total.toLocaleString());
-
+        $('#total-product').text(total.toLocaleString());
+      
         $.ajax({
             url: "{{url('/update-cart-quantity')}}",
             method: "POST",
@@ -230,7 +234,7 @@
             
             row.find(".product-total").text(product_total.toLocaleString());
             $('#cart-total').text(total.toLocaleString());
-
+            $('#total-product').text(total.toLocaleString());
             $.ajax({
                 url: "{{url('/update-cart-quantity')}}",
                 method: "POST",

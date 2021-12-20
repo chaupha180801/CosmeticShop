@@ -208,7 +208,7 @@ class ProductController extends Controller
                 ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
                 ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
                 ->join('tbl_supplier', 'tbl_supplier.supplier_id', '=', 'tbl_product.supplier_id')->where('product_name', 'like', '%' . $search . '%')
-                ->paginate(4)->appends(request()->query());
+                ->paginate(6)->appends(request()->query());
 
             return view('product_admin.show_product_admin')->with('all_product', $all_product);
         }
@@ -311,7 +311,7 @@ class ProductController extends Controller
         $gallery = DB::table('tbl_gallery')->where('product_id', $product_id)->get();
         //rating
         $rating = DB::table('tbl_rating')->join('tbl_account', 'tbl_account.account_id', '=', 'tbl_rating.rating_user_id')
-            ->where('product_id', $product_id)->orderBy('rating_id', 'DESC')->paginate(10);
+            ->where('product_id', $product_id)->where('rating_parent_id',0)->orderBy('rating_id', 'DESC')->paginate(10);
         $reply = DB::table('tbl_rating')->where('product_id', $product_id)->orderBy('rating_id', 'DESC')->paginate(10);
         $ratingDashBoard = DB::table('tbl_rating')->groupBy('rating_number')
             ->where('product_id', $product_id)
@@ -381,7 +381,7 @@ class ProductController extends Controller
         }
         $rating = DB::table('tbl_rating')
             ->join('tbl_account', 'tbl_account.account_id', '=', 'tbl_rating.rating_user_id')
-            ->where('product_id', $product_id)->orderBy('rating_id', 'DESC')->paginate(10);
+            ->where('product_id', $product_id)->where('rating_parent_id',0)->orderBy('rating_id', 'DESC')->paginate(10);
         $reply = DB::table('tbl_rating')->where('product_id', $product_id)->orderBy('rating_id', 'DESC')->paginate(10);
         //relative
         $relative_product = DB::table('tbl_product')
