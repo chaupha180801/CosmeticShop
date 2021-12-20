@@ -16,7 +16,7 @@ class DiscountController extends Controller
         if (!Session::get('adminId')) {
             return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
         } else {
-            $all_discount = DB::table('tbl_discount')->get();
+            $all_discount = DB::table('tbl_discount')->paginate(4)->appends(request()->query());
             return view('discount.show_discount')->with('all_discount', $all_discount);
         }
     }
@@ -90,14 +90,12 @@ class DiscountController extends Controller
 
     public function getDiscountInfo($code)
     {
-        if (!Session::get('adminId')) {
-            return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
-        } else {
-            $discount = DB::table('tbl_discount')->where('discount_code', $code)->first();
-            if ($discount == NULL) {
-                return response('', 404);
-            }
-            return response()->json($discount);
+        
+        $discount = DB::table('tbl_discount')->where('discount_code', $code)->first();
+        if ($discount == NULL) {
+            return response('', 404);
         }
+       return response()->json($discount);
+        
     }
 }
