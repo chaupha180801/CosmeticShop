@@ -71,6 +71,38 @@
         </tbody>
       </table>
       <a href="{{URL::to('/add-discount')}}" class="btn btn-primary">Thêm khuyến mãi mới</a>
+
+      <div class="row">
+            <div class="col l-12 m-12 c-12 pagination_wrap">
+                <div class="pagination">
+                    <li style="display:inline;{{ ($all_discount->currentPage() == 1) ? 'none;' : '' }}">
+                        <a href="{{ $all_discount->url(1) }}">&laquo;</a>
+                    </li>
+                    @for ($i = 1; $i <= $all_discount->lastPage(); $i++)
+                        <?php
+                        $link_limit = 7;
+                        $half_total_links = floor($link_limit / 2);
+                        $from = $all_discount->currentPage() - $half_total_links;
+                        $to = $all_discount->currentPage() + $half_total_links;
+                        if ($all_discount->currentPage() < $half_total_links) {
+                            $to += $half_total_links - $all_discount->currentPage();
+                        }
+                        if ($all_discount->lastPage() - $all_discount->currentPage() < $half_total_links) {
+                            $from -= $half_total_links - ($all_discount->lastPage() - $all_discount->currentPage()) - 1;
+                        }
+                        ?>
+                        @if ($from < $i && $i < $to)
+                            <li style="display:inline;" class="{{ ($all_discount->currentPage() == $i) ? ' active' : '' }}">
+                                <a href="{{ $all_discount->url($i) }}">{{ $i }}</a>
+                            </li>
+                        @endif
+                    @endfor
+                    <li style="display:inline;{{ ($all_discount->currentPage() == $all_discount->lastPage()) ? 'none;' : '' }}">
+                        <a href="{{ $all_discount->url($all_discount->lastPage()) }}">&raquo;</a>
+                    </li>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
 @endsection
