@@ -90,14 +90,10 @@ class DiscountController extends Controller
 
     public function getDiscountInfo($code)
     {
-        if (!Session::get('adminId')) {
-            return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
-        } else {
             $discount = DB::table('tbl_discount')->where('discount_code', $code)->first();
             if ($discount == NULL) {
                 return response('', 404);
             }
             return response()->json($discount);
-        }
     }
 }
