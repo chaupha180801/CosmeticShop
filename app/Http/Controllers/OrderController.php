@@ -411,11 +411,11 @@ class OrderController extends Controller
         <table class="table_detail_history_order">
             <thead>
                 <tr>
-                    <th scope="col">STT</th>
-                    <th scope="col">Tên sản phẩm</th>
-                    <th scope="col">Giá</th>
-                    <th scope="col">Số lượng</th>
-                    <th scope="col">Thành tiền</th>
+                    <th scope="col" style="width: 50px; align="center">STT</th>
+                    <th scope="col" style="width: 400px; ">Tên sản phẩm</th>
+                    <th scope="col" align="center">Giá</th>
+                    <th scope="col" align="center">Số lượng</th>
+                    <th scope="col" align="center">Thành tiền</th>
                 </tr>
             </thead>
             <tbody>
@@ -425,13 +425,13 @@ class OrderController extends Controller
                 $i++;
                 $output .= '
                 <tr>
-                    <td>' . $i . '</td>
-                    <td>
-                        <a href="' . url('/chi-tiet-san-pham/' . $od->product_id) . '" target = "_blank">' . $od->product_name . '</a>
+                    <td align="center">' . $i . '</td>
+                    <td style="width: 200px; ">
+                        <a href="' . url('/chi-tiet-san-pham/' . $od->product_id) . '" target = "_blank" style="color:black; width: 80%; display:block;s white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">' . $od->product_name . '</a>
                     </td>
-                    <td>' . $od->product_price . ' VNĐ</td>
-                    <td>' . $od->order_product_quanity . '</td>
-                    <td>' . $od->order_product_quanity * $od->product_price . ' VNĐ</td>
+                    <td >' . $od->product_price . ' VNĐ</td>
+                    <td align="center">' . $od->order_product_quanity . '</td>
+                    <td >' . $od->order_product_quanity * $od->product_price . ' VNĐ</td>
                 </tr>
             ';
             }
