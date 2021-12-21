@@ -18,9 +18,7 @@ class AdminController extends Controller
     }
 
     public function show_dasdboard()
-    {
-       
-       
+    {       
         
         if (!Session::get('adminId')) {
             return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
@@ -39,8 +37,10 @@ class AdminController extends Controller
                     'tbl_product.product_name','tbl_product.product_price',
                     'tbl_product.product_total_comment','tbl_product.product_total_rating')
                     ->take(5)->get();
-            $dtt = DB::table('tbl_order')->whereMonth('order_date', '=' , $date['mon'])->sum('order_total');
-            $dtn = DB::table('tbl_order')->whereYear('order_date', '=' , $date['year'])->sum('order_total');
+            $dtt = DB::table('tbl_order')->whereMonth('order_date', '=' , $date['mon'])->get();
+           
+            $dtn = DB::table('tbl_order')->whereYear('order_date', '=' , $date['year'])->get();
+            
             $total_order = DB::table('tbl_order')->count('order_id');
             $dhxn = DB::table('tbl_order')->where('order_status' , '0')->count('order_id');
             $dhdg = $total_order - $dhxn;
@@ -48,12 +48,13 @@ class AdminController extends Controller
             $listMonth = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
             $revenueMonth = DB::table('tbl_order')->where('order_status', 0)
                 ->whereMonth('order_date', date('m'))
-                ->select(\DB::raw('sum(order_total) as total'), \DB::raw('DATE(order_date) day'))
+                ->select(\DB::raw('DATE(order_date) day'),\DB::raw('sum(order_total) as total'))
                 ->groupBy('day')->get();
             $revenueMonthEstimated = DB::table('tbl_order')->where('order_status', 1)
                 ->whereMonth('order_date', date('m'))
                 ->select(\DB::raw('sum(order_total) as total'), \DB::raw('DATE(order_date) day'))
                 ->groupBy('day')->get();
+
             $revenueMonthYear = DB::table('tbl_order')->where('order_status', 0)
                 ->whereYear('order_date', date('Y'))
                 ->select(\DB::raw('sum(order_total) as total'), \DB::raw('MONTH(order_date) month'))
@@ -70,14 +71,14 @@ class AdminController extends Controller
             foreach ($listDay as $day) {
                 $total = 0;
                 foreach ($revenueMonth as $key => $revenue) {
-                    if ($revenue->day == $day) {
+                    if ($revenue->day == $day) { 
                         $total = $revenue->total;
                         break;
                     }
                 }
                 $arrayRevenue[] = $total;
             }
-
+            
             foreach ($listDay as $day) {
                 $totalEstimated = 0;
                 foreach ($revenueMonthEstimated as $key => $revenueEstimated) {

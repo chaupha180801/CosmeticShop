@@ -69,8 +69,16 @@
             <div class="sub_cart_wrap">
             <table id="tbl_subcart">
                 <tr style="width: 500px;">
+                <?php
+                    $total = str_replace(',','',Cart::subtotal());
+                    $total_cart = floatval($total);                                         
+                ?>
                     <td  class="text-right"><p>Thành tiền:</p></td>
+<<<<<<< HEAD
                     <td> <span id="total-product">{{Cart::subtotal()}}</span></td>
+=======
+                    <td> <span id="total-product">{{number_format($total_cart)}}</span></td>
+>>>>>>> 1eaf81d75009390d248e5b71f5da95aabb452590
                     <td  id="vnd">&nbsp VNĐ</td>
                 </tr>
                 <tr>     
@@ -87,7 +95,11 @@
                         <p>Tổng tiền hóa đơn:</p>
                     </td>
                     <td>
-                        <span id="cart-total">{{Cart::subtotal()}}</span>
+                    <?php
+                        $total = str_replace(',','',Cart::subtotal());
+                        $total_cart = floatval($total);                                         
+                    ?>
+                        <span id="cart-total">{{number_format($total_cart)}}</span>
                     </td>
                     <td  id="vnd">&nbsp VNĐ</td>
                 </tr>

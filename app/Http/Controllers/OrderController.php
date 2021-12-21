@@ -25,8 +25,7 @@ class OrderController extends Controller
         if (!Session::get('adminId')) {
             return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
         } else {
-            $all_order = DB::table('tbl_order')->join('tbl_shipping', 'tbl_shipping.shipping_id', '=', 'tbl_order.shipping_id')
-                ->join('tbl_order_detail', 'tbl_order_detail.order_id', '=', 'tbl_order.order_id')
+            $all_order = DB::table('tbl_order')->join('tbl_shipping', 'tbl_shipping.shipping_id', '=', 'tbl_order.shipping_id')               
                 ->orderby('order_date', 'DESC')->paginate(6)->appends(request()->query());
             return view('order.show_order')->with('all_order', $all_order);
         }
@@ -186,7 +185,7 @@ class OrderController extends Controller
                 <div class="invoice_result">
                     <div class="invoice_result_left">
                         <p>Tiền thu người nhận:</p>
-                        <h1>'. $total_order.'</h1>
+                        <h1>'. $total_order.' VNĐ</h1>
                         <strong>Chỉ dẫn giao hàng: <br>
                         - Không đồng kiểm <br>
                         - Chuyển hoàn sau 3 lần phát <br>
@@ -326,12 +325,13 @@ class OrderController extends Controller
             foreach ($order as $key => $ord) {
                 $account_id = $ord->account_id;
                 $shipping_id = $ord->shipping_id;
+                $discount_id = $ord->discount_id;
             }
             $account = Account::where('account_id', $account_id)->first();
             $shipping = Shipping::where('shipping_id', $shipping_id)->first();
-
+            $discount = DB::table('tbl_discount')->where('discount_id',$discount_id)->first();
             $order_details = OrderDetails::with('product')->where('order_id', $id)->get();
-            return view('order.detail_order')->with(compact('detail_order', 'account', 'shipping', 'order_details'));
+            return view('order.detail_order')->with(compact('detail_order', 'account', 'shipping', 'order_details','discount'));
         }
     }
 
