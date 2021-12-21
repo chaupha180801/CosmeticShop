@@ -277,5 +277,5 @@
 </div>
 </div>
   <!-- start slide and sub image -->
-   
+
 @endsection

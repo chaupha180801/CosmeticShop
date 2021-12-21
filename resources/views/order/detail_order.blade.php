@@ -151,8 +151,26 @@
                     </tr>
                     @endforeach
                     <tr>
-                        <td>Thanh toán: {{number_format($total,0,',','.')}}đ</td>
+                        <td>Tiền ship: 30,000đ</td>
                     </tr>
+                    @if($discount)
+                    <tr>
+                        <td>Mã giảm giá: {{$discount->discount_code}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phần trăm giảm: {{$discount->discount_percent}}%</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng tiền giảm: {{number_format($total * ($discount->discount_percent/100) ,0,',','.')}}đ</td>
+                    </tr>
+                    <tr>                      
+                        <td>Thanh toán: {{number_format($total * (1 - $discount->discount_percent/100) + 30000,0,',','.')}}đ</td>
+                    </tr>
+                    @else
+                    <tr>                      
+                        <td>Thanh toán: {{number_format($total + 30000,0,',','.')}}đ</td>
+                    </tr>
+                    @endif
                     </tbody>                
         </table>
         <div class="ln_solid"></div>

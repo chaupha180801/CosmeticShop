@@ -49,7 +49,7 @@
           <td>{{$eachOrder->order_id}}</td>
           <td>{{$eachOrder->shipping_name}}</td>
           <td>{{$eachOrder->order_date}}</td>
-          <td>{{$eachOrder->order_total}}</td>
+          <td>{{$eachOrder->order_total}} VNĐ</td>
           <td align="center">
               <?php
               if ($eachOrder->order_status == 0){ ?>

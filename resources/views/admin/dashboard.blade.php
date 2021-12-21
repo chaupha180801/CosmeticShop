@@ -49,13 +49,27 @@
 {{-- <div class="row" style="display: inline-block;" > --}}
     <div class=" row tile_count">
       <div class="col-md-3  tile_stats_count" >
+        <?php
+          $total = 0;
+            foreach($dtt as $st){
+                $total1 = str_replace(',','',$st->order_total);
+                $total += $total1;  
+            }
+          ?>
         <span class="count_top"><i class="fa fa-chart-bar"></i> Doanh thu tháng</span>
-        <div class="count">{{number_format($dtt,0,',','.')}} vnd</div>
+        <div class="count">{{number_format($total)}} VNĐ</div>
         <span class="count_bottom">Tăng<i class="green"><i class="fa fa-sort-asc"></i>4% </i> so với tháng trước </span>
       </div>
       <div class="col-md-3  tile_stats_count">
+        <?php
+          $total = 0;
+            foreach($dtn as $st){
+                $total1 = str_replace(',','',$st->order_total);
+                $total += $total1;  
+            }
+          ?>
         <span class="count_top"><i class="fa fa-clock-o"></i> Doanh thu năm</span>
-        <div class="count">{{number_format($dtn,0,',','.')}} vnd</div>
+        <div class="count">{{number_format($total)}} VNĐ</div>
         <span class="count_bottom">Tăng <i class="green"><i class="fa fa-sort-asc"></i>3% </i>so với năm trước</span>
       </div>
       <div class="col-md-3 tile_stats_count">
@@ -142,7 +156,7 @@
                 },
                 labels: {
                     formatter: function () {
-                        return this.value + ' VNĐ';
+                        return this.value + '000 VNĐ';
                     }
                 }
             },
@@ -212,7 +226,7 @@
               },
            labels: {
                     formatter: function () {
-                        return this.value + ' VNĐ';
+                        return this.value + '000 VNĐ';
                     }
                 } 
           }],
