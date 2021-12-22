@@ -70,7 +70,7 @@
             <tr class="headings">
               <th class="column-title">STT</th>
 
-              <th class="column-title">Tên sản phẩm</th>
+              <th class="column-title" style="width: 250px;">Tên sản phẩm</th>
               <th class="column-title">Thư viện hình ảnh</th>
 <!--               <th class="column-title">Ảnh</th> -->
               <th class="column-title">Danh mục</th>
@@ -100,7 +100,7 @@
          
           <tr>
             <th scope="row">{{$i++}}</th>
-            <td>
+            <td class="product_name_admin">
               {{$eachProduct->product_name}}
               <div class="rating_product_admin">
                 <span>Đánh giá: </span>
@@ -114,7 +114,7 @@
             </td>
             <td><a href="{{URL::to('add-gallery/'.$eachProduct->product_id)}}">Thư viện ảnh</a></td> 
 <!--             <td><img src="{{asset('public/backEnd/images/'.$eachProduct->product_img)}}" height="100" width="100"</td>  -->           
-            <td>{{$eachProduct->category_name}}</td>
+            <td >{{$eachProduct->category_name}}</td>
             <td>{{$eachProduct->brand_name}}</td>
             <td>{{$eachProduct->supplier_name}}</td>
             <td>{{number_format($eachProduct->product_price). '(đ)'}}</td>

@@ -45,10 +45,6 @@ justify-content: center;
     background-color: rgba(0,0,0,.05);
 }
 
-.table_product_admin tr td {
-    line-height: 100px;
-}
-
 
 .login_wrapper {
     margin-top: 0;
@@ -158,6 +154,7 @@ input#keywords {
 .rating_product_admin {
     display: flex;
     align-items: center;
+    margin-top: 20px;
 }
 
 .rating_product_admin .rating {
