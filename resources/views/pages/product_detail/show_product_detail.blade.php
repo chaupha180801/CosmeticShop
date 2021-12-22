@@ -302,7 +302,7 @@
                                     <input type="hidden" name="product_cart_price" value="{{$result->product_price}}" />
                                     <input type="hidden" name="product_cart_image" value="{{$result->product_img}}" />
                                     <input type="hidden" name="qty_cart" value="1" min="1"> 
-                                    <button type="submit" class="add_cart" ><i class="fas fa-cart-plus"></i>Add to cart</button> 
+                                    <button type="submit" class="add_cart" ><i class="fas fa-cart-plus"></i>Thêm vào giỏ hàng</button> 
                                 </form> 
                             <!-- <div class="add_cart"><i class="fas fa-cart-plus"></i>Add to cart</div> -->
                         </div>
@@ -317,11 +317,11 @@
                                 <i class="fas fa-star"></i>
                             </p>
                             <p class="price">
-                              <span>{{number_format($result->product_price)}}</span> vnđ
+                              <span>{{number_format($result->product_price)}} VND</span> 
                             </p>
                             <div class="add_to">
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$result->product_id)}}">
-                                <button>View detail</button>
+                                <button>Xem chi tiết</button>
                             </div>
                         </div>
                     </div>

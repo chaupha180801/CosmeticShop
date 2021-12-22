@@ -1659,3 +1659,7 @@ tr.row_order {
     color: black;
 }
 
+
+.alert-success {
+    margin-top: 20px;
+}
