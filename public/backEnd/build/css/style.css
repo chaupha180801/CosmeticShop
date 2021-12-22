@@ -315,6 +315,7 @@ ul.top_profiles li {
 ul.top_profiles {
     width: 100%;
     display: flex;
+    margin-top: 24px;
 }
 
 .banchay_gia,
@@ -352,4 +353,15 @@ ul.top_profiles li:nth-child(even) {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     
+}
+
+div#container2 {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+#top_banchay_heading {
+    color: #0a006e;
+    font-weight: bold;
+    text-transform: uppercase;
 }
