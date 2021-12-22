@@ -87,7 +87,7 @@
         <div class="col-md-12 col-sm-12 ">
             <div>
               <div class="x_title">
-                <h2>Sản phẩm bán chạy</h2>
+                <h2 id="top_banchay_heading">Sản phẩm bán chạy</h2>
               </div>
               <ul class="list-unstyled top_profiles scroll-view">
                 <?php
@@ -100,7 +100,7 @@
                   </a>
                   <div class="media-body">
                     <a class="title banchay_name" href="#">{{$value->product_name}}</a>
-                    <p><strong class="banchay_gia">{{number_format($value->product_price,0,',','.')}} vnd </strong></p>
+                    <p><strong class="banchay_gia">{{number_format($value->product_price,0,',','.')}} VND </strong></p>
                   </div>
                   <div class="stt">
                     <i class="fas fa-award"></i>

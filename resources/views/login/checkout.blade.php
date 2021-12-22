@@ -9,21 +9,6 @@
         </ul>
     </div>
     {{-- end row 1 --}}
-            <?php    
-                $account_id = Session::get('account_id');
-                if($account_id ==NULL){
-            ?>
-            <h3>Vui lòng đăng nhập/đăng ký trước khi thanh toán</h3>
-            <a href="{{URL::to('/login-checkout')}}">
-                <button class="btn btn-success">Đăng nhập</button>
-            </a>
-                        
-            <a href="{{URL::to('/register-form')}}">
-                <button class="btn btn-success">Đăng ký</button>
-            </a>
-            <?php
-                }else{
-            ?>
     
     <div class="row" id="new_shipping">
         <div class="overlay_shipping" onclick="overlay_click()">
@@ -290,9 +275,6 @@
 
    
 
-    <?php
-       }
-    ?>
     <script>
         $(document).ready(function(){ 
         $('.choose').on('change',function(){

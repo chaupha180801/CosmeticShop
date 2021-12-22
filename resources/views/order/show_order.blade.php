@@ -37,7 +37,7 @@
             <th style="width: 200px">Tên khách hàng</th>
             <th style="width: 200px">Ngày hóa đơn</th>
             <th style="width: 200px">Tổng tiền</th>
-            <th style="width: 200px">Tình trạng</th>
+            <th style="width: 200px; text-align: center;">Tình trạng</th>
             <th>Hành động</th>
           </tr>
         </thead>

@@ -45,10 +45,6 @@ justify-content: center;
     background-color: rgba(0,0,0,.05);
 }
 
-.table_product_admin tr td {
-    line-height: 100px;
-}
-
 
 .login_wrapper {
     margin-top: 0;
@@ -158,6 +154,7 @@ input#keywords {
 .rating_product_admin {
     display: flex;
     align-items: center;
+    margin-top: 20px;
 }
 
 .rating_product_admin .rating {
@@ -318,6 +315,7 @@ ul.top_profiles li {
 ul.top_profiles {
     width: 100%;
     display: flex;
+    margin-top: 24px;
 }
 
 .banchay_gia,
@@ -355,4 +353,15 @@ ul.top_profiles li:nth-child(even) {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     
+}
+
+div#container2 {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+#top_banchay_heading {
+    color: #0a006e;
+    font-weight: bold;
+    text-transform: uppercase;
 }
