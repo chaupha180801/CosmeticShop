@@ -48,17 +48,19 @@ class AdminController extends Controller
             $listMonth = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
             $revenueMonth = DB::table('tbl_order')->where('order_status', 0)
                 ->whereMonth('order_date', date('m'))
-                ->select(\DB::raw('DATE(order_date) day'),\DB::raw('sum(order_total) as total'))
+                ->select(\DB::raw('DATE(order_date) day'),\DB::raw('sum(order_total * 100) as total'))
                 ->groupBy('day')->get();
+                
             $revenueMonthEstimated = DB::table('tbl_order')->where('order_status', 1)
                 ->whereMonth('order_date', date('m'))
-                ->select(\DB::raw('sum(order_total) as total'), \DB::raw('DATE(order_date) day'))
+                ->select(\DB::raw('sum(order_total * 100) as total'), \DB::raw('DATE(order_date) day'))
                 ->groupBy('day')->get();
 
-            $revenueMonthYear = DB::table('tbl_order')->where('order_status', 0)
+            $revenueMonthYear = DB::table('tbl_order')->where('order_status', 1)
                 ->whereYear('order_date', date('Y'))
-                ->select(\DB::raw('sum(order_total) as total'), \DB::raw('MONTH(order_date) month'))
+                ->select(\DB::raw('sum(order_total * 100) as total'), \DB::raw('MONTH(order_date) month'))
                 ->groupBy('month')->get();
+
             $totalOrder = DB::table('tbl_order')
                 ->whereYear('order_date', date('Y'))
                 ->select(\DB::raw('count(order_id) as total'), \DB::raw('MONTH(order_date) month'))
@@ -68,8 +70,9 @@ class AdminController extends Controller
             $arrayRevenueEstimated = [];
             $arrayRevenueYear = [];
             $arrayTotalYear = [];
-            foreach ($listDay as $day) {
+           foreach ($listDay as $day) {
                 $total = 0;
+
                 foreach ($revenueMonth as $key => $revenue) {
                     if ($revenue->day == $day) { 
                         $total = $revenue->total;
@@ -77,7 +80,7 @@ class AdminController extends Controller
                     }
                 }
                 $arrayRevenue[] = $total;
-            }
+            } 
             
             foreach ($listDay as $day) {
                 $totalEstimated = 0;
@@ -100,12 +103,12 @@ class AdminController extends Controller
                 }
                 $arrayRevenueYear[] = $total;
             }
-
+           
             foreach ($listMonth as $month) {
                 $total = 0;
                 foreach ($totalOrder as $key => $order) {
                     if ($order->month == $month) {
-                        $total = $order->total;
+                        $total =$order->total;
                         break;
                     }
                 }

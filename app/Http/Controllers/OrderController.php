@@ -26,7 +26,6 @@ class OrderController extends Controller
             return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
         } else {
             $all_order = DB::table('tbl_order')->join('tbl_shipping', 'tbl_shipping.shipping_id', '=', 'tbl_order.shipping_id')
-                ->join('tbl_order_detail', 'tbl_order_detail.order_id', '=', 'tbl_order.order_id')
                 ->orderby('order_date', 'DESC')->paginate(6)->appends(request()->query());
             return view('order.show_order')->with('all_order', $all_order);
         }
@@ -153,7 +152,7 @@ class OrderController extends Controller
                 <div class="address">
                     <div class="from">
                         <span>Từ</span> <br>
-                        <span>Cửa hàng mý phẩm beautyGroup</span> <br>
+                        <span>Cửa hàng mỹ phẩm beautyGroup</span> <br>
                         <span>Địa chỉ: 50/32b đường 79 khu phố 3 phường Phước Long B, Quận 9</span> <br>
                         <span>SDT: 0354575436</span>
                     </div>
@@ -186,7 +185,7 @@ class OrderController extends Controller
                 <div class="invoice_result">
                     <div class="invoice_result_left">
                         <p>Tiền thu người nhận:</p>
-                        <h1>'. $total_order.'</h1>
+                        <h1>'. $total_order.' VNĐ</h1>
                         <strong>Chỉ dẫn giao hàng: <br>
                         - Không đồng kiểm <br>
                         - Chuyển hoàn sau 3 lần phát <br>
