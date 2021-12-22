@@ -108,7 +108,7 @@
         </div>
     <div class="breadcums row">
         <ul>
-            <li>Home</li>
+            <li><a href="{{URL::to('/')}}"> Trang chủ</a></li>
             <li><i class="fa fa-angle-right"></i></li>
             <li>Thông tin cá nhân</li>
         </ul>

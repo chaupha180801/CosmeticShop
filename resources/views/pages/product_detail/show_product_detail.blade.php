@@ -10,7 +10,7 @@
                     if ($message)
                     {
                     ?>
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success" id="mess_home" role="alert">
                             Sản phẩm {{$product->product_name}} đã được thêm vào giỏi hàng.<a href="{{URL::to('/cart')}}">Xem giỏ hàng</a>
                         </div>
                     <?php

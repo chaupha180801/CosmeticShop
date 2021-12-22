@@ -3,7 +3,7 @@
 <div class="container">
     <div class="breadcums row">
         <ul>
-            <li>Trang chủ</li>
+            <li><a href="{{URL::to('/')}}"> Trang chủ</a></li>
             <li><i class="fa fa-angle-right"></i></li>
             <li>Giỏ hàng</li>
         </ul>
@@ -74,11 +74,7 @@
                     $total_cart = floatval($total);                                         
                 ?>
                     <td  class="text-right"><p>Thành tiền:</p></td>
-<<<<<<< HEAD
-                    <td> <span id="total-product">{{Cart::subtotal()}}</span></td>
-=======
                     <td> <span id="total-product">{{number_format($total_cart)}}</span></td>
->>>>>>> 1eaf81d75009390d248e5b71f5da95aabb452590
                     <td  id="vnd">&nbsp VNĐ</td>
                 </tr>
                 <tr>     

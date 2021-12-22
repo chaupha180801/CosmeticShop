@@ -25,7 +25,8 @@ class OrderController extends Controller
         if (!Session::get('adminId')) {
             return Redirect::to('/admin')->with('error', 'Vui lòng đăng nhập!');
         } else {
-            $all_order = DB::table('tbl_order')->join('tbl_shipping', 'tbl_shipping.shipping_id', '=', 'tbl_order.shipping_id')               
+            $all_order = DB::table('tbl_order')->join('tbl_shipping', 'tbl_shipping.shipping_id', '=', 'tbl_order.shipping_id')
+                ->join('tbl_order_detail', 'tbl_order_detail.order_id', '=', 'tbl_order.order_id')
                 ->orderby('order_date', 'DESC')->paginate(6)->appends(request()->query());
             return view('order.show_order')->with('all_order', $all_order);
         }
@@ -185,7 +186,7 @@ class OrderController extends Controller
                 <div class="invoice_result">
                     <div class="invoice_result_left">
                         <p>Tiền thu người nhận:</p>
-                        <h1>'. $total_order.' VNĐ</h1>
+                        <h1>'. $total_order.'</h1>
                         <strong>Chỉ dẫn giao hàng: <br>
                         - Không đồng kiểm <br>
                         - Chuyển hoàn sau 3 lần phát <br>
@@ -325,13 +326,12 @@ class OrderController extends Controller
             foreach ($order as $key => $ord) {
                 $account_id = $ord->account_id;
                 $shipping_id = $ord->shipping_id;
-                $discount_id = $ord->discount_id;
             }
             $account = Account::where('account_id', $account_id)->first();
             $shipping = Shipping::where('shipping_id', $shipping_id)->first();
-            $discount = DB::table('tbl_discount')->where('discount_id',$discount_id)->first();
+
             $order_details = OrderDetails::with('product')->where('order_id', $id)->get();
-            return view('order.detail_order')->with(compact('detail_order', 'account', 'shipping', 'order_details','discount'));
+            return view('order.detail_order')->with(compact('detail_order', 'account', 'shipping', 'order_details'));
         }
     }
 
@@ -411,10 +411,10 @@ class OrderController extends Controller
         <table class="table_detail_history_order">
             <thead>
                 <tr>
-                    <th scope="col" style="width: 50px; align="center">STT</th>
-                    <th scope="col" style="width: 400px; ">Tên sản phẩm</th>
-                    <th scope="col" align="center">Giá</th>
-                    <th scope="col" align="center">Số lượng</th>
+                    <th scope="col" style="width: 50px;" align="center">STT</th>
+                    <th scope="col" style="width: 400px;" ">Tên sản phẩm</th>
+                    <th scope="col" style="width: 200px;" align="center">Giá</th>
+                    <th scope="col" style="width: 200px; text-align:center">Số lượng</th>
                     <th scope="col" align="center">Thành tiền</th>
                 </tr>
             </thead>
@@ -427,11 +427,11 @@ class OrderController extends Controller
                 <tr>
                     <td align="center">' . $i . '</td>
                     <td style="width: 200px; ">
-                        <a href="' . url('/chi-tiet-san-pham/' . $od->product_id) . '" target = "_blank" style="color:black; width: 80%; display:block;s white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">' . $od->product_name . '</a>
+                        <a href="' . url('/chi-tiet-san-pham/' . $od->product_id) . '" target = "_blank" style="color:black; width: 340px; display:block; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">' . $od->product_name . '</a>
                     </td>
-                    <td >' . $od->product_price . ' VNĐ</td>
+                    <td >' . number_format($od->product_price) . ' VNĐ</td>
                     <td align="center">' . $od->order_product_quanity . '</td>
-                    <td >' . $od->order_product_quanity * $od->product_price . ' VNĐ</td>
+                    <td >' . number_format($od->order_product_quanity * $od->product_price) . ' VNĐ</td>
                 </tr>
             ';
             }

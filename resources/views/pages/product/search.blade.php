@@ -37,7 +37,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{asset('public/frontEnd/images/slide_1.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('public/frontEnd/images/slide_9.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             {{-- <h5 class="slide_header">Big Christmas Sale</h5>
                             <p class="slide_desc">Some representative placeholder content for the first slide.</p> --}}

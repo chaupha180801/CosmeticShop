@@ -11,21 +11,24 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{asset('public/frontEnd/images/slide_1.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('public/frontEnd/images/slide_9.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                          
+                            {{-- <h5 class="slide_header">Big Christmas Sale</h5>
+                            <p class="slide_desc">Some representative placeholder content for the first slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{asset('public/frontEnd/images/slide_2.jpg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                           
+                            {{-- <h5 class="slide_header">Black Friday Sale up 70%</h5>
+                            <p class="slide_desc">Some representative placeholder content for the second slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{asset('public/frontEnd/images/slide_3.jpg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                    
+                            {{-- <h5 class="slide_header">Super Sale Black Friday</h5>
+                            <p class="slide_desc">Some representative placeholder content for the third slide.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -41,7 +44,9 @@
         </div>
     
     </div>
-</div>
+    <!-- end slide and sub image -->
+ </div>
+
 <div class="container about_brand">
     <div class="row">
         <div class="brand_header">
