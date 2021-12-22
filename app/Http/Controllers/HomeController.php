@@ -24,14 +24,27 @@ class HomeController extends Controller
         ->orderBy('brand_id','DESC')->get();
     
         $all_product = DB::table('tbl_product')->where('product_state', '1')
-        ->orderBy('product_id','DESC')->paginate(6);
+        ->orderBy('product_id','DESC')->paginate(9);
 
         $nhacungcap = DB::table('tbl_supplier')->where('supplier_status', '1')
         ->orderBy('supplier_id','DESC')->get();
 
+        $bestsellers = DB::table('tbl_product')
+        ->join('tbl_order_detail','tbl_order_detail.product_id','=','tbl_product.product_id')            
+        ->selectRaw('sum(tbl_order_detail.order_product_quanity) as soluongban')
+        ->groupBy('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
+        'tbl_product.product_name','tbl_product.product_price',
+        'tbl_product.product_total_comment','tbl_product.product_total_rating')
+        ->orderByDesc('soluongban')
+        ->addSelect('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
+        'tbl_product.product_name','tbl_product.product_price',
+        'tbl_product.product_total_comment','tbl_product.product_total_rating')
+        ->take(5)->get();
+
+    
         return view('pages.home')->with('category', $danhmuc)
         ->with('brand', $thuonghieu)->with('product', $all_product)
-        ->with('supplier', $nhacungcap);
+        ->with('supplier', $nhacungcap)->with("bestsellers",  $bestsellers);
     }
 
     public function autocomplete_ajax(Request $request){

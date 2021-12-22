@@ -17,14 +17,14 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{asset('public/frontEnd/images/slide_15.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('public/frontEnd/images/slide_14.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             {{-- <h5 class="slide_header">Big Christmas Sale</h5>
                             <p class="slide_desc">Some representative placeholder content for the first slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('public/frontEnd/images/slide_14.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('public/frontEnd/images/slide_16.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             {{-- <h5 class="slide_header">Black Friday Sale up 70%</h5>
                             <p class="slide_desc">Some representative placeholder content for the second slide.</p> --}}
@@ -74,56 +74,44 @@
             <!-- category -->
             <!-- start wishtlist -->
             <div class="wishlist">
-                <h3>WISHLIST</h3>
+                <h3>BÁN CHẠY</h3>
+                @foreach ($bestsellers as $key3 => $item3)
                 <div class="wishlist_item">
-                    <img src="{{asset('public/frontEnd/images/pr2.png')}}" alt="">
+                    
+                    <img src="{{asset('public/backEnd/images/'.$item3->product_img)}}" alt="">
                     <div class="wishlist_content">
-                        <h4>Kem trị mụn</h4>
-                        <p class="wishlist_price">100.000 vnd</p>
-                        <p class="wishlist_qty">Quanity: 1</p>
+                        <h4> <a href="{{URL::to('/chi-tiet-san-pham/'.$item3->product_id)}}" style="color: black;">  {{$item3->product_name}} </a></h4>
+                        <p class="wishlist_price">{{number_format( $item3->product_price)}} VND</p>
+                      
                     </div>
-                    <i class="fas fa-times"></i>
+               
                 </div>
-                <div class="wishlist_item">
-                    <img src="{{asset('public/frontEnd/images/pr3.png')}}" alt="">
-                    <div class="wishlist_content">
-                        <h4>Tẩy tế bào chết</h4>
-                        <p class="wishlist_price">200.000 vnd</p>
-                        <p class="wishlist_qty">Quanity: 2</p>
-                    </div>
-                    <i class="fas fa-times"></i>
-                </div>
-                <div class="wishlist_qtyitem">
-                    2 items
-                </div>
+                @endforeach
+               
             </div>
             <!-- end wishlist -->
             <!-- start popular tag -->
             <div class="popular_tag">
-                <h3>POPULAR TAGS</h3>
+                <h3>BÍ QUYẾT LÀM ĐẸP</h3>
                 <ul class="popular_list">
-                    <li><a href="">Trị mụn</a></li>
-                    <li><a href="">Bông tẩy trang</a></li>
-                    <li><a href="">Son môi</a></li>
-                    <li><a href="">Dưỡng ẩm</a></li>
-                    <li><a href="">Liền sẹo</a></li>
-                    <li><a href="">Mặt nạ</a></li>
-                    <li><a href="">Lột mụn</a></li>
-                    <li><a href="">Oxy</a></li>
-                    <li><a href="">Trắng da</a></li>
+                    <li><a href="https://beauty2review.com/beauty-review/review-kem-chong-nang/">Review KCN Miin Daily Protection Sunblock – Mọi Thứ Đều Ổn Áp, Riêng Thiết Kế Còn Trái Chiều</a></li>
+                    <li><a href="https://beauty2review.com/beauty-review/review-kem-chong-nang/">REVIEW Son Kem Lì Romand Zero Velvet Tint 5.5g, Trải Nghiệm Chất Vintage Mịn Môi</a></li>
+                    <li><a href="https://beauty2review.com/beauty-review/review-kem-chong-nang/">Review Tất Tần Tật Về Kem Chống Nắng Miin Premium Tone Up Sunblock</a></li>
+                    <li><a href="https://beauty2review.com/beauty-review/review-kem-chong-nang/">Tự tin rành mỹ phẩm, bạn đã biết phấn nước Lime Real Cover Pink Cushion chưa?</a></li>
                 </ul>
             </div>
+
             <!-- end popular tag -->
             <!-- start newsletter -->
             <div class="newsletter">
-                <h3>NEWLETTERS</h3>
+                {{-- <h3>NEWLETTERS</h3>
                 <div class="content">
                     <p>sign up for your newsletter</p>
                     <input type="text" placeholder="Your email here">
                     <button>Subcribe</button>
-                </div>
+                </div> --}}
                 <div class="image">
-                    <img src="{{asset('public/frontEnd/images/caythong3.gif')}}" alt="">
+                    <img src="{{asset('public/frontEnd/images/caythong4.gif')}}" alt="">
                 </div>
             </div>
         </div>
@@ -157,8 +145,6 @@
                     ?>
                          
                     <div class="col-sm-4 product_wrap">
-                    
-    
                         <div class="home-product-item">
                             <div class="product_image">                          
                                 <img src="{{URL::to('public/backEnd/images/'.$sp->product_img)}}" alt="">
@@ -190,7 +176,7 @@
                                 @endfor
                               </div>
                                 <p class="price">
-                                   <span> {{number_format($sp->product_price)}} vnđ</span> 
+                                   <span> {{number_format($sp->product_price)}} VND</span> 
                                 </p>
                                 <div class="add_to">
                                     <!-- <input type="button" data-toggle="modal" data-target="#xemnhanh" value="Xem nhanh"
@@ -239,45 +225,7 @@
                     </div>
                 </div>
     
-                <div class="row sales">
-                    <div class="col l-6 m-6 c-12 single_sale">
-                        <div class="single_sale_imgae">
-                            <img src="{{asset('public/frontEnd/images/single_sale1.jpg')}}" alt="">
-                            <div class="sale_overlay"></div>
-                            <div class="sale_discount">Up to 40% off</div>
-                        </div>
-                    </div>
-                    <div class="col l-6 m-6 c-12 single_sale">
-                        <div class="single_sale_imgae">
-                            <img src="{{asset('public/frontEnd/images/single_sale2.jpg')}}" alt="">
-                            <div class="sale_overlay"></div>
-                            <div class="sale_discount">Sale off 30%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row brands">
-                    <h3>BRANDS</h3>
-                    <ul class="col l-12 m-12 c-12 brand_list">
-                        <li>
-                            <img src="{{asset('public/frontEnd/images/brand_logo1.jpg')}}" alt="">
-                        </li>
-                        <li>
-                            <img src="{{asset('public/frontEnd/images/brand2.jpg')}}" alt="">
-                        </li>
-                        <li>
-                            <img src="{{asset('public/frontEnd/images/brand3.jpg')}}" alt="">
-                        </li>
-                        <li>
-                            <img src="{{asset('public/frontEnd/images/brand4.jpg')}}" alt="">
-                        </li>
-                        <li>
-                            <img src="{{asset('public/frontEnd/images/brand5.jpg')}}" alt="">
-                        </li>
-                        <li>
-                            <img src="{{asset('public/frontEnd/images/brand6.jpg')}}" alt="">
-                        </li>
-                    </ul>
-                </div>
+              
             </div>
         </div    >
         <!-- end list product -->   
@@ -285,5 +233,54 @@
      
 </div>
 
+
+<div class="container">
+    <div class="row sales">
+        <div class="col-md-4 single_sale">
+            <div class="single_sale_imgae">
+                <img src="{{asset('public/frontEnd/images/single_sale1.jpg')}}" alt="">
+                <div class="sale_overlay"></div>
+                <div class="sale_discount">Up to 40% off</div>
+            </div>
+        </div>
+        <div class="col-md-4 single_sale">
+            <div class="single_sale_imgae">
+                <img src="{{asset('public/frontEnd/images/single_sale2.jpg')}}" alt="">
+                <div class="sale_overlay"></div>
+                <div class="sale_discount">Sale off 30%</div>
+            </div>
+        </div>
+        <div class="col-md-4 single_sale">
+            <div class="single_sale_imgae">
+                <img src="{{asset('public/frontEnd/images/single_sale6.png')}}" alt="">
+                <div class="sale_overlay"></div>
+                <div class="sale_discount">Sale off 30%</div>
+            </div>
+        </div>
+    </div>
+    <div class="row brands">
+        <h3>BRANDS</h3>
+        <ul class="col l-12 m-12 c-12 brand_list">
+            <li>
+                <img src="{{asset('public/frontEnd/images/brand_logo1.jpg')}}" alt="">
+            </li>
+            <li>
+                <img src="{{asset('public/frontEnd/images/brand2.jpg')}}" alt="">
+            </li>
+            <li>
+                <img src="{{asset('public/frontEnd/images/brand3.jpg')}}" alt="">
+            </li>
+            <li>
+                <img src="{{asset('public/frontEnd/images/brand4.jpg')}}" alt="">
+            </li>
+            <li>
+                <img src="{{asset('public/frontEnd/images/brand5.jpg')}}" alt="">
+            </li>
+            <li>
+                <img src="{{asset('public/frontEnd/images/brand6.jpg')}}" alt="">
+            </li>
+        </ul>
+    </div>
+</div>
 
 @endsection

@@ -405,7 +405,7 @@ body {
 }
 
 .heading {
-    font-size: 20px;
+    font-size: 30px;
     text-transform: uppercase;
     font-weight: 700;
     margin-left: 10px;
@@ -644,6 +644,13 @@ body {
 .wishlist .wishlist_item .wishlist_content h4 {
     font-size: 14px;
     font-weight: 100;
+    line-height: 20px;
+    height: 40px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
 }
 
 .wishlist .wishlist_item .wishlist_content .wishlist_price {
@@ -705,7 +712,7 @@ body {
 .popular_tag h3::before {
     position: absolute;
     content: "";
-    width: 42%;
+    width: 35%;
     height: 4px;
     background: #F2F2F2;
     right: 0;
@@ -723,7 +730,7 @@ body {
 .popular_tag ul li a {
     text-decoration: none;
     padding: 5px 10px;
-    color: white;
+    color: black;
     background-color: pink;
     display: block;
     margin: 5px;
@@ -1647,4 +1654,8 @@ tr.row_order {
  color: #ff9705 !important;
 }
 
+
+.breadcums li a {
+    color: black;
+}
 
