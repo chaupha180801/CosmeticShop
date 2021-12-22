@@ -206,7 +206,7 @@
                                                                 $total_cart = floatval($total);
                                                                 $total_discount = $total_cart *(1- $discount->discount_percent/100) + 30000;
                                                             ?>
-                                                            <input type="hidden" name="cart_total" value={{number_format($total_discount)}}>
+                                                            <input type="hidden" name="cart_total" value={{$total_discount}}>
                                                             
                                                             <strong id="cart-total">{{number_format($total_discount)}}</strong>
                                                             <strong> VNĐ </strong>
@@ -247,7 +247,7 @@
                                                                 $total = str_replace(',','',Cart::subtotal());
                                                                 $total_cart = floatval($total) + 30000;                                         
                                                             ?>
-                                                            <input type="hidden" name="cart_total" value={{number_format($total_cart)}}>
+                                                            <input type="hidden" name="cart_total" value={{$total_cart}}>
                                                             <strong id="cart-total">{{number_format($total_cart)}}</strong>
                                                             <strong> VNĐ </strong>
                                                         </td>
