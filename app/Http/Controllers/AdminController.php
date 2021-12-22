@@ -56,7 +56,7 @@ class AdminController extends Controller
                 ->select(\DB::raw('sum(order_total) as total'), \DB::raw('DATE(order_date) day'))
                 ->groupBy('day')->get();
 
-            $revenueMonthYear = DB::table('tbl_order')->where('order_status', 1)
+            $revenueMonthYear = DB::table('tbl_order')->where('order_status', 0)
                 ->whereYear('order_date', date('Y'))
                 ->select(\DB::raw('sum(order_total) as total'), \DB::raw('MONTH(order_date) month'))
                 ->groupBy('month')->get();

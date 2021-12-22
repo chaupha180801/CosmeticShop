@@ -35,7 +35,7 @@
               <th scope="row" class = "stt_order" style="text-align: center;">{{++$i}}</th>
               
               <td >{{ $order->order_date }}</td>
-              <td >{{ $order->order_total }} VNĐ</td>
+              <td >{{ number_format($order->order_total) }} VNĐ</td>
               @if( $order->order_status == 1)
                 <td >Đang chờ xử lý</td>
               @else
