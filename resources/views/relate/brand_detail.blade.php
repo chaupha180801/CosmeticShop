@@ -45,7 +45,7 @@
 <div class="container about_brand">
     <div class="row">
         <div class="brand_header">
-            <h3>BEST SALER</h3>
+            <h3>BEST SELLER</h3>
         </div>
     </div>
     {{-- start row product --}}

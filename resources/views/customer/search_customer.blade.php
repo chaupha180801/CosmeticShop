@@ -19,7 +19,7 @@
         ?>
             <div class="alert alert-success" id="divmessage" role="alert">
              <?php echo $message; ?>
-             <i class="fa fa-times" <i class="fa fa-times" onclick="hidemessage()"></i>></i>
+             <i class="fa fa-times" id="icon_hide_message" onclick="hidemessage()"</i>
             </div>
         <?php
         Session::put('message','');

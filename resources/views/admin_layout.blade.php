@@ -97,7 +97,11 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  
+                <li><a><i class="fa fa-star"></i></i>Tổng quan<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{URL::to('/dashboard')}}">Doanh thu</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-product-hunt"></i> Sản phẩm <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{URL::to('/show-product-admin')}}">Danh sách sản phẩm</a></li>

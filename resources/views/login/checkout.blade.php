@@ -136,7 +136,7 @@
                             <tbody>
                             @foreach($content as $v_content)
                                 <tr>
-                                    <td class="product_name"> {{$v_content->name}} <strong> × {{$v_content->qty}}</strong></td>
+                                    <td class="product_name"> <span>{{$v_content->name}}</span>  <strong> × {{$v_content->qty}}</strong></td>
                                     <td> {{number_format($v_content->price)}} VNĐ</td>
                                     <input class="product-price-value" type="hidden" value={{$v_content->price}}>
                                     <input class="product-row-id" type="hidden" value={{$v_content->rowId}}>
@@ -153,8 +153,12 @@
                             <input type="hidden" name="discount_quantity" value="{{$discount->discount_quantity}}">
                             <tfoot>
                                 <tr>
+                                         <?php
+                                            $total = str_replace(',','',Cart::subtotal());
+                                            $total_cart = floatval($total);                                         
+                                        ?>
                                     <th colspan="2">Tổng tiền sản phẩm</th>
-                                    <td> {{Cart::subtotal()}} VNĐ</td>
+                                    <td> {{number_format($total_cart)}} VNĐ</td>
                                 </tr>
                                 <tr>
                                     <th colspan="2">Mã giảm giá</th>
@@ -177,16 +181,24 @@
                                     <th colspan="2">Số tiền giảm</th>
                                     <td><strong>{{number_format($total_discount)}} VNĐ</strong></td>
                                 </tr>
+                                <tr>
+                                    <th colspan="2">Tiền ship</th>
+                                    <td>                             
+                                        <strong>
+                                            30,000 VNĐ
+                                        </strong>
+                                    </td>
+                                </tr>
                                 <tr class="order_total">
                                     <th colspan="2">Tổng tiền hóa đơn</th>
                                     <td>
                                         <?php
                                             $total = str_replace(',','',Cart::subtotal());
                                             $total_cart = floatval($total);
-                                            $total_discount = $total_cart *(1- $discount->discount_percent/100);
+                                            $total_discount = $total_cart *(1- $discount->discount_percent/100) + 30000;
                                         ?>
                                         <input type="hidden" name="cart_total" value={{number_format($total_discount)}}>
-                                        <strong>Thành tiền: </strong>
+                                        
                                         <strong id="cart-total">{{number_format($total_discount)}}</strong>
                                         <strong> VNĐ </strong>
                                     </td>
@@ -197,14 +209,30 @@
                         <input type="hidden" name="discount" value=" ">
                             <tfoot>
                                 <tr>
-                                    <th colspan="2">Tổng tiền sản phẩm</th>
-                                    <td> {{Cart::subtotal()}} VNĐ</td>
+                                         <?php
+                                            $total = str_replace(',','',Cart::subtotal());
+                                            $total_cart = floatval($total);                                         
+                                        ?>
+                                    <th> colspan="2">Tổng tiền sản phẩm</th>
+                                    <td> {{number_format($total_cart)}} VNĐ</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">Tiền ship</th>
+                                    <td>                             
+                                        <strong>
+                                            30,000 VNĐ
+                                        </strong>
+                                    </td>
                                 </tr>
                                 <tr class="order_total">
                                     <th colspan="2">Tổng tiền hóa đơn</th>
                                     <td>
-                                        <input type="hidden" name="cart_total" value={{Cart::subtotal()}}>
-                                        <strong id="cart-total">{{Cart::subtotal()}}</strong>
+                                        <?php
+                                            $total = str_replace(',','',Cart::subtotal());
+                                            $total_cart = floatval($total) + 30000;                                         
+                                        ?>
+                                        <input type="hidden" name="cart_total" value={{number_format($total_cart)}}>
+                                        <strong id="cart-total">{{number_format($total_cart)}}</strong>
                                         <strong> VNĐ </strong>
                                     </td>
                                 </tr>
@@ -215,12 +243,13 @@
                     </div>
                     <div class="payment_method"> 
                             <button type="submit" class="btn btn-primary" onclick="checkoutFinal(event)">Đặt hàng</button>
-                            <a href="{{URL::to('/cart')}}">
-                                <button class="btn btn-success">Quay lại giỏ hàng</button>
+                            <a class="btn btn-success"  href="{{URL::to('/cart')}}">
+                               Quay lại giỏ hàng
                             </a>
                     </div>                 
                     </div>                
         </form> 
+      
     </div>
         
 </div>

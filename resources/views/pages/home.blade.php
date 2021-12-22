@@ -259,7 +259,7 @@
                     <h3>BRANDS</h3>
                     <ul class="col l-12 m-12 c-12 brand_list">
                         <li>
-                            <img src="{{asset('public/frontEnd/images/brand1.jpg')}}" alt="">
+                            <img src="{{asset('public/frontEnd/images/brand_logo1.jpg')}}" alt="">
                         </li>
                         <li>
                             <img src="{{asset('public/frontEnd/images/brand2.jpg')}}" alt="">

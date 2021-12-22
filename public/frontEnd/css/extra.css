@@ -15,6 +15,10 @@
     border-radius: 18px;
     border: none;
     overflow: hidden;
+    z-index: 100000000000;
+    max-height: 200px;
+    overflow-y: hidden;
+
 }
 
 #search-ajax ul.dropdown-menu li a{

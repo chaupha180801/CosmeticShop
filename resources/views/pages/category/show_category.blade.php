@@ -191,7 +191,7 @@
                             </p>
                             <div class="add_to">
                                 <a href="{{URL::to('/chi-tiet-san-pham/'.$sp->product_id)}}">
-                                <button>Xem chi tiết sản phẩm</button>
+                                <button>Xem chi tiết</button>
                             </div>
                         </div>
                         
@@ -277,5 +277,5 @@
 </div>
 </div>
   <!-- start slide and sub image -->
-   
+
 @endsection
