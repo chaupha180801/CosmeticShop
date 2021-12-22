@@ -139,9 +139,9 @@
                                 <tbody>
                                 @foreach($content as $v_content)
                                     <tr>
-                                        <td class="product_name">
+                                        <td class="product_name" style="text-align: left; margin-left: 10px;">
                                           
-                                             <span>{{$v_content->name}}</span>  <strong> × {{$v_content->qty}}</strong></td>
+                                             <span style="margin-left: 10px;">{{$v_content->name}}</span>  <strong> × {{$v_content->qty}}</strong></td>
                                         <td> {{number_format($v_content->price)}} VNĐ</td>
                                         <input class="product-price-value" type="hidden" value={{$v_content->price}}>
                                         <input class="product-row-id" type="hidden" value={{$v_content->rowId}}>

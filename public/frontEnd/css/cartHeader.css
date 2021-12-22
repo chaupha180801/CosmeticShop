@@ -12,6 +12,7 @@
     text-decoration: none;
     color: black;
     position: relative;
+    margin-left: 40px;
 }
 
 .header_search .header_cart a p {
