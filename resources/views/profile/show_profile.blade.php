@@ -134,7 +134,7 @@
                 <br>
             <p class="name_profile">{{$item->account_name}}</p>
     
-                <input type="submit" value="Cập nhật ảnh đại diện" class="btn-sm btn-primary">
+                <input type="submit" value="Cập nhật ảnh đại diện" class="btn-sm btn-warning" style="border: none; padding: 10px">
             </form>
         </div>
         <div class="col-md-4">

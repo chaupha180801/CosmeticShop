@@ -34,6 +34,8 @@ class CartController extends Controller
         $data['options']['image'] = $request->product_cart_image;
         Cart::add($data);
 
+
+
        
         $danhmuc = DB::table('tbl_category_product')
         ->where('category_status', '1')
@@ -49,9 +51,8 @@ class CartController extends Controller
         ->orderBy('supplier_id','DESC')->get();
 
         Session::put('message','Thêm sản phẩm thành công');
-        return view('pages.home')->with('category', $danhmuc)
-        ->with('brand', $thuonghieu)->with('product', $all_product)
-        ->with('supplier', $nhacungcap);
+      
+        return redirect()->back();
     }
 
     public function DeleteProductCart($id){
