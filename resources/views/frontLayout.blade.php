@@ -51,7 +51,7 @@
     <div class="container-fluid wrap">
         <!-- ========================================================================start header =================================================
         header include: logo and searchbox , navigaton, breadcums -->
-        <!-- logo and search box -->
+       
         <div class="row profile_home">
             <div class="col-md-3 offset-md-1 contact">
                 <span> <i class="fas fa-phone"></i> 0123456789</span>
@@ -101,7 +101,7 @@
         </div>
         <div class="row header_search">
             <a href="{{URL::to('/')}}" class="image col-md-2">
-                <img src="{{asset('public/frontEnd/images/logo_main.png')}}" alt="">
+                <img src="{{asset('public/frontEnd/images/logo_main2.png')}}" alt="">
             </a>
             <div class="navigation col-md-5">
                 <ul class="list">
@@ -301,9 +301,14 @@
                 keywords.classList.toggle("show");
          
         }
+
+        setTimeout(() => {
+            mess_home.style.display = "none";
+        }, 3000);
     </script>
 
 @yield('script')  
+<script type="text/javascript" src="https://itexpress.vn/API/files/it.snow.js"></script>
 
 </body>
 

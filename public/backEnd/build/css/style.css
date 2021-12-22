@@ -312,6 +312,7 @@ ul.top_profiles li {
     margin: 0;
     padding: 3px 5px;
     width: 300px;
+    padding: 10px 0;
 }
 
 ul.top_profiles {
@@ -344,3 +345,14 @@ ul.top_profiles li:nth-child(even) {
     transform: translateY(-50%);
 }
 
+
+.event .media-body a.title {
+    font-weight: bold;
+    line-height: 20px;
+    height: 40px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    
+}
