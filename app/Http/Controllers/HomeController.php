@@ -16,6 +16,18 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $bestsellers = DB::table('tbl_product')
+        ->join('tbl_order_detail','tbl_order_detail.product_id','=','tbl_product.product_id')            
+        ->selectRaw('sum(tbl_order_detail.order_product_quanity) as soluongban')
+        ->groupBy('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
+        'tbl_product.product_name','tbl_product.product_price',
+        'tbl_product.product_total_comment','tbl_product.product_total_rating')
+        ->orderByDesc('soluongban')
+        ->addSelect('tbl_product.product_id','tbl_product.product_img','tbl_product.product_quanity',
+        'tbl_product.product_name','tbl_product.product_price',
+        'tbl_product.product_total_comment','tbl_product.product_total_rating')
+        ->take(5)->get();
+
         $danhmuc = DB::table('tbl_category_product')
         ->where('category_status', '1')
         ->orderBy('category_id','DESC')->get();

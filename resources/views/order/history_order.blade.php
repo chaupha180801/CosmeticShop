@@ -36,7 +36,11 @@
               
               <td >{{ $order->order_date }}</td>
               <td >{{ $order->order_total }} VNĐ</td>
-              <td >{{ $order->order_status }}</td>
+              @if( $order->order_status == 1)
+                <td >Đang chờ xử lý</td>
+              @else
+                <td>Đã được xử lý</td>
+              @endif
               <td class="view_order_detail" style="width: 200px;">
                 <div>
                   <input type ="hidden" class = "order_detail_id" value="{{$order->order_id}}">

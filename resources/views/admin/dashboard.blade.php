@@ -156,7 +156,7 @@
                 },
                 labels: {
                     formatter: function () {
-                        return this.value + '000 VNĐ';
+                        return this.value + ' VNĐ';
                     }
                 }
             },
@@ -226,7 +226,7 @@
               },
            labels: {
                     formatter: function () {
-                        return this.value + '000 VNĐ';
+                        return this.value + ' VNĐ';
                     }
                 } 
           }],

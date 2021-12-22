@@ -118,7 +118,7 @@ class CheckoutController extends Controller
         $orderData['discount_id'] = $request->discount;
         $orderData['payment_id'] = $payment_id;
         $orderData['order_total'] = $request->cart_total;
-        $orderData['order_status'] = 'Đang chờ xử lí';
+        $orderData['order_status'] = 1;
         $order_id = DB::table('tbl_order')->insertGetId($orderData);
         // insert order detail
         $content = Cart::content();
