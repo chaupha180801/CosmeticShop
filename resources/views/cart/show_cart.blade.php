@@ -3,7 +3,7 @@
 <div class="container">
     <div class="breadcums row">
         <ul>
-            <li>Trang chủ</li>
+            <li><a href="{{URL::to('/')}}"> Trang chủ</a></li>
             <li><i class="fa fa-angle-right"></i></li>
             <li>Giỏ hàng</li>
         </ul>
@@ -254,4 +254,3 @@
 </script>
 
 @endsection
-

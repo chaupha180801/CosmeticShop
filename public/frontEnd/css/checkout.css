@@ -162,9 +162,31 @@
 	min-width: 50%;
 	text-align: center;
 	padding: 15px 0;
-	/* border-bottom: 1px solid #ddd; */
+
 }
-.order_table table{
+
+.order_table > table > thead > tr,
+.order_table > table > tbody > tr,
+.order_table > table > tfoot > tr{
+	border: 1px solid rgb(231, 231, 231);
+}
+
+.thai123  {
+	
+	border: none;
+	margin-left: 220px;
+   
+}
+
+.thai123  tr {
+	border-bottom: 1px solid rgb(233, 231, 231);
+}
+
+.thai123  tr:last-child {
+	border-bottom: 0px solid rgb(233, 231, 231);
+}
+
+.order_table > table{
     width: 100%;
 }
 .panel-default input[type="radio"] {

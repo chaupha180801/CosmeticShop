@@ -18,7 +18,7 @@ body {
     font-family: sans-serif;
     /* background: linear-gradient(rgb(240 191 240), white); */
     background:url(../images/bg_main2.png);
-    background-repeat: repeat-x;
+    background-repeat:repeat-x;
    
     overflow-x: hidden;
 }
@@ -33,6 +33,17 @@ body {
 
 ::-webkit-scrollbar-thumb {
     background: var(--y);
+}
+
+.logo_CM {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000000000000;
+}
+
+.logo_CM img {
+    width: 150px;
 }
 
 /* ======================================================================HEADER============================================== */
@@ -53,7 +64,8 @@ body {
 }
 
 .header_search .image img {
-    width: 86%;
+    width: 51%;
+    margin-left: 76px;
 }
 
 .header_search .search_box_wrap {
@@ -242,19 +254,15 @@ body {
 }
 
 .navigation .list .item .item_link:hover {
-    background-color: var(--primary-color);
-    color: white;
+    color: var(--primary-color);
     border-radius: 40px;
 }
 
 .item.active {
-    background-color: var(--primary-color);
     border-radius: 20px;
 }
 
-.navigation .list .item.active .item_link {
-    color: white;
-}
+
 
 
 /* end navigation */
@@ -306,7 +314,7 @@ body {
 /* start slide */
 
 .carousel-inner .carousel-item {
-    height: 300px;
+    height: 418px;
 }
 
 .slide {
@@ -545,13 +553,12 @@ body {
 /* phần category */
 
 .category {
-    background: var(--x);
-    border: 6px solid rgba(205, 177, 229, 0.3);
+    border: 6px solid var(--primary-color);
     margin-top: 20px;
 }
 
 .category h3 {
-    color: white;
+    color: black;
     padding-bottom: 10px;
     font-weight: 100;
     border-bottom: 1px solid rgba(205, 177, 229, 0.3);
@@ -577,9 +584,9 @@ body {
 
 .category ul li a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-weight: 100;
-    font-size: 13px;
+    font-size: 17px;
     display: block;
     width: 100%;
     height: 35px;
@@ -1639,3 +1646,5 @@ tr.row_order {
 .each_rating .active{
  color: #ff9705 !important;
 }
+
+

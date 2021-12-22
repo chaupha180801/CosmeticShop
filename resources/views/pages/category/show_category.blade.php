@@ -8,7 +8,6 @@
 </style>
 <div class="container-fluid">
     <div class="row slide">
-       
         <div class="col-sm-12 main_slide">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -18,24 +17,24 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="{{asset('public/frontEnd/images/slide_1.png')}}" class="d-block w-100" alt="...">
+                        <img src="{{asset('public/frontEnd/images/slide_9.png')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            {{-- <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p> --}}
+                            {{-- <h5 class="slide_header">Big Christmas Sale</h5>
+                            <p class="slide_desc">Some representative placeholder content for the first slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{asset('public/frontEnd/images/slide_2.jpg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            {{-- <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p> --}}
+                            {{-- <h5 class="slide_header">Black Friday Sale up 70%</h5>
+                            <p class="slide_desc">Some representative placeholder content for the second slide.</p> --}}
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{asset('public/frontEnd/images/slide_3.jpg')}}" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
-                            {{-- <h5>Third slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p> --}}
+                            {{-- <h5 class="slide_header">Super Sale Black Friday</h5>
+                            <p class="slide_desc">Some representative placeholder content for the third slide.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -49,9 +48,11 @@
                 </button>
             </div>
         </div>
+    
     </div>
     <!-- end slide and sub image -->
-</div>
+ </div>
+
 <div class="container">
   
     <!-- start main product -->
